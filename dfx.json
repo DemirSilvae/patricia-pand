@@ -1,0 +1,19 @@
+{
+  "canisters": {    
+    "grindurus-frontend": {
+      "source": [
+        "src/grindurus-frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "grindurus-frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}

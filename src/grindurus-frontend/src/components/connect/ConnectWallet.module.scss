@@ -1,0 +1,39 @@
+.connect-wallet {
+  padding: 50px 0;
+  height: 600px;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-size: 30px;
+}
+
+.title:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.content {
+  max-width: 500px;
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+}
+
+.content .connect-button {
+  width: 100%;
+  padding: 10px;
+}
+
+.text {
+  line-height: 150%;
+}
+
+.text:not(:last-child) {
+  margin-bottom: 20px;
+}

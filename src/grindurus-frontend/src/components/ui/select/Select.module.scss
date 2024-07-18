@@ -1,0 +1,39 @@
+.select-wrapper {
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+
+.select-trigger {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: #fff;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #000;
+  cursor: pointer;
+}
+
+.options-list {
+  position: absolute;
+  width: 100%;
+  background-color: rgb(26, 26, 26);
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 10;
+}
+
+.option {
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid #eee;
+
+  &:hover {
+    background-color: gray;
+  }
+}

@@ -1,0 +1,35 @@
+.tables {
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.select {
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #fff;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.select-button {
+  width: 50%;
+  border-radius: 0;
+  background-color: transparent;
+
+  &:not(:last-child) {
+    border-right: 1px solid #fff;
+  }
+
+  &:hover {
+    background-color: #2b2b2b;
+  }
+
+  &.active {
+    background-color: #933DC9;
+  }
+}

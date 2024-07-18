@@ -1,0 +1,38 @@
+.total-info {
+  width: 100%;
+  border: 1px solid #fff;
+	border-radius: 8px;
+}
+
+.item {
+  display: flex;
+}
+
+.title .key {
+  display: flex;
+  justify-content: start;
+  font-size: 30px;
+  width: 100%;
+  padding: 20px;
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #fff;
+}
+
+.key:not(:last-child) {
+  border-right: 1px solid #fff;
+}
+
+.key {
+  width: 60%;
+}
+
+.value {
+  width: 40%;
+}
+
+.key, .value {
+  text-align: center;
+	padding: 10px;
+}

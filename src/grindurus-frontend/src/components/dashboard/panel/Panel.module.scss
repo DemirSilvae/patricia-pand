@@ -1,0 +1,17 @@
+.panel-container {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+.left, .right {
+  width: calc(50% - 15px);
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+}
