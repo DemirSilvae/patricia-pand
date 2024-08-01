@@ -9,14 +9,14 @@ import React, {
 } from 'react'
 import styles from './Select.module.scss'
 
-type OptionProps = {
-  value: string
+type OptionProps<T = unknown> = {
+  value: T
   children: ReactNode
-  onSelect?: (value: string) => void
+  onSelect?: (value: T) => void
   isSelected?: boolean
 }
 
-export const Option: React.FC<OptionProps> = ({ children, onSelect, value }) => {
+export const Option = <T,>({ children, onSelect, value }: OptionProps<T>) => {
   return (
     <div className={styles['option']} onClick={() => onSelect?.(value)}>
       {children}
@@ -24,19 +24,19 @@ export const Option: React.FC<OptionProps> = ({ children, onSelect, value }) => 
   )
 }
 
-type SelectProps = {
+type SelectProps<T = unknown> = {
   children: ReactNode
-  onChange?: (value: string) => void
+  onChange?: (value: T) => void
 }
 
-export const Select: React.FC<SelectProps> = ({ children, onChange }) => {
-  const options = Children.toArray(children).filter(isValidElement) as ReactElement<OptionProps>[]
+export const Select = <T,>({ children, onChange }: SelectProps<T>) => {
+  const options = Children.toArray(children).filter(isValidElement) as ReactElement<OptionProps<T>>[]
 
-  const [selectedValue, setSelectedValue] = useState<string | null>(null)
+  const [selectedValue, setSelectedValue] = useState<T | null>(null)
   const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    if (!selectedValue && options.length > 0) {
+    if (selectedValue === null && options.length > 0) {
       const first = options[0].props
       setSelectedValue(first.value)
       onChange?.(first.value)
@@ -45,7 +45,7 @@ export const Select: React.FC<SelectProps> = ({ children, onChange }) => {
 
   const selectedLabel = options.find((child) => child.props.value === selectedValue)?.props.children
 
-  const handleSelect = (value: string) => {
+  const handleSelect = (value: T) => {
     setSelectedValue(value)
     setIsOpen(false)
     onChange?.(value)

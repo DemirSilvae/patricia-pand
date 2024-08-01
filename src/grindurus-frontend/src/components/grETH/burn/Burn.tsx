@@ -84,7 +84,7 @@ function Burn() {
         </div>
       </FormGroup>
       <FormGroup label="Receive Token">
-        <Select onChange={(value) => setSelectedToken(value)}>
+        <Select onChange={(value) => setSelectedToken(value as string)}>
           {networkConfig.baseTokens!.map((token, index) => (
             <Option key={index} value={token.symbol}>
               <img src={token.logo} alt={token.symbol} className={styles["token-icon"]} />

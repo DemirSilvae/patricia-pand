@@ -148,7 +148,7 @@ function MintPool() {
         </button>
       </div>
       <FormGroup label="Strategy">
-        <Select onChange={(value) => setSelectedStrategyId(value)}>
+        <Select onChange={(value) => setSelectedStrategyId(value as number)}>
           {networkConfig.strategies!.map((strategy, index) => (
             <Option key={index} value={index}>
               {strategy.description}
@@ -157,7 +157,7 @@ function MintPool() {
         </Select>
       </FormGroup>
       <FormGroup label="Base Token">
-        <Select onChange={(value) => setSelectedBaseToken(value)}>
+        <Select onChange={(value) => setSelectedBaseToken(value as string)}>
           {networkConfig.baseTokens!.map((token, index) => (
             <Option key={index} value={token.symbol}>
               <img src={token.logo} alt={token.symbol} className={styles["token-icon"]} />
@@ -167,7 +167,7 @@ function MintPool() {
         </Select>
       </FormGroup>
       <FormGroup label="Quote Token">
-        <Select onChange={(value) => setSelectedQuoteToken(value)}>
+        <Select onChange={(value) => setSelectedQuoteToken(value as string)}>
           {networkConfig.quoteTokens!
             .filter(t => t.symbol !== selectedBaseToken)
             .map((token, index) => (
