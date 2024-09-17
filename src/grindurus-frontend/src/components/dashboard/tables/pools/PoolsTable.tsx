@@ -124,21 +124,23 @@ function PoolsTable() {
           onClick={() => handleViewPool(info.poolId.toString())}
         />,
         info.poolId.toString(),
-        `${quoteAmount} ${info.quoteTokenSymbol} + ${baseAmount} ${info.baseTokenSymbol}`,
-        `${quoteYield} ${info.quoteTokenSymbol} + ${baseYield} ${info.baseTokenSymbol} \n + ${quoteTrade} ${info.quoteTokenSymbol} + ${baseTrade} ${info.baseTokenSymbol}`,
+        `${quoteAmount} ${info.quoteTokenSymbol}/${baseAmount} ${info.baseTokenSymbol}`,
+        `${quoteYield} ${info.quoteTokenSymbol}\n + ${baseYield} ${info.baseTokenSymbol} \n/ ${quoteTrade} ${info.quoteTokenSymbol}\n${baseTrade} ${info.baseTokenSymbol}`,
         start,
         apr,
         <button
           key={`buy-${info.poolId}`}
-          style={{ backgroundColor: "#933DC9", textTransform: "none", whiteSpace: "nowrap"}}
+          style={{ backgroundColor: "#933DC9", textTransform: "none", whiteSpace: "nowrap", padding: "10px"}}
           onClick={() => handleBuyRoyalty(info.poolId.toString(), royaltyPrice)}
+          className="button"
         >
           Buy {royaltyPrice} {info.quoteTokenSymbol}
         </button>,
         <button
           key={`grind-${info.poolId}`}
-          style={{ backgroundColor: "#933DC9", textTransform: "none" }}
+          style={{ backgroundColor: "#933DC9", textTransform: "none", padding: "10px"}}
           onClick={() => handleGrind(info.poolId.toString())}
+          className="button"
         >
           Grind
         </button>,
@@ -173,8 +175,8 @@ function PoolsTable() {
     "Network",
     "View",
     "Id",
-    "Quote Token / Base Token",
-    "Yield Profit / Trade Profit",
+    "Quote / Base Tokens",
+    "Yield / Trade Profits",
     "Start",
     "APR",
     "Buy Royalty",
