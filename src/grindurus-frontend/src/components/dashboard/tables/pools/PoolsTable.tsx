@@ -6,7 +6,6 @@ import visible from '../../../../assets/images/eye.svg'
 import { debounce } from 'lodash'
 import { useNavigate } from 'react-router-dom'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { Button } from '@mui/material'
 import { Table } from '../../../ui'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 
@@ -129,22 +128,20 @@ function PoolsTable() {
         `${quoteYield} ${info.quoteTokenSymbol} + ${baseYield} ${info.baseTokenSymbol} \n + ${quoteTrade} ${info.quoteTokenSymbol} + ${baseTrade} ${info.baseTokenSymbol}`,
         start,
         apr,
-        <Button
+        <button
           key={`buy-${info.poolId}`}
-          variant="contained"
-          sx={{ backgroundColor: "#933DC9", textTransform: "none", whiteSpace: "nowrap"}}
+          style={{ backgroundColor: "#933DC9", textTransform: "none", whiteSpace: "nowrap"}}
           onClick={() => handleBuyRoyalty(info.poolId.toString(), royaltyPrice)}
         >
           Buy {royaltyPrice} {info.quoteTokenSymbol}
-        </Button>,
-        <Button
+        </button>,
+        <button
           key={`grind-${info.poolId}`}
-          variant="contained"
-          sx={{ backgroundColor: "#933DC9", textTransform: "none" }}
+          style={{ backgroundColor: "#933DC9", textTransform: "none" }}
           onClick={() => handleGrind(info.poolId.toString())}
         >
           Grind
-        </Button>,
+        </button>,
       ]
     })
   }
