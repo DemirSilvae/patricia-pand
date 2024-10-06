@@ -52,7 +52,7 @@ function IntentsTable() {
           />
         </div>
       </div>
-      {!isLoading && <Table headers={headers} data={tableData} />}
+      <Table headers={headers} data={tableData} isLoading={isLoading} />
     </>
   )
 }
