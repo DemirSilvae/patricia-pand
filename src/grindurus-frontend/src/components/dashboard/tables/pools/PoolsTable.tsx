@@ -130,7 +130,7 @@ function PoolsTable() {
         apr,
         <button
           key={`buy-${info.poolId}`}
-          style={{ backgroundColor: "#933DC9", textTransform: "none", whiteSpace: "nowrap", padding: "10px"}}
+          style={{ textTransform: "none", whiteSpace: "nowrap", padding: "10px"}}
           onClick={() => handleBuyRoyalty(info.poolId.toString(), royaltyPrice)}
           className="button"
         >
@@ -138,7 +138,7 @@ function PoolsTable() {
         </button>,
         <button
           key={`grind-${info.poolId}`}
-          style={{ backgroundColor: "#933DC9", textTransform: "none", padding: "10px"}}
+          style={{ textTransform: "none", padding: "10px"}}
           onClick={() => handleGrind(info.poolId.toString())}
           className="button"
         >
