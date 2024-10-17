@@ -39,11 +39,11 @@ function TotalInfo() {
         <div className={styles['key']}>Total Info</div>
       </div>
       <div className={styles['item']}>
-        <div className={styles['key']}>Total Pools Minted:</div>
+        <div className={styles['key']}>Pools Minted:</div>
         <div className={styles['value']}>{totalPoolsMinted.toString()}</div>
       </div>
       <div className={styles['item']}>
-        <div className={styles['key']}>grETH grinded:</div>
+        <div className={styles['key']}>grETH Grinded:</div>
         <div className={styles['value']}>{formatUnits(grETHGrinded, 18)}</div>
       </div>
     </div>
