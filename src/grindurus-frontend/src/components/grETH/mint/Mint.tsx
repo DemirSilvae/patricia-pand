@@ -40,7 +40,7 @@ function Mint() {
 
   return (
     <div className={`${styles["mint-form"]} form`}>
-      <div className={`${styles["title"]} title`}>Mint grETH</div>
+      <div className={`${styles["title"]} form-title`}>Mint grETH</div>
       <FormGroup label="grETH To Mint">
         <div className="form-input">
           <input
@@ -52,9 +52,9 @@ function Mint() {
           <button
             type="button"
             onClick={handleMaxClick}
-            className="max-button"
+            className="max-button button"
           >
-            Max
+            MAX
           </button>
         </div>
       </FormGroup>
@@ -74,7 +74,7 @@ function Mint() {
         )}
       </FormGroup>
       <button
-        className="mint-greth-button button"
+        className={`${styles["mint-button"]} button`}
         disabled={!isFormValid}
         onClick={handleMint}
       >

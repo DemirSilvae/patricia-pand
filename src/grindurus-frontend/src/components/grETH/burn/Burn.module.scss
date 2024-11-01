@@ -2,3 +2,13 @@
   width: 20px;
   height: 20px;
 }
+
+.title {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.burn-button {
+  width: 100%;
+}

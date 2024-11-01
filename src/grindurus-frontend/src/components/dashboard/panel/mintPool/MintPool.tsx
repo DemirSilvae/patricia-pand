@@ -185,7 +185,7 @@ function MintPool() {
             placeholder="0"
             onChange={e => setQuoteTokenAmount(e.target.value)}
           />
-          <button className={`${styles["max-button"]} button`} type="button" onClick={handleMaxDepositQuoteToken}>
+          <button className="max-button button" type="button" onClick={handleMaxDepositQuoteToken}>
             MAX
           </button>
         </div>

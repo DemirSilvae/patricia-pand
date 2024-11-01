@@ -66,7 +66,7 @@ function Burn() {
 
   return (
     <div className={`${styles["burn-form"]} form`}>
-      <h2 className={`${styles["title"]} title`}>Burn and Get Tokens</h2>
+      <h2 className={`${styles["title"]} form-title`}>Burn and Get Tokens</h2>
       <FormGroup label="Burn grETH Amount">
         <div className="form-input">
           <input
@@ -77,9 +77,9 @@ function Burn() {
           <button
             type="button"
             onClick={handleMaxClick}
-            className="max-button"
+            className="max-button button"
           >
-            Max
+            MAX
           </button>
         </div>
       </FormGroup>
