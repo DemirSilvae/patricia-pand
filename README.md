@@ -22,11 +22,11 @@ GrindURUS is a decentralized protocol with multiple components. This frontend pr
 - **Deposit Form**:
   - Enables users to deposit tokens and mint a new isolated pool.
 
-### 🧪 grETH (In Progress)
+### 🧪 grETH (Completed/Continue Development)
 - Burn `grETH` and receive tokens.
 - Mint new `grETH` at a 1:1 ratio with ETH.
 
-### 🤖 Grinder AI (In Progress)
+### 🤖 Grinder AI (Completed Demo)
 - AI-powered assistant chat.
 - Helps users navigate the protocol and get pool-related info.
 
