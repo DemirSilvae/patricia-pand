@@ -2,20 +2,85 @@
   {
     "inputs": [
       {
-        "internalType": "uint16",
-        "name": "strategyId",
-        "type": "uint16"
+        "internalType": "address",
+        "name": "_poolsNFT",
+        "type": "address"
       }
     ],
-    "name": "strategyIdIndex",
-    "outputs": [
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "BaseTokenNotListed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "EndpointIdExist",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "GRAIExist",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidOracle",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotMatchingEndpointId",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotMatchingStrategyId",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "QuoteTokenNotListed",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StrategyIdExist",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StrategyIdNotExist",
+    "type": "error"
+  },
+  {
+    "inputs": [
       {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
+        "internalType": "uint32",
+        "name": "endpointId",
+        "type": "uint32"
+      },
+      {
+        "internalType": "address",
+        "name": "grai",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
       }
     ],
-    "stateMutability": "view",
+    "name": "addGRAIInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -24,28 +89,78 @@
         "internalType": "uint16",
         "name": "strategyId",
         "type": "uint16"
-      }
-    ],
-    "name": "strategyDescription",
-    "outputs": [
+      },
+      {
+        "internalType": "address",
+        "name": "factory",
+        "type": "address"
+      },
       {
         "internalType": "string",
-        "name": "",
+        "name": "description",
         "type": "string"
       }
     ],
-    "stateMutability": "view",
+    "name": "addStrategyInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "endpointId",
+        "type": "uint32"
+      },
+      {
+        "internalType": "address",
+        "name": "grai",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "name": "altGRAIInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "address",
+        "name": "factory",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "name": "altStrategyInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [
       {
         "internalType": "address",
-        "name": "quoteToken",
+        "name": "baseToken",
         "type": "address"
       }
     ],
-    "name": "quoteTokenIndex",
+    "name": "baseTokenCoherence",
     "outputs": [
       {
         "internalType": "uint256",
@@ -78,6 +193,330 @@
   {
     "inputs": [
       {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "baseTokens",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getBaseTokens",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "baseTokenIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getBaseTokensBy",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "_baseTokens",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getGRAIInfos",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "endpointId",
+            "type": "uint32"
+          },
+          {
+            "internalType": "address",
+            "name": "grai",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct IRegistry.GRAIInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "graiInfosIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getGRAIInfosBy",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint32",
+            "name": "endpointId",
+            "type": "uint32"
+          },
+          {
+            "internalType": "address",
+            "name": "grai",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct IRegistry.GRAIInfo[]",
+        "name": "_graiInfos",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      }
+    ],
+    "name": "getOracle",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getQuoteTokens",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "quoteTokenIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getQuoteTokensBy",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "_quoteTokens",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getStrategyInfos",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint16",
+            "name": "strategyId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address",
+            "name": "factory",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct IRegistry.StrategyInfo[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "strategyInfosIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getStrategyInfosBy",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint16",
+            "name": "strategyId",
+            "type": "uint16"
+          },
+          {
+            "internalType": "address",
+            "name": "factory",
+            "type": "address"
+          },
+          {
+            "internalType": "string",
+            "name": "description",
+            "type": "string"
+          }
+        ],
+        "internalType": "struct IRegistry.StrategyInfo[]",
+        "name": "_strategyInfos",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "endpointId",
+        "type": "uint32"
+      }
+    ],
+    "name": "graiIdIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "graiInfos",
+    "outputs": [
+      {
+        "internalType": "uint32",
+        "name": "endpointId",
+        "type": "uint32"
+      },
+      {
+        "internalType": "address",
+        "name": "grai",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      }
+    ],
+    "name": "hasOracle",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "oracleWethUsdArbitrum",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
         "internalType": "address",
         "name": "quoteToken",
         "type": "address"
@@ -89,6 +528,45 @@
       }
     ],
     "name": "oracles",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "poolsNFT",
+    "outputs": [
+      {
+        "internalType": "contract IPoolsNFT",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "priceOracleSelf",
     "outputs": [
       {
         "internalType": "address",
@@ -122,11 +600,11 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "baseToken",
+        "name": "quoteToken",
         "type": "address"
       }
     ],
-    "name": "baseTokenCoherence",
+    "name": "quoteTokenIndex",
     "outputs": [
       {
         "internalType": "uint256",
@@ -135,6 +613,51 @@
       }
     ],
     "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "quoteTokens",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint32",
+        "name": "endpointId",
+        "type": "uint32"
+      }
+    ],
+    "name": "removeGRAIInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
+      }
+    ],
+    "name": "removeStrategyInfo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
@@ -164,6 +687,67 @@
     "inputs": [
       {
         "internalType": "address",
+        "name": "_poolsNFT",
+        "type": "address"
+      }
+    ],
+    "name": "setPoolsNFT",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
+      }
+    ],
+    "name": "strategyIdIndex",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "strategyInfos",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
+      },
+      {
+        "internalType": "address",
+        "name": "factory",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "description",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
         "name": "quoteToken",
         "type": "address"
       },
@@ -184,96 +768,8 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "strategyId",
-        "type": "uint16"
-      },
-      {
-        "internalType": "address",
-        "name": "quoteToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "baseToken",
-        "type": "address"
-      },
-      {
-        "internalType": "bool",
-        "name": "strategyPair",
-        "type": "bool"
-      }
-    ],
-    "name": "setStrategyPair",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "strategyId",
-        "type": "uint16"
-      },
-      {
-        "internalType": "string",
-        "name": "_strategyDescription",
-        "type": "string"
-      }
-    ],
-    "name": "addStrategyId",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "strategyId",
-        "type": "uint16"
-      },
-      {
-        "internalType": "string",
-        "name": "_strategyDescription",
-        "type": "string"
-      }
-    ],
-    "name": "modifyStrategyDescription",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint16",
-        "name": "strategyId",
-        "type": "uint16"
-      }
-    ],
-    "name": "removeStrategyId",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "quoteToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "baseToken",
-        "type": "address"
-      }
-    ],
-    "name": "getOracle",
+    "inputs": [],
+    "name": "usdcArbitrum",
     "outputs": [
       {
         "internalType": "address",
@@ -282,40 +778,11 @@
       }
     ],
     "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "strategyId",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "quoteToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "baseToken",
-        "type": "address"
-      }
-    ],
-    "name": "isStrategyPair",
-    "outputs": [
-      {
-        "internalType": "bool",
-        "name": "",
-        "type": "bool"
-      }
-    ],
-    "stateMutability": "nonpayable",
     "type": "function"
   },
   {
     "inputs": [],
-    "name": "owner",
+    "name": "usdtArbitrum",
     "outputs": [
       {
         "internalType": "address",
@@ -327,24 +794,13 @@
     "type": "function"
   },
   {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "quoteToken",
-        "type": "address"
-      },
-      {
-        "internalType": "address",
-        "name": "baseToken",
-        "type": "address"
-      }
-    ],
-    "name": "hasOracle",
+    "inputs": [],
+    "name": "wethArbitrum",
     "outputs": [
       {
-        "internalType": "bool",
+        "internalType": "address",
         "name": "",
-        "type": "bool"
+        "type": "address"
       }
     ],
     "stateMutability": "view",

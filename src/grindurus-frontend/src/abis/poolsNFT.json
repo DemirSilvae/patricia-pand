@@ -1,2785 +1,2874 @@
 [
   {
-    "type":"constructor",
-    "inputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
   },
   {
-    "type":"receive",
-    "stateMutability":"payable"
+    "inputs": [],
+    "name": "DifferentOwnersOfPools",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"DENOMINATOR",
-    "inputs":[
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
-      }
-    ],
-    "stateMutability":"view"
+    "inputs": [],
+    "name": "DifferentTokens",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"approve",
-    "inputs":[
-      {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "inputs": [],
+    "name": "ERC721EnumerableForbiddenBatchMint",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"balanceOf",
-    "inputs":[
+    "inputs": [
       {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "ERC721IncorrectOwner",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"baseURI",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [
       {
-        "name":"",
-        "type":"string",
-        "internalType":"string"
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "name": "ERC721InsufficientApproval",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"buyRoyalty",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "approver",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"nonpayable"
+    "name": "ERC721InvalidApprover",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"buyRoyaltyTo",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"royaltyPricePaid",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"nonpayable"
+    "name": "ERC721InvalidOperator",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"calcGRETHShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"grethReward",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"grinder",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"actors",
-        "type":"address[]",
-        "internalType":"address[]"
-      },
-      {
-        "name":"grethShares",
-        "type":"uint256[]",
-        "internalType":"uint256[]"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "ERC721InvalidOwner",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"calcRoyaltyPriceShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"compensationShare",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"poolOwnerShare",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"reserveShare",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"ownerShare",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"oldRoyaltyPrice",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"newRoyaltyPrice",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "ERC721InvalidReceiver",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"calcRoyaltyShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"profit",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "sender",
+        "type": "address"
       }
     ],
-    "outputs":[
-      {
-        "name":"receivers",
-        "type":"address[]",
-        "internalType":"address[]"
-      },
-      {
-        "name":"amounts",
-        "type":"uint256[]",
-        "internalType":"uint256[]"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "ERC721InvalidSender",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"deposit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"nonpayable"
+    "name": "ERC721NonexistentToken",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"dip",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       },
       {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"tokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "ERC721OutOfBoundsIndex",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"execute",
-    "inputs":[
-      {
-        "name":"target",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"value",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"data",
-        "type":"bytes",
-        "internalType":"bytes"
-      }
-    ],
-    "outputs":[
-      {
-        "name":"success",
-        "type":"bool",
-        "internalType":"bool"
-      },
-      {
-        "name":"result",
-        "type":"bytes",
-        "internalType":"bytes"
-      }
-    ],
-    "stateMutability":"nonpayable"
+    "inputs": [],
+    "name": "ExceededMaxDeposit",
+    "type": "error"
   },
   {
-    "type":"function",
-    "name":"exit",
-    "inputs":[
+    "inputs": [],
+    "name": "InsufficientMinDeposit",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidOp",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidRoyaltyPriceInit",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidShares",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NoCapital",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotAgent",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotDepositor",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotGrinderAI",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotOwnerOf",
+    "type": "error"
+  },
+  {
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "StrategyStopped",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       },
       {
-        "name":"baseTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "approved",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"nonpayable"
+    "name": "Approval",
+    "type": "event"
   },
   {
-    "type":"function",
-    "name":"getApproved",
-    "inputs":[
+    "anonymous": false,
+    "inputs": [
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "approved",
+        "type": "bool"
       }
     ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "ApprovalForAll",
+    "type": "event"
   },
   {
-    "type":"function",
-    "name":"getPoolIdsOf",
-    "inputs":[
+    "anonymous": false,
+    "inputs": [
       {
-        "name":"poolOwner",
-        "type":"address",
-        "internalType":"address"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "buyer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "paidPrice",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-      {
-        "name":"poolIdsOwnedByPoolOwner",
-        "type":"uint256[]",
-        "internalType":"uint256[]"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "BuyRoyalty",
+    "type": "event"
   },
   {
-    "type":"function",
-    "name":"getPoolNFTInfosBy",
-    "inputs":[
+    "anonymous": false,
+    "inputs": [
       {
-        "name":"_poolIds",
-        "type":"uint256[]",
-        "internalType":"uint256[]"
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "Deposit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
       {
-        "name":"poolNFTInfos",
-        "type":"tuple[]",
-        "internalType":"struct IPoolsNFTLens.PoolNFTInfo[]",
-        "components":[
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseTokenPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "Deposit2",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Deposit3",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Exit",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "op",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "grinder",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isGrinded",
+        "type": "bool"
+      }
+    ],
+    "name": "Grind",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      }
+    ],
+    "name": "Mint",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId1",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "rebalancedPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newBaseTokenAmount0",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "newBaseTokenAmount1",
+        "type": "uint256"
+      }
+    ],
+    "name": "Rebalance",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "Transfer",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Withdraw",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "Withdraw2",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "DENOMINATOR",
+    "outputs": [
+      {
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "baseURI",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      }
+    ],
+    "name": "buyRoyalty",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "buyRoyaltyTo",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "royaltyPricePaid",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "nativeFeeSpent",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "grinder",
+        "type": "address"
+      }
+    ],
+    "name": "calcGRETHShares",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "actors",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "grethShares",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      }
+    ],
+    "name": "calcRoyaltyPriceShares",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "compensationShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "poolOwnerShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "reserveShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "ownerShare",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "oldRoyaltyPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "newRoyaltyPrice",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "profit",
+        "type": "uint256"
+      }
+    ],
+    "name": "calcRoyaltyShares",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "receivers",
+        "type": "address[]"
+      },
+      {
+        "internalType": "uint256[]",
+        "name": "amounts",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "deposit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "baseTokenPrice",
+        "type": "uint256"
+      }
+    ],
+    "name": "deposit2",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "depositedBaseTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "name": "deposit3",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "value",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "execute",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "success",
+        "type": "bool"
+      },
+      {
+        "internalType": "bytes",
+        "name": "result",
+        "type": "bytes"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
+      }
+    ],
+    "name": "exit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getApproved",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "poolOwner",
+        "type": "address"
+      }
+    ],
+    "name": "getPoolIdsOf",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "poolIdsOwnedByPoolOwner",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "_poolIds",
+        "type": "uint256[]"
+      }
+    ],
+    "name": "getPoolNFTInfosBy",
+    "outputs": [
+      {
+        "components": [
           {
-            "name":"poolId",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "poolId",
+            "type": "uint256"
           },
           {
-            "name":"strategyId",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "strategyId",
+            "type": "uint256"
           },
           {
-            "name":"pool",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "pool",
+            "type": "address"
           },
           {
-            "name":"positions",
-            "type":"tuple",
-            "internalType":"struct IPoolsNFTLens.Positions",
-            "components":[
+            "components": [
               {
-                "name":"long",
-                "type":"tuple",
-                "internalType":"struct IURUS.Position",
-                "components":[
+                "components": [
                   {
-                    "name":"number",
-                    "type":"uint8",
-                    "internalType":"uint8"
+                    "internalType": "uint8",
+                    "name": "number",
+                    "type": "uint8"
                   },
                   {
-                    "name":"numberMax",
-                    "type":"uint8",
-                    "internalType":"uint8"
+                    "internalType": "uint8",
+                    "name": "numberMax",
+                    "type": "uint8"
                   },
                   {
-                    "name":"priceMin",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "priceMin",
+                    "type": "uint256"
                   },
                   {
-                    "name":"liquidity",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "liquidity",
+                    "type": "uint256"
                   },
                   {
-                    "name":"qty",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "qty",
+                    "type": "uint256"
                   },
                   {
-                    "name":"price",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "price",
+                    "type": "uint256"
                   },
                   {
-                    "name":"feeQty",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "feeQty",
+                    "type": "uint256"
                   },
                   {
-                    "name":"feePrice",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "feePrice",
+                    "type": "uint256"
                   }
-                ]
+                ],
+                "internalType": "struct IURUS.Position",
+                "name": "long",
+                "type": "tuple"
               },
               {
-                "name":"hedge",
-                "type":"tuple",
-                "internalType":"struct IURUS.Position",
-                "components":[
+                "components": [
                   {
-                    "name":"number",
-                    "type":"uint8",
-                    "internalType":"uint8"
+                    "internalType": "uint8",
+                    "name": "number",
+                    "type": "uint8"
                   },
                   {
-                    "name":"numberMax",
-                    "type":"uint8",
-                    "internalType":"uint8"
+                    "internalType": "uint8",
+                    "name": "numberMax",
+                    "type": "uint8"
                   },
                   {
-                    "name":"priceMin",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "priceMin",
+                    "type": "uint256"
                   },
                   {
-                    "name":"liquidity",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "liquidity",
+                    "type": "uint256"
                   },
                   {
-                    "name":"qty",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "qty",
+                    "type": "uint256"
                   },
                   {
-                    "name":"price",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "price",
+                    "type": "uint256"
                   },
                   {
-                    "name":"feeQty",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "feeQty",
+                    "type": "uint256"
                   },
                   {
-                    "name":"feePrice",
-                    "type":"uint256",
-                    "internalType":"uint256"
+                    "internalType": "uint256",
+                    "name": "feePrice",
+                    "type": "uint256"
                   }
-                ]
+                ],
+                "internalType": "struct IURUS.Position",
+                "name": "hedge",
+                "type": "tuple"
               }
-            ]
+            ],
+            "internalType": "struct IPoolsNFTLens.Positions",
+            "name": "positions",
+            "type": "tuple"
           },
           {
-            "name":"config",
-            "type":"tuple",
-            "internalType":"struct IURUS.Config",
-            "components":[
+            "components": [
               {
-                "name":"longNumberMax",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "longNumberMax",
+                "type": "uint8"
               },
               {
-                "name":"hedgeNumberMax",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "hedgeNumberMax",
+                "type": "uint8"
               },
               {
-                "name":"extraCoef",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "extraCoef",
+                "type": "uint256"
               },
               {
-                "name":"priceVolatilityPercent",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "priceVolatilityPercent",
+                "type": "uint256"
               },
               {
-                "name":"returnPercentLongSell",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "returnPercentLongSell",
+                "type": "uint256"
               },
               {
-                "name":"returnPercentHedgeSell",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "returnPercentHedgeSell",
+                "type": "uint256"
               },
               {
-                "name":"returnPercentHedgeRebuy",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "returnPercentHedgeRebuy",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.Config",
+            "name": "config",
+            "type": "tuple"
           },
           {
-            "name":"feeConfig",
-            "type":"tuple",
-            "internalType":"struct IURUS.FeeConfig",
-            "components":[
+            "components": [
               {
-                "name":"longSellFeeCoef",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "longSellFeeCoef",
+                "type": "uint256"
               },
               {
-                "name":"hedgeSellFeeCoef",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "hedgeSellFeeCoef",
+                "type": "uint256"
               },
               {
-                "name":"hedgeRebuyFeeCoef",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "hedgeRebuyFeeCoef",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.FeeConfig",
+            "name": "feeConfig",
+            "type": "tuple"
           },
           {
-            "name":"oracleQuoteTokenPerBaseToken",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "oracleQuoteTokenPerBaseToken",
+            "type": "address"
           },
           {
-            "name":"oracleQuoteTokenPerFeeToken",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "oracleQuoteTokenPerFeeToken",
+            "type": "address"
           },
           {
-            "name":"feeToken",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "feeToken",
+            "type": "address"
           },
           {
-            "name":"quoteToken",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "quoteToken",
+            "type": "address"
           },
           {
-            "name":"baseToken",
-            "type":"address",
-            "internalType":"address"
+            "internalType": "address",
+            "name": "baseToken",
+            "type": "address"
           },
           {
-            "name":"feeTokenSymbol",
-            "type":"string",
-            "internalType":"string"
+            "internalType": "string",
+            "name": "feeTokenSymbol",
+            "type": "string"
           },
           {
-            "name":"quoteTokenSymbol",
-            "type":"string",
-            "internalType":"string"
+            "internalType": "string",
+            "name": "quoteTokenSymbol",
+            "type": "string"
           },
           {
-            "name":"baseTokenSymbol",
-            "type":"string",
-            "internalType":"string"
+            "internalType": "string",
+            "name": "baseTokenSymbol",
+            "type": "string"
           },
           {
-            "name":"oracleQuoteTokenPerBaseTokenDecimals",
-            "type":"uint8",
-            "internalType":"uint8"
+            "internalType": "uint8",
+            "name": "oracleQuoteTokenPerBaseTokenDecimals",
+            "type": "uint8"
           },
           {
-            "name":"oracleQuoteTokenPerFeeTokenDecimals",
-            "type":"uint8",
-            "internalType":"uint8"
+            "internalType": "uint8",
+            "name": "oracleQuoteTokenPerFeeTokenDecimals",
+            "type": "uint8"
           },
           {
-            "name":"quoteTokenDecimals",
-            "type":"uint8",
-            "internalType":"uint8"
+            "internalType": "uint8",
+            "name": "quoteTokenDecimals",
+            "type": "uint8"
           },
           {
-            "name":"baseTokenDecimals",
-            "type":"uint8",
-            "internalType":"uint8"
+            "internalType": "uint8",
+            "name": "baseTokenDecimals",
+            "type": "uint8"
           },
           {
-            "name":"quoteTokenAmount",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "quoteTokenAmount",
+            "type": "uint256"
           },
           {
-            "name":"baseTokenAmount",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "baseTokenAmount",
+            "type": "uint256"
           },
           {
-            "name":"activeCapital",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "activeCapital",
+            "type": "uint256"
           },
           {
-            "name":"startTimestamp",
-            "type":"uint256",
-            "internalType":"uint256"
+            "internalType": "uint256",
+            "name": "startTimestamp",
+            "type": "uint256"
           },
           {
-            "name":"totalProfits",
-            "type":"tuple",
-            "internalType":"struct IURUS.TotalProfits",
-            "components":[
+            "components": [
               {
-                "name":"quoteTokenYieldProfit",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "quoteTokenYieldProfit",
+                "type": "uint256"
               },
               {
-                "name":"baseTokenYieldProfit",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "baseTokenYieldProfit",
+                "type": "uint256"
               },
               {
-                "name":"quoteTokenTradeProfit",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "quoteTokenTradeProfit",
+                "type": "uint256"
               },
               {
-                "name":"baseTokenTradeProfit",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "baseTokenTradeProfit",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.Profits",
+            "name": "profits",
+            "type": "tuple"
           },
           {
-            "name":"roi",
-            "type":"tuple",
-            "internalType":"struct IPoolsNFTLens.ROI",
-            "components":[
+            "components": [
               {
-                "name":"ROINumerator",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "quoteTokenYieldProfit",
+                "type": "uint256"
               },
               {
-                "name":"ROIDeniminator",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "baseTokenYieldProfit",
+                "type": "uint256"
               },
               {
-                "name":"ROIPeriod",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "quoteTokenTradeProfit",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "baseTokenTradeProfit",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.Profits",
+            "name": "totalProfits",
+            "type": "tuple"
           },
           {
-            "name":"thresholds",
-            "type":"tuple",
-            "internalType":"struct IPoolsNFTLens.Thresholds",
-            "components":[
+            "components": [
               {
-                "name":"longBuyPriceMin",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "ROINumerator",
+                "type": "uint256"
               },
               {
-                "name":"longSellQuoteTokenAmountThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "ROIDeniminator",
+                "type": "uint256"
               },
               {
-                "name":"longSellSwapPriceThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellInitPriceThresholdHigh",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellInitPriceThresholdLow",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellLiquidity",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellQuoteTokenAmountThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellTargetPrice",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeSellSwapPriceThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeRebuyBaseTokenAmountThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
-              },
-              {
-                "name":"hedgeRebuySwapPriceThreshold",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "ROIPeriod",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IPoolsNFTLens.ROI",
+            "name": "roi",
+            "type": "tuple"
           },
           {
-            "name":"royaltyParams",
-            "type":"tuple",
-            "internalType":"struct IPoolsNFTLens.RoyaltyParams",
-            "components":[
+            "components": [
               {
-                "name":"compensationShare",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "longBuyPriceMin",
+                "type": "uint256"
               },
               {
-                "name":"poolOwnerShare",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "longSellQuoteTokenAmountThreshold",
+                "type": "uint256"
               },
               {
-                "name":"reserveShare",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "longSellSwapPriceThreshold",
+                "type": "uint256"
               },
               {
-                "name":"ownerShare",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "hedgeSellInitPriceThresholdHigh",
+                "type": "uint256"
               },
               {
-                "name":"oldRoyaltyPrice",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "hedgeSellInitPriceThresholdLow",
+                "type": "uint256"
               },
               {
-                "name":"newRoyaltyPrice",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "hedgeSellLiquidity",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "hedgeSellQuoteTokenAmountThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "hedgeSellTargetPrice",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "hedgeSellSwapPriceThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "hedgeRebuyBaseTokenAmountThreshold",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "hedgeRebuySwapPriceThreshold",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IPoolsNFTLens.Thresholds",
+            "name": "thresholds",
+            "type": "tuple"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "compensationShare",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "poolOwnerShare",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "reserveShare",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "ownerShare",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "oldRoyaltyPrice",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "newRoyaltyPrice",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct IPoolsNFTLens.RoyaltyParams",
+            "name": "royaltyParams",
+            "type": "tuple"
           }
-        ]
+        ],
+        "internalType": "struct IPoolsNFTLens.PoolNFTInfo[]",
+        "name": "poolNFTInfos",
+        "type": "tuple[]"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"getPositionsBy",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_poolIds",
-        "type":"uint256[]",
-        "internalType":"uint256[]"
+        "internalType": "uint256[]",
+        "name": "_poolIds",
+        "type": "uint256[]"
       }
     ],
-    "outputs":[
+    "name": "getPositionsBy",
+    "outputs": [
       {
-        "name":"",
-        "type":"tuple[]",
-        "internalType":"struct IPoolsNFTLens.Positions[]",
-        "components":[
+        "components": [
           {
-            "name":"long",
-            "type":"tuple",
-            "internalType":"struct IURUS.Position",
-            "components":[
+            "components": [
               {
-                "name":"number",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "number",
+                "type": "uint8"
               },
               {
-                "name":"numberMax",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "numberMax",
+                "type": "uint8"
               },
               {
-                "name":"priceMin",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "priceMin",
+                "type": "uint256"
               },
               {
-                "name":"liquidity",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "liquidity",
+                "type": "uint256"
               },
               {
-                "name":"qty",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "qty",
+                "type": "uint256"
               },
               {
-                "name":"price",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
               },
               {
-                "name":"feeQty",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "feeQty",
+                "type": "uint256"
               },
               {
-                "name":"feePrice",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "feePrice",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.Position",
+            "name": "long",
+            "type": "tuple"
           },
           {
-            "name":"hedge",
-            "type":"tuple",
-            "internalType":"struct IURUS.Position",
-            "components":[
+            "components": [
               {
-                "name":"number",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "number",
+                "type": "uint8"
               },
               {
-                "name":"numberMax",
-                "type":"uint8",
-                "internalType":"uint8"
+                "internalType": "uint8",
+                "name": "numberMax",
+                "type": "uint8"
               },
               {
-                "name":"priceMin",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "priceMin",
+                "type": "uint256"
               },
               {
-                "name":"liquidity",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "liquidity",
+                "type": "uint256"
               },
               {
-                "name":"qty",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "qty",
+                "type": "uint256"
               },
               {
-                "name":"price",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "price",
+                "type": "uint256"
               },
               {
-                "name":"feeQty",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "feeQty",
+                "type": "uint256"
               },
               {
-                "name":"feePrice",
-                "type":"uint256",
-                "internalType":"uint256"
+                "internalType": "uint256",
+                "name": "feePrice",
+                "type": "uint256"
               }
-            ]
+            ],
+            "internalType": "struct IURUS.Position",
+            "name": "hedge",
+            "type": "tuple"
           }
-        ]
+        ],
+        "internalType": "struct IPoolsNFTLens.Positions[]",
+        "name": "",
+        "type": "tuple[]"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"getRoyaltyReceiver",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "getRoyaltyReceiver",
+    "outputs": [
       {
-        "name":"receiver",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grETH",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grETH",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"contract IGRETH"
+        "internalType": "contract IGRETH",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grethGrinderShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grethGrinderShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grethPoolOwnerShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grethPoolOwnerShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grethReserveShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grethReserveShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grethRoyaltyReceiverShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grethRoyaltyReceiverShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grind",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "grind",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grindOp",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"op",
-        "type":"uint8",
-        "internalType":"uint8"
+        "internalType": "uint8",
+        "name": "op",
+        "type": "uint8"
       }
     ],
-    "outputs":[
+    "name": "grindOp",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grindOpTo",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"op",
-        "type":"uint8",
-        "internalType":"uint8"
+        "internalType": "uint8",
+        "name": "op",
+        "type": "uint8"
       },
       {
-        "name":"grinder",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "grinder",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "grindOpTo",
+    "outputs": [
       {
-        "name":"isGrinded",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "isGrinded",
+        "type": "bool"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grindTo",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"grinder",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "grinder",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "grindTo",
+    "outputs": [
       {
-        "name":"isGrinded",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "isGrinded",
+        "type": "bool"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"grinderAI",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "grinderAI",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"contract IGrinderAI"
+        "internalType": "contract IGrinderAI",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"init",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_poolsNFTLens",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_poolsNFTLens",
+        "type": "address"
       },
       {
-        "name":"_grETH",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_grETH",
+        "type": "address"
       },
       {
-        "name":"_grinderAI",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_grinderAI",
+        "type": "address"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "init",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"isAgentOf",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_ownerOf",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_ownerOf",
+        "type": "address"
       },
       {
-        "name":"_agent",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_agent",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "isAgentOf",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"isApprovedForAll",
-    "inputs":[
+    "inputs": [
       {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       },
       {
-        "name":"operator",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "isApprovedForAll",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"isDepositorOf",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
-      {
-        "name":"_depositor",
-        "type":"address",
-        "internalType":"address"
-      }
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
-      }
-    ],
-    "stateMutability":"view"
-  },
-  {
-    "type":"function",
-    "name":"isDisapprovedGrinderAI",
-    "inputs":[
       {
-        "name":"_ownerOf",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_depositor",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "isDepositorOf",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"isStrategyStopped",
-    "inputs":[
+    "inputs": [
       {
-        "name":"strategyId",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
       }
     ],
-    "outputs":[
+    "name": "isStrategyStopped",
+    "outputs": [
       {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"maxDeposit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "maxDeposit",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"minDeposit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "minDeposit",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"mint",
-    "inputs":[
+    "inputs": [
       {
-        "name":"strategyId",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
       },
       {
-        "name":"baseToken",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
       },
       {
-        "name":"quoteToken",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
       },
       {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "mint",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"mintTo",
-    "inputs":[
+    "inputs": [
       {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"strategyId",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
       },
       {
-        "name":"baseToken",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "baseToken",
+        "type": "address"
       },
       {
-        "name":"quoteToken",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "quoteToken",
+        "type": "address"
       },
       {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "mintTo",
+    "outputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"minter",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "minter",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"name",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "name",
+    "outputs": [
       {
-        "name":"",
-        "type":"string",
-        "internalType":"string"
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
-    "stateMutability":"pure"
+    "stateMutability": "pure",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"owner",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address payable"
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"ownerOf",
-    "inputs":[
+    "inputs": [
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "ownerOf",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"pendingOwner",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address payable"
+        "internalType": "address payable",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"poolIds",
-    "inputs":[
+    "inputs": [
       {
-        "name":"pool",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "pool",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "poolIds",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"poolOwnerShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "poolOwnerShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"pools",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "pools",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"poolsNFTLens",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "poolsNFTLens",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"contract IPoolsNFTLens"
+        "internalType": "contract IPoolsNFTLens",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"rebalance",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId0",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId0",
+        "type": "uint256"
       },
       {
-        "name":"poolId1",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId1",
+        "type": "uint256"
       },
       {
-        "name":"rebalance0",
-        "type":"uint8",
-        "internalType":"uint8"
+        "internalType": "uint8",
+        "name": "rebalance0",
+        "type": "uint8"
       },
       {
-        "name":"rebalance1",
-        "type":"uint8",
-        "internalType":"uint8"
+        "internalType": "uint8",
+        "name": "rebalance1",
+        "type": "uint8"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "rebalance",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyInfo",
-    "inputs":[
+    "inputs": [
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       },
       {
-        "name":"salePrice",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "salePrice",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "royaltyInfo",
+    "outputs": [
       {
-        "name":"receiver",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "receiver",
+        "type": "address"
       },
       {
-        "name":"royaltyAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "royaltyAmount",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyOwnerShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyOwnerShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPrice",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "royaltyPrice",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPriceCompensationShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyPriceCompensationShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPriceInitNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyPriceInitNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPriceOwnerShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyPriceOwnerShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPricePoolOwnerShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyPricePoolOwnerShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyPriceReserveShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyPriceReserveShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyReceiver",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "royaltyReceiver",
+    "outputs": [
       {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyReceiverShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyReceiverShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"royaltyReserveShareNumerator",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [],
+    "name": "royaltyReserveShareNumerator",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "",
+        "type": "uint16"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"safeTransferFrom",
-    "inputs":[
+    "inputs": [
       {
-        "name":"from",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
       },
       {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "safeTransferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"safeTransferFrom",
-    "inputs":[
+    "inputs": [
       {
-        "name":"from",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
       },
       {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       },
       {
-        "name":"data",
-        "type":"bytes",
-        "internalType":"bytes"
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "safeTransferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setAgent",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_agent",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_agent",
+        "type": "address"
       },
       {
-        "name":"_agentApproval",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "_agentApproval",
+        "type": "bool"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setAgent",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setApprovalForAll",
-    "inputs":[
+    "inputs": [
       {
-        "name":"operator",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "operator",
+        "type": "address"
       },
       {
-        "name":"approved",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "approved",
+        "type": "bool"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "setApprovalForAll",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setDepositor",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"depositor",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "depositor",
+        "type": "address"
       },
       {
-        "name":"_depositorApproval",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "_depositorApproval",
+        "type": "bool"
       }
-    ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
-  },
-  {
-    "type":"function",
-    "name":"setGRETH",
-    "inputs":[
-      {
-        "name":"_grETH",
-        "type":"address",
-        "internalType":"address"
-      }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "setDepositor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setGRETHShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_grethGrinderShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_grethGrinderShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_grethReserveShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_grethReserveShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_grethPoolOwnerShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_grethPoolOwnerShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_grethRoyaltyReceiverShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_grethRoyaltyReceiverShareNumerator",
+        "type": "uint16"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
-  },
-  {
-    "type":"function",
-    "name":"setGrinderAI",
-    "inputs":[
-      {
-        "name":"_grinderAI",
-        "type":"address",
-        "internalType":"address"
-      }
-    ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setGRETHShares",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setMaxDeposit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
       },
       {
-        "name":"_maxDeposit",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "_maxDeposit",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setMaxDeposit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setMinDeposit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
       },
       {
-        "name":"_minDeposit",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "_minDeposit",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setMinDeposit",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setPoolsNFTLens",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_poolsNFTLens",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_poolsNFTLens",
+        "type": "address"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "setPoolsNFTLens",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setRoyaltyPriceInitNumerator",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_royaltyPriceInitNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyPriceInitNumerator",
+        "type": "uint16"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setRoyaltyPriceInitNumerator",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setRoyaltyPriceShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_royaltyPriceCompensationShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyPriceCompensationShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyPriceReserveShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyPriceReserveShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyPricePoolOwnerShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyPricePoolOwnerShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyPriceOwnerShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyPriceOwnerShareNumerator",
+        "type": "uint16"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "setRoyaltyPriceShares",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setRoyaltyShares",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_poolOwnerRoyaltyShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_poolOwnerRoyaltyShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyReceiverShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyReceiverShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyReserveShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyReserveShareNumerator",
+        "type": "uint16"
       },
       {
-        "name":"_royaltyOwnerShareNumerator",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "_royaltyOwnerShareNumerator",
+        "type": "uint16"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "name": "setRoyaltyShares",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setStrategyFactory",
-    "inputs":[
+    "inputs": [
       {
-        "name":"_strategyFactory",
-        "type":"address",
-        "internalType":"address"
+        "internalType": "address",
+        "name": "_strategyFactory",
+        "type": "address"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "name": "setStrategyFactory",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"setStrategyStopped",
-    "inputs":[
+    "inputs": [
       {
-        "name":"strategyId",
-        "type":"uint16",
-        "internalType":"uint16"
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
       },
       {
-        "name":"_isStrategyStopped",
-        "type":"bool",
-        "internalType":"bool"
+        "internalType": "bool",
+        "name": "_isStrategyStopped",
+        "type": "bool"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
-  },
-  {
-    "type":"function",
-    "name":"strategyFactory",
-    "inputs":[
-      {
-        "name":"strategyId",
-        "type":"uint16",
-        "internalType":"uint16"
-      }
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"address",
-        "internalType":"address"
-      }
-    ],
-    "stateMutability":"view"
-  },
-  {
-    "type":"function",
-    "name":"supportsInterface",
-    "inputs":[
-      {
-        "name":"interfaceId",
-        "type":"bytes4",
-        "internalType":"bytes4"
-      }
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"bool",
-        "internalType":"bool"
-      }
-    ],
-    "stateMutability":"view"
-  },
-  {
-    "type":"function",
-    "name":"symbol",
-    "inputs":[
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"string",
-        "internalType":"string"
-      }
-    ],
-    "stateMutability":"pure"
-  },
-  {
-    "type":"function",
-    "name":"tokenByIndex",
-    "inputs":[
-      {
-        "name":"index",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "outputs":[
-      {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "stateMutability":"view"
+    "name": "setStrategyStopped",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"tokenOfOwnerByIndex",
-    "inputs":[
-      {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
-      },
+    "inputs": [
       {
-        "name":"index",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "_ownerOf",
+        "type": "address"
       }
     ],
-    "outputs":[
+    "name": "spentGrinds",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"tokenURI",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint16",
+        "name": "strategyId",
+        "type": "uint16"
       }
     ],
-    "outputs":[
+    "name": "strategyFactory",
+    "outputs": [
       {
-        "name":"uri",
-        "type":"string",
-        "internalType":"string"
+        "internalType": "address",
+        "name": "",
+        "type": "address"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"totalPools",
-    "inputs":[
-    ],
-    "outputs":[
+    "inputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "bytes4",
+        "name": "interfaceId",
+        "type": "bytes4"
       }
     ],
-    "stateMutability":"view"
-  },
-  {
-    "type":"function",
-    "name":"totalSupply",
-    "inputs":[
-    ],
-    "outputs":[
+    "name": "supportsInterface",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
       }
     ],
-    "stateMutability":"view"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"transfer",
-    "inputs":[
+    "inputs": [],
+    "name": "symbol",
+    "outputs": [
       {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "string",
+        "name": "",
+        "type": "string"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "pure",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"transferFrom",
-    "inputs":[
-      {
-        "name":"from",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
-      },
+    "inputs": [
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
       }
     ],
-    "outputs":[
-    ],
-    "stateMutability":"nonpayable"
-  },
-  {
-    "type":"function",
-    "name":"transferOwnership",
-    "inputs":[
+    "name": "tokenByIndex",
+    "outputs": [
       {
-        "name":"newOwner",
-        "type":"address",
-        "internalType":"address payable"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
-    ],
-    "outputs":[
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"withdraw",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
       },
       {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
       }
     ],
-    "outputs":[
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
       {
-        "name":"",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"nonpayable"
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"function",
-    "name":"withdrawTo",
-    "inputs":[
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"to",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ],
-    "outputs":[
+    "inputs": [
       {
-        "name":"withdrawn",
-        "type":"uint256",
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "stateMutability":"nonpayable"
-  },
-  {
-    "type":"event",
-    "name":"Approval",
-    "inputs":[
-      {
-        "name":"owner",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
-      },
-      {
-        "name":"approved",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
-      },
+    "name": "tokenURI",
+    "outputs": [
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "indexed":true,
-        "internalType":"uint256"
+        "internalType": "string",
+        "name": "uri",
+        "type": "string"
       }
     ],
-    "anonymous":false
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"ApprovalForAll",
-    "inputs":[
+    "inputs": [],
+    "name": "totalPools",
+    "outputs": [
       {
-        "name":"owner",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
-      },
-      {
-        "name":"operator",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
-      },
-      {
-        "name":"approved",
-        "type":"bool",
-        "indexed":false,
-        "internalType":"bool"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"BuyRoyalty",
-    "inputs":[
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
-      },
-      {
-        "name":"buyer",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
-      },
+    "inputs": [],
+    "name": "totalSupply",
+    "outputs": [
       {
-        "name":"paidPrice",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
+    "stateMutability": "view",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"Deposit",
-    "inputs":[
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
-      },
+    "inputs": [
       {
-        "name":"pool",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"quoteToken",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
-      },
-      {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
+    "name": "transfer",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"Exit",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "from",
+        "type": "address"
       },
       {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"baseTokenAmount",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
+    "name": "transferFrom",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"Grind",
-    "inputs":[
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
-      },
+    "inputs": [
       {
-        "name":"op",
-        "type":"uint8",
-        "indexed":false,
-        "internalType":"uint8"
-      },
-      {
-        "name":"grinder",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
-      },
-      {
-        "name":"isGrinded",
-        "type":"bool",
-        "indexed":false,
-        "internalType":"bool"
+        "internalType": "address payable",
+        "name": "newOwner",
+        "type": "address"
       }
     ],
-    "anonymous":false
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"Mint",
-    "inputs":[
+    "inputs": [
       {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"baseToken",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"quoteToken",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
+        "internalType": "uint256",
+        "name": "quoteTokenAmount",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
-  },
-  {
-    "type":"event",
-    "name":"Rebalance",
-    "inputs":[
-      {
-        "name":"poolId0",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
-      },
+    "name": "withdraw",
+    "outputs": [
       {
-        "name":"poolId1",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "withdrawn",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"event",
-    "name":"Transfer",
-    "inputs":[
+    "inputs": [
       {
-        "name":"from",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
+        "internalType": "uint256",
+        "name": "poolId",
+        "type": "uint256"
       },
       {
-        "name":"to",
-        "type":"address",
-        "indexed":true,
-        "internalType":"address"
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
       },
       {
-        "name":"tokenId",
-        "type":"uint256",
-        "indexed":true,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "baseTokenAmount",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
-  },
-  {
-    "type":"event",
-    "name":"Withdraw",
-    "inputs":[
-      {
-        "name":"poolId",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
-      },
-      {
-        "name":"to",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
-      },
+    "name": "withdraw2",
+    "outputs": [
       {
-        "name":"quoteToken",
-        "type":"address",
-        "indexed":false,
-        "internalType":"address"
-      },
-      {
-        "name":"quoteTokenAmount",
-        "type":"uint256",
-        "indexed":false,
-        "internalType":"uint256"
+        "internalType": "uint256",
+        "name": "withdrawn",
+        "type": "uint256"
       }
     ],
-    "anonymous":false
-  },
-  {
-    "type":"error",
-    "name":"DifferentOwnersOfPools",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"DifferentTokens",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721EnumerableForbiddenBatchMint",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721IncorrectOwner",
-    "inputs":[
-      {
-        "name":"sender",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
-      },
-      {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InsufficientApproval",
-    "inputs":[
-      {
-        "name":"operator",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InvalidApprover",
-    "inputs":[
-      {
-        "name":"approver",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InvalidOperator",
-    "inputs":[
-      {
-        "name":"operator",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InvalidOwner",
-    "inputs":[
-      {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InvalidReceiver",
-    "inputs":[
-      {
-        "name":"receiver",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721InvalidSender",
-    "inputs":[
-      {
-        "name":"sender",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721NonexistentToken",
-    "inputs":[
-      {
-        "name":"tokenId",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ERC721OutOfBoundsIndex",
-    "inputs":[
-      {
-        "name":"owner",
-        "type":"address",
-        "internalType":"address"
-      },
-      {
-        "name":"index",
-        "type":"uint256",
-        "internalType":"uint256"
-      }
-    ]
-  },
-  {
-    "type":"error",
-    "name":"ExceededMaxDeposit",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"InsufficientMinDeposit",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"InvalidOp",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"InvalidRoyaltyPriceInit",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"InvalidShares",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"NoCapital",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"NotAgent",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"NotDepositor",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"NotOwner",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"NotOwnerOf",
-    "inputs":[
-    ]
-  },
-  {
-    "type":"error",
-    "name":"SafeERC20FailedOperation",
-    "inputs":[
-      {
-        "name":"token",
-        "type":"address",
-        "internalType":"address"
-      }
-    ]
+    "stateMutability": "nonpayable",
+    "type": "function"
   },
   {
-    "type":"error",
-    "name":"StrategyStopped",
-    "inputs":[
-    ]
+    "stateMutability": "payable",
+    "type": "receive"
   }
 ]
