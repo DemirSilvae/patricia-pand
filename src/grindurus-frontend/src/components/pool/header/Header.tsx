@@ -15,18 +15,20 @@ function Header({ poolId }: HeaderProps) {
 
   return (
     <div className={styles["header"]}>
-      <div className={styles["pool-id"]}>Pool #{poolId}</div>
-      <div className={styles["buttons"]}>
-        {hasPrev ? (
-          <Link className={`${styles["button"]} button`} to={`/pool/${visiblePoolIds[currentIndex - 1]}`}>Prev</Link>
-        ) : (
-          <button className={`${styles["button"]} ${styles["disabled"]} button`}>Prev</button>
-        )}
-        {hasNext ? (
-          <Link className={`${styles["button"]} button`} to={`/pool/${visiblePoolIds[currentIndex + 1]}`}>Next</Link>
-        ) : (
-          <button className={`${styles["button"]} ${styles["disabled"]} button`}>Next</button>
-        )}
+      <div className={`${styles["container"]} container`}>
+        <div className={styles["pool-id"]}>Pool #{poolId}</div>
+        <div className={styles["buttons"]}>
+          {hasPrev ? (
+            <Link className={`${styles["button"]} button`} to={`/pool/${visiblePoolIds[currentIndex - 1]}`}>Prev</Link>
+          ) : (
+            <button className={`${styles["button"]} ${styles["disabled"]} button`}>Prev</button>
+          )}
+          {hasNext ? (
+            <Link className={`${styles["button"]} button`} to={`/pool/${visiblePoolIds[currentIndex + 1]}`}>Next</Link>
+          ) : (
+            <button className={`${styles["button"]} ${styles["disabled"]} button`}>Next</button>
+          )}
+        </div>
       </div>
     </div>
   )

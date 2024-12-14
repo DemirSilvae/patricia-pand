@@ -1,8 +1,8 @@
 import styles from './Configuration.module.scss'
 import { useEffect, useState } from 'react'
-import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { Strategy__factory, Strategy } from '../../../../typechain-types'
-import { FormGroup, Select, Option } from '../../../ui'
+import { useProtocolContext } from '../../../../../context/ProtocolContext'
+import { Strategy__factory, Strategy } from '../../../../../typechain-types'
+import { FormGroup, Select, Option } from '../../../../ui'
 
 type ConfigurationProps = {
   poolId: number

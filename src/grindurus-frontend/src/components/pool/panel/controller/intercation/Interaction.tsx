@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { FormGroup } from '../../../ui'
+import { useProtocolContext } from '../../../../../context/ProtocolContext'
+import { FormGroup } from '../../../../ui'
 
 type InteractionProps = {
   poolId: number

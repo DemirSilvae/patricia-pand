@@ -5,9 +5,10 @@ import checkIcon from '../../../assets/images/check.svg'
 
 type CopiedAddressProps = {
   address: string
+  label: string
 }
 
-const CopiedAddress = ({ address }: CopiedAddressProps) => {
+export const CopiedAddress = ({ address, label }: CopiedAddressProps) => {
   const [copied, setCopied] = useState(false)
   const etherscanUrl = `https://arbiscan.io/address/${address}`
 
@@ -22,20 +23,23 @@ const CopiedAddress = ({ address }: CopiedAddressProps) => {
   }
 
   return (
-    <div className={styles["container"]}>
-      <a
-        href={etherscanUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={styles["address"]}
-      >
-        {address}
-      </a>
+    <div className={styles["copy-address"]}>
+      <div className={styles["content"]}>
+        <div className={styles["label"]}>
+          {label}
+        </div>
+          <a
+          href={etherscanUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles["address-link"]}
+        >
+          {address}
+        </a>
+      </div>
       <button onClick={handleCopy} className={styles["copy-button"]} title="Copy address">
         <img src={copied ? checkIcon : copyIcon} alt="Copy icon" />
       </button>
     </div>
   )
 }
-
-export default CopiedAddress
