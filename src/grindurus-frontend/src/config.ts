@@ -70,7 +70,7 @@ const config: Record<SupportedChains, ChainConfig> = {
       {
         symbol: 'USDC',
         address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
-        decimals: 18,
+        decimals: 6,
         logo: logoUSDC,
       },
     ],
@@ -90,7 +90,7 @@ const config: Record<SupportedChains, ChainConfig> = {
       {
         symbol: 'USDC',
         address: '0xaf88d065e77c8cC2239327C5EDb3A432268e5831',
-        decimals: 18,
+        decimals: 6,
         logo: logoUSDC,
       },
     ],

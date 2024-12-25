@@ -12,7 +12,7 @@ function MintPool() {
   const { address: userAddress } = useAppKitAccount()
 
   const [isApproved, setIsApproved] = useState<boolean>(false)
-  const [selectedStrategyId, setSelectedStrategyId] = useState<number>(0)
+  const [selectedStrategyId, setSelectedStrategyId] = useState<number>(1)
   const [selectedQuoteToken, setSelectedQuoteToken] = useState<string>(networkConfig.quoteTokens![1].symbol)
   const [selectedBaseToken, setSelectedBaseToken] = useState<string>(networkConfig.baseTokens![0].symbol)
 
@@ -40,7 +40,7 @@ function MintPool() {
     if (!tokenInfo) return console.error("tokenInfo not found!")
     setQuoteTokenInfo(tokenInfo)
 
-    const quoteTokenAddress = quoteTokenInfo!.address
+    const quoteTokenAddress = tokenInfo!.address
     const signer = await provider.getSigner()
     const contract = ERC20__factory.connect(quoteTokenAddress, signer)
     setQuoteTokenContract(contract)
