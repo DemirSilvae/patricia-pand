@@ -1,0 +1,33 @@
+.title {
+  font-size: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.form-group {
+  flex: 1;
+}
+
+.operation-row {
+  display: flex;
+  gap: 15px;
+}
+
+.select {
+  width: 25%;
+}
+
+.form-input {
+  flex: 1;
+}
+
+.button {
+  border-radius: 0;
+}

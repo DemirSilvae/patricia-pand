@@ -10,7 +10,6 @@ function Pool() {
 
   return (
     <>
-      <Header poolId={poolId} />
       <Panel poolId={poolId} />
       <Tables poolId={poolId} />
     </>

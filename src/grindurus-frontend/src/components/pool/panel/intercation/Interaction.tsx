@@ -1,7 +1,8 @@
+import styles from './Interaction.module.scss'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
-import { useProtocolContext } from '../../../../../context/ProtocolContext'
-import { FormGroup } from '../../../../ui'
+import { FormGroup } from '../../../ui'
+import { useProtocolContext } from '../../../../context/ProtocolContext'
 
 type InteractionProps = {
   poolId: number
@@ -83,53 +84,57 @@ const Interaction = ({ poolId }: InteractionProps) => {
   }
 
   return (
-    <div className="interaction-form">
-      <div>
-        <FormGroup label="Deposit Amount">
-          <div className="form-input">
-            <input
-              type="number"
-              placeholder="Enter deposit amount"
-              onChange={(e) => setInputDeposit(parseFloat(e.target.value))}
-            />
-            <button 
-              onClick={() => handleDeposit()} 
-              className="action-button"
-            >
-              Deposit
-            </button>
-          </div>
-        </FormGroup>
-        <FormGroup label="Withdraw Amount">
-          <div className="form-input">
-            <input
-              placeholder="Enter withdraw amount"
-              onChange={(e) => setInputWithdraw(parseFloat(e.target.value))}
-            />
-            <button 
-              onClick={() => handleWithdraw()}
-            >
-              Withdraw
-            </button>
-          </div>
-        </FormGroup>
-      </div>
-      <div>
-        <div className="exit-description">
-          Exit: emergency withdraw distribution of funds and ownership of strategy pool will be moved to royalty receiver.
+    <div className={`${styles["interaction"]} form`}>
+      <h2 className={styles["title"]}>Interaction</h2>
+      <div className={styles["content"]}>
+        <div className={styles["inputs"]}>
+          <FormGroup label="Deposit Amount">
+            <div className="form-input">
+              <input
+                type="number"
+                placeholder="Enter deposit amount"
+                onChange={(e) => setInputDeposit(parseFloat(e.target.value))}
+              />
+              <button 
+                onClick={() => handleDeposit()} 
+                className="button"
+              >
+                Deposit
+              </button>
+            </div>
+          </FormGroup>
+          <FormGroup label="Withdraw Amount">
+            <div className="form-input">
+              <input
+                placeholder="Enter withdraw amount"
+                onChange={(e) => setInputWithdraw(parseFloat(e.target.value))}
+              />
+              <button 
+                onClick={() => handleWithdraw()}
+                className="button"
+              >
+                Withdraw
+              </button>
+            </div>
+          </FormGroup>
         </div>
-        <button 
-          className="exit-button"
-          onClick={() => handleExit()}
-        >
-          Exit
-        </button>
-        <button 
-          className="royalty-button"
-          onClick={() => handleBuyRoyalty()}  
-        >
-          Buy Royalty ({royaltyPrice.toString()} ETH)
-        </button>
+        <div>
+          <div className={styles["exit-description"]}>
+            Exit: emergency withdraw distribution of funds and ownership of strategy pool will be moved to royalty receiver.
+          </div>
+          <button 
+            className={`${styles["button"]} button`}
+            onClick={() => handleExit()}
+          >
+            Exit
+          </button>
+          <button 
+            className={`${styles["button"]} button`}
+            onClick={() => handleBuyRoyalty()}  
+          >
+            Buy Royalty ({royaltyPrice.toString()} ETH)
+          </button>
+        </div>
       </div>
     </div>
   )

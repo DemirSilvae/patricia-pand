@@ -27,9 +27,10 @@ export const Option = <T,>({ children, onSelect, value }: OptionProps<T>) => {
 type SelectProps<T = unknown> = {
   children: ReactNode
   onChange?: (value: T) => void
+  className?: string
 }
 
-export const Select = <T,>({ children, onChange }: SelectProps<T>) => {
+export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T>) => {
   const options = Children.toArray(children).filter(isValidElement) as ReactElement<OptionProps<T>>[]
 
   const [selectedValue, setSelectedValue] = useState<T | null>(null)
@@ -59,7 +60,7 @@ export const Select = <T,>({ children, onChange }: SelectProps<T>) => {
   )
 
   return (
-    <div className={styles['select-wrapper']}>
+    <div className={`${styles['select-wrapper']} ${className}`}>
       <div className={styles['select-trigger']} onClick={() => setIsOpen((prev) => !prev)}>
         {selectedLabel || 'Select...'}
       </div>

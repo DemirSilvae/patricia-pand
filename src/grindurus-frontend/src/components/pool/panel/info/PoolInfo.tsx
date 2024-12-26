@@ -54,12 +54,15 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
 
   return (
     <div className={styles["info"]}>
-      <CopiedAddress label="Oracle QuoteToken/FeeToken:" address={oracleQuoteTokenPerFeeToken}/>
-      <CopiedAddress label="Oracle QuoteToken/BaseToken:" address={oracleQuoteTokenPerBaseToken}/>
-      <CopiedAddress label="Pool Owner:" address={owner}/>
-      <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver}/>
-      <CopiedAddress label="QuoteToken:" address={quoteToken}/>
-      <CopiedAddress label="BaseToken:" address={baseToken}/>
+      <h2 className={styles["title"]}>Info</h2>
+      <div className={styles["addresses"]}>
+        <CopiedAddress label="Oracle QuoteToken/FeeToken:" address={oracleQuoteTokenPerFeeToken}/>
+        <CopiedAddress label="Oracle QuoteToken/BaseToken:" address={oracleQuoteTokenPerBaseToken}/>
+        <CopiedAddress label="Pool Owner:" address={owner}/>
+        <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver}/>
+        <CopiedAddress label="QuoteToken:" address={quoteToken}/>
+        <CopiedAddress label="BaseToken:" address={baseToken}/>
+      </div>
     </div>
   )
 }

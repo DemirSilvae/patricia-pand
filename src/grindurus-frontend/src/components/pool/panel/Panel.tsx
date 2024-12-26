@@ -1,6 +1,9 @@
 import styles from './Panel.module.scss'
 import Controller from './controller/Controller'
 import PoolInfo from './info/PoolInfo'
+import Header from '../header/Header'
+import Interaction from './intercation/Interaction'
+import Configuration from './configuration/Configuration'
 
 type PanelProps = {
   poolId: number
@@ -10,8 +13,12 @@ const Panel = ({ poolId }: PanelProps) => {
   return (
     <section className={styles["panel"]}>
       <div className={`${styles["container"]} container`}>
-        <PoolInfo poolId={poolId}/>
-        <Controller poolId={poolId}/>
+        <Header poolId={poolId}/>
+        <div className={styles["content"]}>
+          <PoolInfo poolId={poolId}/>
+          <Interaction poolId={poolId}/>
+        </div>
+        <Configuration poolId={poolId}/>
       </div>
     </section>
   )

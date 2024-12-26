@@ -24,11 +24,11 @@ export const CopiedAddress = ({ address, label }: CopiedAddressProps) => {
 
   return (
     <div className={styles["copy-address"]}>
+      <div className={styles["label"]}>
+        {label}
+      </div>
       <div className={styles["content"]}>
-        <div className={styles["label"]}>
-          {label}
-        </div>
-          <a
+        <a
           href={etherscanUrl}
           target="_blank"
           rel="noopener noreferrer"
@@ -36,10 +36,10 @@ export const CopiedAddress = ({ address, label }: CopiedAddressProps) => {
         >
           {address}
         </a>
+        <button onClick={handleCopy} className={styles["copy-button"]} title="Copy address">
+          <img src={copied ? checkIcon : copyIcon} alt="Copy icon" />
+        </button>
       </div>
-      <button onClick={handleCopy} className={styles["copy-button"]} title="Copy address">
-        <img src={copied ? checkIcon : copyIcon} alt="Copy icon" />
-      </button>
     </div>
   )
 }

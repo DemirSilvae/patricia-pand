@@ -1,0 +1,14 @@
+.info {
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  flex: 1;
+}
+
+.title {
+  font-size: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}

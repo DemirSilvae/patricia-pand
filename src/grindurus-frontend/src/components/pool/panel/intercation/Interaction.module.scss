@@ -1,0 +1,43 @@
+.interaction {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.inputs {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.title {
+  font-size: 30px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.button {
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.exit-description {
+  font-size: 14px;
+  color: #6b7280;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}

@@ -1,0 +1,30 @@
+.header {
+  padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &:not(:last-child) {
+    margin-bottom: 30px;
+  }
+}
+
+.title {
+  font-size: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.disabled {
+  color: gray;
+  background-color: #6b2894;
+
+  &:hover {
+    background-color: #6b2894;
+  }
+}

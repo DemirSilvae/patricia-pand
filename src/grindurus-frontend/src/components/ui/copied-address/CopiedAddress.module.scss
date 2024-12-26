@@ -1,0 +1,37 @@
+.copy-address {
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.content {
+  display: flex;
+  width: fit-content;
+  gap: 10px;
+  border-radius: 8px;
+}
+
+.address-link {
+  color: #6b7280;
+  
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.label {
+  font-weight: 800;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
+
+.copy-button {
+  width: 20px;
+  border: 0;
+  img {
+    height: 100%;
+    width: auto;
+  }
+}
