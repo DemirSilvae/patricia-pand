@@ -32,27 +32,32 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
     try {
       const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
       const positions = poolsNFTInfos[0].positions
-
+      const feeTokenDecimals = 18
+      const baseTokenDecimals = poolsNFTInfos[0].baseTokenDecimals
+      const quoteTokenDecimals = poolsNFTInfos[0].quoteTokenDecimals
+      const oracleQuoteTokenPerBaseTokenDecimals =  poolsNFTInfos[0].oracleQuoteTokenPerBaseTokenDecimals
+      const oracleQuoteTokenPerFeeTokenDecimals = poolsNFTInfos[0].oracleQuoteTokenPerFeeTokenDecimals
+      
       const long = {
         number: positions[0][0].toString(),
         numberMax: positions[0][1].toString(),
-        priceMin: formatUnits(positions[0][2], 8),
-        liquidity: formatUnits(positions[0][3], 6),
-        qty: formatUnits(positions[0][4], 18),
-        price: formatUnits(positions[0][5], 8),
-        feeQty: formatUnits(positions[0][6], 18),
-        feePrice: formatUnits(positions[0][7], 8),
+        priceMin: formatUnits(positions[0][2], oracleQuoteTokenPerBaseTokenDecimals),
+        liquidity: formatUnits(positions[0][3], quoteTokenDecimals),
+        qty: formatUnits(positions[0][4], baseTokenDecimals),
+        price: formatUnits(positions[0][5], oracleQuoteTokenPerBaseTokenDecimals),
+        feeQty: formatUnits(positions[0][6], feeTokenDecimals),
+        feePrice: formatUnits(positions[0][7], oracleQuoteTokenPerFeeTokenDecimals),
       }
 
       const hedge = {
         number: positions[1][0].toString(),
         numberMax: positions[1][1].toString(),
-        priceMin: formatUnits(positions[1][2], 8),
-        liquidity: formatUnits(positions[1][3], 6),
-        qty: formatUnits(positions[1][4], 18),
-        price: formatUnits(positions[1][5], 8),
-        feeQty: formatUnits(positions[1][6], 18),
-        feePrice: formatUnits(positions[1][7], 8),
+        priceMin: formatUnits(positions[1][2], oracleQuoteTokenPerBaseTokenDecimals),
+        liquidity: formatUnits(positions[1][3], quoteTokenDecimals),
+        qty: formatUnits(positions[1][4], baseTokenDecimals),
+        price: formatUnits(positions[1][5], oracleQuoteTokenPerBaseTokenDecimals),
+        feeQty: formatUnits(positions[1][6], feeTokenDecimals),
+        feePrice: formatUnits(positions[1][7], oracleQuoteTokenPerFeeTokenDecimals),
       }
 
       const formattedData = Object.keys(long).map((key) => [

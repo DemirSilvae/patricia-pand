@@ -3,17 +3,22 @@ import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { FormGroup } from '../../../ui'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
+import { useAppKitAccount } from '@reown/appkit/react'
+import { ERC20__factory } from '../../../../typechain-types'
+import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 
 type InteractionProps = {
   poolId: number
 }
 
 const Interaction = ({ poolId }: InteractionProps) => {
-  const { poolsNFT } = useProtocolContext()
+  const { poolsNFT, networkConfig, provider } = useProtocolContext()
+  const { address: userAddress } = useAppKitAccount()
 
-  const [inputDeposit, setInputDeposit] = useState<number>(0)
+  const [inputDeposit, setInputDeposit] = useState<string>("")
   const [inputWithdraw, setInputWithdraw] = useState<number>(0)
-  const [royaltyPrice, setRoyaltyPrice] = useState<bigint>(0n)
+  const [royaltyPrice, setRoyaltyPrice] = useState<string>("")
+  const [poolsNFTInfo, setPoolsNFTInfo] = useState<IPoolsNFTLens.PoolNFTInfoStructOutput>("")
 
   const checkRequired = async () => {
     if(!poolsNFT) {
@@ -24,32 +29,40 @@ const Interaction = ({ poolId }: InteractionProps) => {
   }
 
   useEffect(() => {
-    fetchRoyaltyPrice()
-  }, []) // called only once
+    fetchPoolsNFTInfo()
+  }, []) 
 
-  const fetchRoyaltyPrice = async () => {
-    if(!checkRequired()) return
-
-    try {
-      const price = await poolsNFT!.royaltyPrice(poolId)
-      setRoyaltyPrice(price)
-    } catch(err) {
-      console.log("Failed to fetch royalty price", err)
-    }
+  const fetchPoolsNFTInfo = async () => {
+    const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
+    setPoolsNFTInfo(poolsNFTInfos[0])
+    const ro = ethers.formatUnits(poolsNFTInfo.royaltyParams.newRoyaltyPrice, poolsNFTInfo.quoteTokenDecimals)
+    setRoyaltyPrice(ro)
   }
 
   const handleDeposit = async () => {
     if(!checkRequired()) return
     try{
-      // const quoteTokenConfig = networkConfig.quoteTokens.find(
-      //   (token) => token.address.toLowerCase() === quoteTokenAddress.toLowerCase()
-      // )
-      const quoteTokenDecimals = 18
+      const quoteTokenAddress = poolsNFTInfo.quoteToken
+      const quoteTokenDecimals = poolsNFTInfo.quoteTokenDecimals
+
+      const spenderAddress = networkConfig.poolsNFT!
+      const signer = await provider?.getSigner()
+      const quoteTokenContract = ERC20__factory.connect(quoteTokenAddress, signer)
+      const allowanceRaw = await quoteTokenContract!.allowance(userAddress!, spenderAddress)
+      const allowanceFormatted = ethers.formatUnits(allowanceRaw, quoteTokenDecimals)
+      const inputDepositRaw = ethers.parseUnits(inputDeposit, quoteTokenDecimals)
+      const ro = ethers.formatUnits(poolsNFTInfo.royaltyParams.newRoyaltyPrice, poolsNFTInfo.quoteTokenDecimals)
+      console.log(ro)
+      if (Number(inputDeposit) > Number(allowanceFormatted)) {
+        let appove_tx = await quoteTokenContract.approve(spenderAddress, inputDepositRaw)
+        await appove_tx.wait()
+      }
+
       const quoteTokenAmountRaw = ethers.parseUnits(inputDeposit.toString(), quoteTokenDecimals)
       const gasEstimate = await poolsNFT!.deposit.estimateGas(poolId, quoteTokenAmountRaw)
       const gasLimit = gasEstimate * 14n / 10n
-      const tx = await poolsNFT!.deposit(poolId, quoteTokenAmountRaw, {gasLimit})
-      await tx.wait()
+      const deposit_tx = await poolsNFT!.deposit(poolId, quoteTokenAmountRaw, {gasLimit})
+      await deposit_tx.wait()
     } catch (err){
       console.log("Failed to deposit: ", err)
     }
@@ -58,11 +71,12 @@ const Interaction = ({ poolId }: InteractionProps) => {
   const handleWithdraw = async () => {
     if(!checkRequired()) return
     try{
-      const quoteTokenDecimals = 18
+      
+      const quoteTokenDecimals = poolsNFTInfo.quoteTokenDecimals
       const quoteTokenAmountRaw = ethers.parseUnits(inputWithdraw.toString(), quoteTokenDecimals)
       const gasEstimate = await poolsNFT!.deposit.estimateGas(poolId, quoteTokenAmountRaw)
       const gasLimit = gasEstimate * 14n / 10n
-      const tx = await poolsNFT!.withdraw(poolId, quoteTokenAmountRaw, {gasLimit})
+      const tx = await poolsNFT!.withdraw(poolId, userAddress as string, quoteTokenAmountRaw, {gasLimit})
       await tx.wait()
     } catch(err) {
       console.log("Failed withdraw funds", err)
@@ -93,7 +107,7 @@ const Interaction = ({ poolId }: InteractionProps) => {
               <input
                 type="number"
                 placeholder="Enter deposit amount"
-                onChange={(e) => setInputDeposit(parseFloat(e.target.value))}
+                onChange={(e) => setInputDeposit(e.target.value)}
               />
               <button 
                 onClick={() => handleDeposit()} 
@@ -132,7 +146,7 @@ const Interaction = ({ poolId }: InteractionProps) => {
             className={`${styles["button"]} button`}
             onClick={() => handleBuyRoyalty()}  
           >
-            Buy Royalty ({royaltyPrice.toString()} ETH)
+            Buy Royalty ({royaltyPrice} {poolsNFTInfo.quoteTokenSymbol})
           </button>
         </div>
       </div>
