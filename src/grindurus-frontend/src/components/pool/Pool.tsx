@@ -1,7 +1,5 @@
-import styles from './Pool.module.scss'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import Header from './header/Header'
 import Panel from './panel/Panel'
 import Tables from './tables/Tables'
 
