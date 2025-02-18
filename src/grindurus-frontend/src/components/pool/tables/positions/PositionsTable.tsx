@@ -38,10 +38,13 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
       const oracleQuoteTokenPerBaseTokenDecimals =  poolsNFTInfos[0].oracleQuoteTokenPerBaseTokenDecimals
       const oracleQuoteTokenPerFeeTokenDecimals = poolsNFTInfos[0].oracleQuoteTokenPerFeeTokenDecimals
       
+      const _priceMin = formatUnits(positions[0][2], oracleQuoteTokenPerBaseTokenDecimals)
+      const isPriceMinShouldEqZero = _priceMin === "1157920892373161954235709850086879078532699846656405640394575840079131.29639935"
+      
       const long = {
         number: positions[0][0].toString(),
         numberMax: positions[0][1].toString(),
-        priceMin: formatUnits(positions[0][2], oracleQuoteTokenPerBaseTokenDecimals),
+        priceMin: isPriceMinShouldEqZero ? "0.0" : _priceMin,
         liquidity: formatUnits(positions[0][3], quoteTokenDecimals),
         qty: formatUnits(positions[0][4], baseTokenDecimals),
         price: formatUnits(positions[0][5], oracleQuoteTokenPerBaseTokenDecimals),
