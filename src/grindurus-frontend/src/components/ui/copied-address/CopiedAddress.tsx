@@ -16,7 +16,7 @@ export const CopiedAddress = ({ address, label }: CopiedAddressProps) => {
     try {
       await navigator.clipboard.writeText(address)
       setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
+      setTimeout(() => setCopied(false), 500)
     } catch (err) {
       console.error('Failed to copy address:', err)
     }
