@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useMemo, ReactNo
 import { BrowserProvider, JsonRpcSigner, Eip1193Provider } from 'ethers'
 import { useAppKitAccount, useAppKitNetwork, useAppKitProvider } from '@reown/appkit/react'
 import { 
-  PoolsNFT, IntentNFT, GrETH, Registry, 
-  PoolsNFT__factory,  IntentNFT__factory, GrETH__factory, Registry__factory
+  PoolsNFT, IntentNFT, GrETH, GrAI, Registry, 
+  PoolsNFT__factory,  IntentNFT__factory, GrETH__factory, GrAI__factory, Registry__factory
 } from '../typechain-types'
 import { convertDecimalToHex } from '../utils/numbers'
 import config from '../config'
@@ -16,6 +16,7 @@ interface ProtocolContextType {
   poolsNFT: PoolsNFT | null
   intentNFT: IntentNFT | null
   grETH: GrETH | null
+  grAI: GrAI | null
   registry: Registry | null
   networkConfig: Partial<NetworkConfig>
   setNetworkConfig: React.Dispatch<React.SetStateAction<Partial<NetworkConfig>>>
@@ -33,6 +34,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const [poolsNFT, setPoolsNFT] = useState<PoolsNFT | null>(null)
   const [intentNFT, setIntentNFT] = useState<IntentNFT | null>(null)
   const [grETH, setGrETH] = useState<GrETH | null>(null)
+  const [grAI, setGrAI] = useState<GrAI | null>(null)
   const [registry, setRegistry] = useState<Registry | null>(null)
   const [visiblePoolIds, setVisiblePoolIds] = useState<number[]>([])
 
@@ -40,7 +42,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const { isConnected } = useAppKitAccount()
   const { chainId } = useAppKitNetwork()
 
-  type ProtocolContracts = PoolsNFT | IntentNFT | GrETH | Registry
+  type ProtocolContracts = PoolsNFT | IntentNFT | GrETH | GrAI | Registry
   const cachedContracts = useMemo(() => new Map<string, ProtocolContracts>(), [])
 
   useEffect(() => {
@@ -78,6 +80,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       poolsNFT: poolsAddress, 
       intentNFT: intentAddress,
       grETH: grETHAddress,
+      grAI: grAIAddress,
       registry: registryAddress
     } = networkConfig ?? {}
 
@@ -120,6 +123,19 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       setGrETH(null)
     }
 
+    if (signer && grAIAddress) {
+      if (cachedContracts.has(grAIAddress)) {
+        setGrAI(cachedContracts.get(grAIAddress)! as GrAI)
+        return
+      }
+
+      const contract = GrAI__factory.connect(grAIAddress, signer)
+      setGrAI(contract)
+      cachedContracts.set(grAIAddress, contract)
+    } else {
+      setGrAI(null)
+    }
+
     if(signer && registryAddress) {
       if(cachedContracts.has(registryAddress)) {
         setRegistry(cachedContracts.get(registryAddress)! as Registry)
@@ -146,6 +162,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
         poolsNFT,
         intentNFT,
         grETH,
+        grAI,
         registry,
         networkConfig,
         setNetworkConfig,

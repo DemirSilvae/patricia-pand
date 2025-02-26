@@ -1,5 +1,6 @@
-import React, { useState, ReactNode } from 'react'
 import styles from './Checkbox.module.scss'
+import React, { useState, ReactNode } from 'react'
+import checkIcon from '../../../assets/images/checkBlack.svg'
 
 type CheckboxProps = {
   children: ReactNode
@@ -17,11 +18,11 @@ export const Checkbox: React.FC<CheckboxProps> = ({ children, defaultChecked = f
   }
 
   return (
-    <label className={styles['label']} onClick={toggle}>
+    <div className={styles['checkbox']} onClick={toggle}>
       <div className={`${styles['box']} ${checked ? styles['checked'] : ''}`}>
-        {checked && <span className={styles['checkmark']}>✔</span>}
+        {checked && <img src={checkIcon} alt="Check Icon" />}
       </div>
       <span className={styles['text']}>{children}</span>
-    </label>
+    </div>
   )
 }

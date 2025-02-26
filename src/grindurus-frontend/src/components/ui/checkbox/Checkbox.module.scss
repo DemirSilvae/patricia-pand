@@ -1,0 +1,33 @@
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  user-select: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
+
+.box {
+  width: 16px;
+  height: 16px;
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10%;
+
+  &.checked {
+    background-color: #fff;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}

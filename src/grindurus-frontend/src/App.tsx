@@ -7,6 +7,7 @@ import ConnectWallet from './components/connect/ConnectWallet'
 import GrETH from './components/grETH/GrETH'
 import GrinderAI from './components/grinderAI/GrinderAI'
 import Pool from './components/pool/Pool'
+import GrAI from './components/grAI/grAI'
 
 type RouterGuardProps = {
   networkConfig: Record<string, any>
@@ -55,6 +56,14 @@ function App() {
             element={
               <RouterGuard networkConfig={networkConfig} isConnected={isConnected}>
                 <GrinderAI />
+              </RouterGuard>
+            }
+          />
+          <Route
+            path="/grai"
+            element={
+              <RouterGuard networkConfig={networkConfig} isConnected={isConnected}>
+                <GrAI />
               </RouterGuard>
             }
           />

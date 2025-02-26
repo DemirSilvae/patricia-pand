@@ -1,0 +1,23 @@
+.bridge-form {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.title {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.chain-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.max-button {
+  border-radius: 0;
+}
+
+.bridge-button {
+  width: 100%;
+}

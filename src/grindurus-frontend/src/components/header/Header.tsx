@@ -21,6 +21,7 @@ function Header() {
             <li className={styles['menu-item']}><Link to="/" className={styles['menu-link']}>Dashboard</Link></li>
             <li className={styles['menu-item']}><Link to="/greth" className={styles['menu-link']}>grETH</Link></li>
             <li className={styles['menu-item']}><Link to="grinder-ai" className={styles['menu-link']}>GrinderAI</Link></li>
+            <li className={styles['menu-item']}><Link to="grai" className={styles['menu-link']}>grAI</Link></li>
           </ul>
         </nav>
         <div className={styles['buttons']}>
