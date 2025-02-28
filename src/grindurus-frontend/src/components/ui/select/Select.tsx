@@ -6,6 +6,7 @@ import React, {
   cloneElement,
   isValidElement,
   useEffect,
+  useRef,
 } from 'react'
 import styles from './Select.module.scss'
 
@@ -35,6 +36,7 @@ export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T
 
   const [selectedValue, setSelectedValue] = useState<T | null>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const wrapperRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     if (selectedValue === null && options.length > 0) {
@@ -43,6 +45,19 @@ export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T
       onChange?.(first.value)
     }
   }, [selectedValue, options, onChange])
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [])
 
   const selectedLabel = options.find((child) => child.props.value === selectedValue)?.props.children
 
@@ -60,7 +75,7 @@ export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T
   )
 
   return (
-    <div className={`${styles['select-wrapper']} ${className}`}>
+    <div ref={wrapperRef} className={`${styles['select-wrapper']} ${isOpen ? styles["open"] : ""} ${className}`}>
       <div className={styles['select-trigger']} onClick={() => setIsOpen((prev) => !prev)}>
         {selectedLabel || 'Select...'}
       </div>

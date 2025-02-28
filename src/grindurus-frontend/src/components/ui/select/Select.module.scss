@@ -2,6 +2,35 @@
   position: relative;
   width: 100%;
   user-select: none;
+
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 1px;
+    background-color: #fff;
+    top: 50%;
+  }
+
+  &::before {
+    right: 22px;
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    right: 15px;
+    transform: rotate(-45deg);
+  }
+
+  &.open {
+    &::before {
+      transform: rotate(-45deg);
+    }
+  
+    &::after {
+      transform: rotate(45deg);
+    }
+  }
 }
 
 .select-trigger {
