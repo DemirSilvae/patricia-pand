@@ -52,7 +52,7 @@ function Mint() {
           <button
             type="button"
             onClick={handleMaxClick}
-            className="max-button button"
+            className={`${styles["max-button"]} button`}
           >
             MAX
           </button>
