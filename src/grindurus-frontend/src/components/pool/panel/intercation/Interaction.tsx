@@ -35,14 +35,13 @@ const Interaction = ({ poolId }: InteractionProps) => {
   }
 
   useEffect(() => {
-    if (poolsNFT) {
-      fetchPoolsNFTInfo()
-    }
+    fetchPoolsNFTInfo()
   }, [poolsNFT])
 
   const fetchPoolsNFTInfo = async () => {
     const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
     setPoolsNFTInfo(poolsNFTInfos[0])
+
     const newRoyaltyPrice = poolsNFTInfos[0].royaltyParams.newRoyaltyPrice
     const quoteTokenDecimals = poolsNFTInfos[0].quoteTokenDecimals
     const fetchedRoyaltyPrice = ethers.formatUnits(newRoyaltyPrice, quoteTokenDecimals)
@@ -183,7 +182,12 @@ const Interaction = ({ poolId }: InteractionProps) => {
             className={`${styles["button"]} button`}
             onClick={() => handleBuyRoyalty()}
             >
-            {isProcessingBuyRoyalty ? 'Processing...' : `Buy Royalty (${royaltyPrice} ${poolsNFTInfo!.quoteTokenSymbol})`}
+            {isProcessingBuyRoyalty
+              ? 'Processing...'
+              : poolsNFTInfo
+                ? `Buy Royalty (${royaltyPrice} ${poolsNFTInfo.quoteTokenSymbol})`
+                : 'Buy Royalty'
+            }
             </button>
         </div>
       </div>
