@@ -23,7 +23,16 @@ function GrAI() {
     "solana": 30168
   }
 
-  type SupportedBridgeChains = "arbitrum" | "base" | "optimism" | "polygon" | "solana"
+  const supportedChains = [
+    { name: "arbitrum", label: "Arbitrum", logo: arbitrumLogo },
+    { name: "base", label: "Base", logo: baseLogo },
+    { name: "optimism", label: "Optimism", logo: optimismLogo },
+    { name: "polygon", label: "Polygon", logo: polygonLogo },
+    { name: "solana", label: "Solana", logo: solanaLogo },
+  ] as const
+
+  type SupportedBridgeChains = typeof supportedChains[number]["name"]
+
   const [bridgeFrom, setBridgeFrom] = useState<SupportedBridgeChains>("arbitrum")
   const [bridgeTo, setBridgeTo] = useState<SupportedBridgeChains>("base")
 
@@ -34,7 +43,7 @@ function GrAI() {
   const [fee, setFee] = useState<string>("0")
 
   const checkRequired = () => {
-    if(!grAI) {
+    if (!grAI) {
       console.error("grAI is null!")
       return false
     }
@@ -47,47 +56,44 @@ function GrAI() {
 
   const handleFee = async () => {
     try {
-      const grAIdecimals = 18 
+      const grAIdecimals = 18
       const receiver = changeAddress ? receiverAddress : userAddress!
-      const dstChain = endpointIds[bridgeTo];
+      const dstChain = endpointIds[bridgeTo]
       const toAddress = await grAI!.addressToBytes32(receiver)
       const amount = ethers.parseUnits(bridgeAmount.toString(), grAIdecimals)
-      const [ nativeFee, nativeBridgeFee, totalNativeFee ] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
-      const feeFromatted = ethers.formatUnits(totalNativeFee, 18)
-      setFee(feeFromatted)
+      const [, , totalNativeFee] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
+      setFee(ethers.formatUnits(totalNativeFee, 18))
     } catch (error) {
-      console.error("Error burning grAI: ", error)
-      return 0
+      console.error("Error calculating fee:", error)
     }
   }
 
   const handleBridge = async (e: React.FormEvent) => {
     e.preventDefault()
-    if(!checkRequired()) return
+    if (!checkRequired()) return
 
     try {
-      const grAIdecimals = 18 
+      const grAIdecimals = 18
       const receiver = changeAddress ? receiverAddress : userAddress!
-      const dstChain = endpointIds[bridgeTo];
+      const dstChain = endpointIds[bridgeTo]
       const toAddress = await grAI!.addressToBytes32(receiver)
       const amount = ethers.parseUnits(bridgeAmount.toString(), grAIdecimals)
-      console.log(toAddress)
-      const [ nativeFee, nativeBridgeFee, totalNativeFee ] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
-      const tx = await grAI!.bridgeTo(dstChain, toAddress, amount, {value: totalNativeFee})
+      const [, , totalNativeFee] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
+      const tx = await grAI!.bridgeTo(dstChain, toAddress, amount, { value: totalNativeFee })
       await tx.wait()
     } catch (error) {
-      console.error("Error burning grAI: ", error)
+      console.error("Error bridging grAI:", error)
     }
   }
 
   const handleMaxClick = async () => {
     const grAIbalance = await grAI?.balanceOf(userAddress as string)
     setBridgeAmount(Number(grAIbalance))
-    const grAIbalanceFormatted = ethers.formatUnits(grAIbalance as BigNumberish, 18)
-    setInputBridgeAmount(grAIbalanceFormatted)
+    const formatted = ethers.formatUnits(grAIbalance!, 18)
+    setInputBridgeAmount(formatted)
   }
 
-  const isFormValid = bridgeAmount && bridgeAmount > 0
+  const isFormValid = bridgeAmount > 0
 
   return (
     <section>
@@ -95,51 +101,36 @@ function GrAI() {
         <div className={`${styles["bridge-form"]} form`}>
           <h2 className={`${styles["title"]} form-title`}>Bridge grAI</h2>
           <FormGroup label="Chain From">
-            <Select onChange={(value) => setBridgeFrom(value as SupportedBridgeChains)}>
-              <Option value="arbitrum">
-                <img src={arbitrumLogo} alt="Aribitrum Logo" className={styles["chain-icon"]} />
-                Arbitrum
-              </Option>
-              <Option value="base">
-                <img src={baseLogo} alt="Base Logo" className={styles["chain-icon"]} />
-                Base
-              </Option>
-              <Option value="optimism">
-                <img src={optimismLogo} alt="Optimism Logo" className={styles["chain-icon"]} />
-                Optimism
-              </Option>
-              <Option value="polygon">
-                <img src={polygonLogo} alt="Polygon Logo" className={styles["chain-icon"]} />
-                Polygon
-              </Option>
-              <Option value="solana">
-                <img src={solanaLogo} alt="Solana Logo" className={styles["chain-icon"]} />
-                Solana
-              </Option>
+            <Select
+              onChange={(value) => {
+                const selected = value as SupportedBridgeChains
+                setBridgeFrom(selected)
+                if (selected === bridgeTo) {
+                  const altTo = supportedChains.find(c => c.name !== selected)
+                  if (altTo) setBridgeTo(altTo.name)
+                }
+              }}
+            >
+              {supportedChains.map((chain) => (
+                <Option key={chain.name} value={chain.name}>
+                  <img src={chain.logo} alt={`${chain.name} logo`} className={styles["chain-icon"]} />
+                  {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
+                </Option>
+              ))}
             </Select>
           </FormGroup>
           <FormGroup label="Chain To">
-            <Select onChange={(value) => setBridgeTo(value as SupportedBridgeChains)}>
-              <Option value="arbitrum">
-                <img src={arbitrumLogo} alt="Aribitrum Logo" className={styles["chain-icon"]} />
-                Arbitrum
-              </Option>
-              <Option value="base">
-                <img src={baseLogo} alt="Base Logo" className={styles["chain-icon"]} />
-                Base
-              </Option>
-              <Option value="optimism">
-                <img src={optimismLogo} alt="Optimism Logo" className={styles["chain-icon"]} />
-                Optimism
-              </Option>
-              <Option value="polygon">
-                <img src={polygonLogo} alt="Polygon Logo" className={styles["chain-icon"]} />
-                Polygon
-              </Option>
-              <Option value="solana">
-                <img src={solanaLogo} alt="Solana Logo" className={styles["chain-icon"]} />
-                Solana
-              </Option>
+            <Select
+              onChange={(value) => setBridgeTo(value as SupportedBridgeChains)}
+            >
+              {supportedChains
+                .filter((chain) => chain.name !== bridgeFrom)
+                .map((chain) => (
+                  <Option key={chain.name} value={chain.name}>
+                    <img src={chain.logo} alt={`${chain.name} logo`} className={styles["chain-icon"]} />
+                    {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
+                  </Option>
+                ))}
             </Select>
           </FormGroup>
           <FormGroup label="Bridge Amount">
@@ -147,9 +138,9 @@ function GrAI() {
               <input
                 placeholder="0"
                 value={inputBridgeAmount}
-                onChange={(e) => {  
+                onChange={(e) => {
                   setInputBridgeAmount(e.target.value)
-                  const amount = ethers.parseUnits(e.target.value, 18)
+                  const amount = ethers.parseUnits(e.target.value || "0", 18)
                   setBridgeAmount(Number(amount))
                 }}
               />
@@ -177,9 +168,7 @@ function GrAI() {
               </div>
             )}
           </FormGroup>
-          <p className="form-label">
-            Fee: {fee.toString()}
-          </p>
+          <p className="form-label">Fee: {fee}</p>
           <button
             className={`${styles["bridge-button"]} button`}
             disabled={!isFormValid}
