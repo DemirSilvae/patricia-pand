@@ -103,7 +103,8 @@ function PoolsTable() {
         ethers.formatUnits(info.totalProfits.baseTokenTradeProfit, info.baseTokenDecimals)
       ).toFixed(Number(info.baseTokenDecimals))
 
-      const start = new Date(Number(info.startTimestamp) * 1000).toLocaleDateString()
+      const timestamp = info.startTimestamp
+      const start = timestamp !== 0n ? new Date(Number(info.startTimestamp) * 1000).toLocaleDateString() : "N/A"
 
       const aprNumerator = Number(info.roi.ROINumerator) * 365 * 30 * 24 * 60
       const aprDenominator = Number(info.roi.ROIDeniminator) * Number(info.roi.ROIPeriod)
