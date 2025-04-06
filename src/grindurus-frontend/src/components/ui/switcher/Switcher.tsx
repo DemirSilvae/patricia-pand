@@ -4,17 +4,24 @@ import styles from './Switcher.module.scss'
 type SwitcherProps = {
   label?: string
   defaultValue?: boolean
+  value?: boolean
   onChange?: (value: boolean) => void
 }
 
-export const Switcher: React.FC<SwitcherProps> = ({ label, defaultValue = false, onChange }) => {
-  const [isOn, setIsOn] = useState(defaultValue)
+export const Switcher: React.FC<SwitcherProps> = ({ label, defaultValue = true, value, onChange }) => {
+  const [isOn, setIsOn] = useState(value ?? defaultValue)
 
   useEffect(() => {
-    onChange?.(isOn)
-  }, [isOn, onChange])
+    if (value !== undefined) {
+      setIsOn(value)
+    }
+  }, [value])
 
-  const toggle = () => setIsOn((prev) => !prev)
+  const toggle = () => {
+    const newValue = !isOn
+    setIsOn(newValue)
+    onChange?.(newValue) // Вызываем onChange при изменении значения
+  }
 
   return (
     <div className={styles["wrapper"]}>

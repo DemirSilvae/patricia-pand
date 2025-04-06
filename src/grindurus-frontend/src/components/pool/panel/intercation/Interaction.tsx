@@ -4,7 +4,7 @@ import { ethers } from 'ethers'
 import { FormGroup, Switcher } from '../../../ui'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { ERC20__factory } from '../../../../typechain-types'
+import { ERC20__factory, Strategy__factory } from '../../../../typechain-types'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 
 type InteractionProps = {
@@ -12,7 +12,7 @@ type InteractionProps = {
 }
 
 const Interaction = ({ poolId }: InteractionProps) => {
-  const { poolsNFT, networkConfig, provider } = useProtocolContext()
+  const { poolsNFT, networkConfig, provider, signer } = useProtocolContext()
   const { address: userAddress } = useAppKitAccount()
 
   const [inputDeposit, setInputDeposit] = useState<string>("")
@@ -20,7 +20,7 @@ const Interaction = ({ poolId }: InteractionProps) => {
   const [royaltyPrice, setRoyaltyPrice] = useState<string>("")
   const [poolsNFTInfo, setPoolsNFTInfo] = useState<IPoolsNFTLens.PoolNFTInfoStructOutput | null>(null)
   const [isProcessingBuyRoyalty, setIsProcessingBuyRoyalty] = useState<Boolean>(false)
-  const [reinvest, setReinvest] = useState<boolean>(false)
+  const [reinvest, setReinvest] = useState<boolean>(true)
 
   const checkRequired = () => {
     if(!poolsNFT) {
@@ -46,6 +46,11 @@ const Interaction = ({ poolId }: InteractionProps) => {
     const quoteTokenDecimals = poolsNFTInfos[0].quoteTokenDecimals
     const fetchedRoyaltyPrice = ethers.formatUnits(newRoyaltyPrice, quoteTokenDecimals)
     setRoyaltyPrice(fetchedRoyaltyPrice)
+
+    const poolAddress = await poolsNFT!.pools(poolId)
+    const pool = Strategy__factory.connect(poolAddress, signer)
+    const storedReinvest = await pool.reinvest()
+    setReinvest(storedReinvest)
   }
 
   const handleDeposit = async () => {
@@ -87,6 +92,23 @@ const Interaction = ({ poolId }: InteractionProps) => {
       await tx.wait()
     } catch(err) {
       console.log("Failed withdraw funds", err)
+    }
+  }
+
+  const handleSwitchReinvest = async (newValue: boolean) => {
+    try {
+      const poolAddress = await poolsNFT!.pools(poolId)
+      const pool = Strategy__factory.connect(poolAddress, signer)
+      const stored = await pool.reinvest()
+      console.log("stored: ", stored)
+      console.log("newVal: ", newValue)
+      if (stored !== newValue) {
+        let tx = await pool.switchReinvest()
+        await tx.wait()
+      }
+    } catch (error) {
+      console.error("Error switch reinvest: ", error)
+      setReinvest(!newValue)
     }
   }
 
@@ -166,8 +188,8 @@ const Interaction = ({ poolId }: InteractionProps) => {
         <div>
           <Switcher
             label="Reinvest"
-            defaultValue={true}
-            onChange={(value) => setReinvest(value)}
+            value={reinvest}
+            onChange={(value) => handleSwitchReinvest(value)}
           />
           <div className={styles["exit-description"]}>
             Exit: emergency withdraw distribution of funds and ownership of strategy pool will be moved to royalty receiver.
