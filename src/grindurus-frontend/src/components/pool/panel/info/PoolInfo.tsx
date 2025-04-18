@@ -17,6 +17,8 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
   const [royaltyReceiver, setRoyaltyReceiver] = useState<string>("")
   const [quoteToken, setQuoteToken] = useState<string>("")
   const [baseToken, setBaseToken] = useState<string>("")
+  const [quoteTokenSymbol, setQuoteTokenSymbol] = useState<any>()
+  const [baseTokenSymbol, setBaseTokenSymbol] = useState<any>()
 
   useEffect(() => {
     if (poolsNFT) {
@@ -42,6 +44,8 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
 
       const poolNFTInfos : IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
       let poolNFTInfo = poolNFTInfos[0]
+      setQuoteTokenSymbol(poolNFTInfo.quoteTokenSymbol)
+      setBaseTokenSymbol(poolNFTInfo.baseTokenSymbol)
 
       setOracleQuoteTokenPerFeeToken(poolNFTInfo.oracleQuoteTokenPerFeeToken)
       setOracleQuoteTokenPerBaseToken(poolNFTInfo.oracleQuoteTokenPerBaseToken)
@@ -56,12 +60,12 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
     <div className={styles["info"]}>
       <h2 className={styles["title"]}>Info</h2>
       <div className={styles["addresses"]}>
-        <CopiedAddress label="Oracle QuoteToken/FeeToken:" address={oracleQuoteTokenPerFeeToken}/>
-        <CopiedAddress label="Oracle QuoteToken/BaseToken:" address={oracleQuoteTokenPerBaseToken}/>
+        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / FeeToken:`} address={oracleQuoteTokenPerFeeToken}/>
+        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / ${baseTokenSymbol}:`} address={oracleQuoteTokenPerBaseToken}/>
+        <CopiedAddress label={`QuoteToken: ${quoteTokenSymbol}`} address={quoteToken}/>
+        <CopiedAddress label={`BaseToken: ${baseTokenSymbol}`} address={baseToken}/>
         <CopiedAddress label="Pool Owner:" address={owner}/>
         <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver}/>
-        <CopiedAddress label="QuoteToken:" address={quoteToken}/>
-        <CopiedAddress label="BaseToken:" address={baseToken}/>
       </div>
     </div>
   )
