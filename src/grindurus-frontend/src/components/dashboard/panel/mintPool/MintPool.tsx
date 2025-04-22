@@ -57,10 +57,12 @@ function MintPool() {
       checkRequired()
 
       const spenderAddress = networkConfig.poolsNFT!
-      const allowanceRaw = await quoteTokenContract!.allowance(userAddress!, spenderAddress)
-      const allowanceFormatted = ethers.formatUnits(allowanceRaw, quoteTokenInfo!.decimals)
-
-      setIsApproved(Number(quoteTokenAmount) <= Number(allowanceFormatted))
+      if (quoteTokenContract) {
+        const allowanceRaw = await quoteTokenContract!.allowance(userAddress!, spenderAddress)
+        const allowanceFormatted = ethers.formatUnits(allowanceRaw, quoteTokenInfo!.decimals)
+  
+        setIsApproved(Number(quoteTokenAmount) <= Number(allowanceFormatted))
+      }
     } catch (err) {
       console.error("Error checking allowance:", err)
     }
