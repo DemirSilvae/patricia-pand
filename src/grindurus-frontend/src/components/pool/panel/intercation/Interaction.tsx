@@ -115,7 +115,9 @@ const Interaction = ({ poolId }: InteractionProps) => {
   const handleExit = async () => {
     if(!checkRequired()) return
     try{
-      const tx = await poolsNFT!.exit(Number(poolId))
+      const gasEstimate = await poolsNFT!.exit.estimateGas(poolId)
+      const gasLimit = gasEstimate * 14n / 10n
+      const tx = await poolsNFT!.exit(Number(poolId), {gasLimit})
       await tx.wait()
     } catch(err) {
       console.log("Failed exit pool", err)
