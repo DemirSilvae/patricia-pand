@@ -20,7 +20,7 @@ export const Switcher: React.FC<SwitcherProps> = ({ label, defaultValue = true, 
   const toggle = () => {
     const newValue = !isOn
     setIsOn(newValue)
-    onChange?.(newValue) // Вызываем onChange при изменении значения
+    onChange?.(newValue)
   }
 
   return (
