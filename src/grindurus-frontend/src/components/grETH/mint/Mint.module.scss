@@ -5,3 +5,9 @@
 .max-button {
   border-radius: 0;
 }
+
+.title {
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
