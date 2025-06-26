@@ -1,5 +1,4 @@
 import styles from './Panel.module.scss'
-import Controller from './controller/Controller'
 import PoolInfo from './info/PoolInfo'
 import Header from '../header/Header'
 import Interaction from './intercation/Interaction'

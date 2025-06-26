@@ -1,4 +1,4 @@
-import React, { useState, ReactNode } from 'react'
+import React, { ReactNode } from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { useProtocolContext } from './context/ProtocolContext'
 import Header from './components/header/Header'
@@ -7,7 +7,7 @@ import ConnectWallet from './components/connect/ConnectWallet'
 import GrETH from './components/grETH/GrETH'
 import GrinderAI from './components/grinderAI/GrinderAI'
 import Pool from './components/pool/Pool'
-import GrAI from './components/grAI/grAI'
+import GrAI from './components/grAI/GrAI'
 
 type RouterGuardProps = {
   networkConfig: Record<string, any>

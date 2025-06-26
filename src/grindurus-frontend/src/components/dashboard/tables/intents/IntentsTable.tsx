@@ -4,7 +4,7 @@ import logoArbitrum from '../../../../assets/images/logoArbitrum.png'
 import { Table } from '../../../ui'
 import { shortenAddress } from '../../../../utils/addresses'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { IIntentNFT } from '../../../../typechain-types/IntentNFT'
+import { IIntentsNFT } from '../../../../typechain-types/IntentNFT'
 
 function IntentsTable() {
   const [tableData, setTableData] = useState<any[][]>([])
@@ -20,7 +20,7 @@ function IntentsTable() {
   const fetchIntents = async () => {
     setIsLoading(true)
     try {
-      const intentInfos: IIntentNFT.IntentStructOutput[] = await intentNFT!.getIntents([0])
+      const intentInfos: IIntentsNFT.IntentStructOutput[] = await intentNFT!.getIntents([0])
 
       const formattedData = intentInfos.map((intent, index) => {
         return [
