@@ -41,6 +41,10 @@ function GrAI() {
   const [receiverAddress, setReceiverAddress] = useState<string>("")
   const [changeAddress, setChangeAddress] = useState<boolean>(false)
   const [fee, setFee] = useState<string>("0")
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   const checkRequired = () => {
     if (!grAI) {
