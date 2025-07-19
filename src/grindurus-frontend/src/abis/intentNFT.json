@@ -474,6 +474,16 @@
             "type": "uint256"
           },
           {
+            "internalType": "uint256",
+            "name": "spentGrinds",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unspentGrinds",
+            "type": "uint256"
+          },
+          {
             "internalType": "uint256[]",
             "name": "poolIds",
             "type": "uint256[]"
@@ -508,6 +518,16 @@
         "type": "uint256"
       },
       {
+        "internalType": "uint256",
+        "name": "_spentGrinds",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_unspentGrinds",
+        "type": "uint256"
+      },
+      {
         "internalType": "uint256[]",
         "name": "_poolIds",
         "type": "uint256[]"
@@ -534,6 +554,16 @@
       {
         "internalType": "uint256",
         "name": "_grinds",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_spentGrinds",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_unspentGrinds",
         "type": "uint256"
       },
       {
@@ -565,6 +595,16 @@
           {
             "internalType": "uint256",
             "name": "grinds",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "spentGrinds",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "unspentGrinds",
             "type": "uint256"
           },
           {
