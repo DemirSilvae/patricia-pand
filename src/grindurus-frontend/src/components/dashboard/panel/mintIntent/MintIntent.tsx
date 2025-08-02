@@ -9,7 +9,7 @@ const GRIND_AMOUNT_MAP = [1, 5, 10, 20, 50, 75, 100]
 const ETH = '0x0000000000000000000000000000000000000000'
 
 function MintIntent() {
-  const { provider, networkConfig, intentNFT } = useProtocolContext()
+  const { provider, networkConfig, intentsNFT } = useProtocolContext()
   const { address: userAddress } = useAppKitAccount()
 
   const [changeAddress, setChangeAddress] = useState<boolean>(false)
@@ -26,8 +26,8 @@ function MintIntent() {
       console.error("networkConfig not set!")
       return false
     }
-    if(!intentNFT) {
-      console.error("intentNFT not set!")
+    if(!intentsNFT) {
+      console.error("intentsNFT not set!")
       return false
     }
     return true
@@ -49,7 +49,7 @@ function MintIntent() {
     }
 
     try {
-      const paymentAmount = await intentNFT!.calcPayment(ETH, grindAmount)
+      const paymentAmount = await intentsNFT!.calcPayment(ETH, grindAmount)
       return paymentAmount
     } catch (error) {
       console.error("Error calculating payment: ", error)
@@ -65,7 +65,7 @@ function MintIntent() {
     try {
       const paymentAmount = await calcPayment()
       const receiver = receiverAddress ? receiverAddress : userAddress
-      const tx = await intentNFT!.mintTo(ETH, receiver!, grindAmount, { value: paymentAmount })
+      const tx = await intentsNFT!.mintTo(ETH, receiver!, grindAmount, { value: paymentAmount })
       await tx.wait()
     } catch (error) {
       console.error("Error minting intent: ", error)

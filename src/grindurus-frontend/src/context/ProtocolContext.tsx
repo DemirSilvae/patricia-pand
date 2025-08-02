@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, useEffect, useMemo, ReactNo
 import { BrowserProvider, JsonRpcSigner, Eip1193Provider } from 'ethers'
 import { useAppKitAccount, useAppKitNetwork, useAppKitProvider } from '@reown/appkit/react'
 import { 
-  PoolsNFT, IntentNFT, GrETH, GrAI, Registry, 
-  PoolsNFT__factory,  IntentNFT__factory, GrETH__factory, GrAI__factory, Registry__factory
+  PoolsNFT, IntentsNFT, GrETH, GrAI, Registry, 
+  PoolsNFT__factory,  IntentsNFT__factory, GrETH__factory, GrAI__factory, Registry__factory
 } from '../typechain-types'
 import { convertDecimalToHex } from '../utils/numbers'
 import config from '../config'
@@ -14,7 +14,7 @@ interface ProtocolContextType {
   provider: BrowserProvider | null
   signer: JsonRpcSigner | null
   poolsNFT: PoolsNFT | null
-  intentNFT: IntentNFT | null
+  intentsNFT: IntentsNFT | null
   grETH: GrETH | null
   grAI: GrAI | null
   registry: Registry | null
@@ -32,7 +32,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const [signer, setSigner] = useState<JsonRpcSigner | null>(null)
   const [networkConfig, setNetworkConfig] = useState<Partial<NetworkConfig>>({})
   const [poolsNFT, setPoolsNFT] = useState<PoolsNFT | null>(null)
-  const [intentNFT, setIntentNFT] = useState<IntentNFT | null>(null)
+  const [intentsNFT, setIntentsNFT] = useState<IntentsNFT | null>(null)
   const [grETH, setGrETH] = useState<GrETH | null>(null)
   const [grAI, setGrAI] = useState<GrAI | null>(null)
   const [registry, setRegistry] = useState<Registry | null>(null)
@@ -42,7 +42,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const { isConnected } = useAppKitAccount()
   const { chainId } = useAppKitNetwork()
 
-  type ProtocolContracts = PoolsNFT | IntentNFT | GrETH | GrAI | Registry
+  type ProtocolContracts = PoolsNFT | IntentsNFT | GrETH | GrAI | Registry
   const cachedContracts = useMemo(() => new Map<string, ProtocolContracts>(), [])
 
   useEffect(() => {
@@ -78,7 +78,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   useEffect(() => {
     const { 
       poolsNFT: poolsAddress, 
-      intentNFT: intentAddress,
+      intentsNFT: intentsAddress,
       grETH: grETHAddress,
       grAI: grAIAddress,
       registry: registryAddress
@@ -97,17 +97,17 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       setPoolsNFT(null)
     }
 
-    if (signer && intentAddress) {
-      if (cachedContracts.has(intentAddress)) {
-        setIntentNFT(cachedContracts.get(intentAddress)! as IntentNFT)
+    if (signer && intentsAddress) {
+      if (cachedContracts.has(intentsAddress)) {
+        setIntentsNFT(cachedContracts.get(intentsAddress)! as IntentsNFT)
         return
       }
 
-      const contract = IntentNFT__factory.connect(intentAddress, signer)
-      setIntentNFT(contract)
-      cachedContracts.set(intentAddress, contract)
+      const contract = IntentsNFT__factory.connect(intentsAddress, signer)
+      setIntentsNFT(contract)
+      cachedContracts.set(intentsAddress, contract)
     } else {
-      setIntentNFT(null)
+      setIntentsNFT(null)
     }
 
     if (signer && grETHAddress) {
@@ -160,7 +160,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       value={{
         provider,
         poolsNFT,
-        intentNFT,
+        intentsNFT,
         grETH,
         grAI,
         registry,

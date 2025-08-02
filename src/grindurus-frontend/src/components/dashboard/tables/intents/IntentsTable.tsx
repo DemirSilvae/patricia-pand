@@ -4,23 +4,23 @@ import logoArbitrum from '../../../../assets/images/logoArbitrum.png'
 import { Table } from '../../../ui'
 import { shortenAddress } from '../../../../utils/addresses'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { IIntentsNFT } from '../../../../typechain-types/IntentNFT'
+import { IIntentsNFT } from '../../../../typechain-types/IntentsNFT'
 
 function IntentsTable() {
   const [tableData, setTableData] = useState<any[][]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const { intentNFT, isConnected } = useProtocolContext()
+  const { intentsNFT, isConnected } = useProtocolContext()
 
   useEffect(() => {
-    if (isConnected && intentNFT) {
+    if (isConnected && intentsNFT) {
       fetchIntents()
     }
-  }, [isConnected, intentNFT])
+  }, [isConnected, intentsNFT])
 
   const fetchIntents = async () => {
     setIsLoading(true)
     try {
-      const intentInfos: IIntentsNFT.IntentStructOutput[] = await intentNFT!.getIntents([0])
+      const intentInfos: IIntentsNFT.IntentStructOutput[] = await intentsNFT!.getIntents([0])
 
       const formattedData = intentInfos.map((intent, index) => {
         return [
