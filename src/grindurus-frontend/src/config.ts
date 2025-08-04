@@ -46,12 +46,12 @@ const config: Record<SupportedChains, ChainConfig> = {
     grAI: '0x2cd392CC10887a258019143a710a5Ce2C5B5d88d',
     strategies: [
       {
-        id: 0,
-        description: 'UniswapV3 with URUS',
-      },
-      {
         id: 1,
         description: 'AAVEV3 + UniswapV3 with URUS',
+      },
+      {
+        id: 0,
+        description: 'UniswapV3 with URUS',
       },
     ],
     quoteTokens: [
