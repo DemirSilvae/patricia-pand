@@ -125,7 +125,7 @@ function PoolsTable() {
           onClick={() => handleViewPool(info.poolId.toString())}
         />,
         info.poolId.toString(),
-        `${quoteAmount} ${info.quoteTokenSymbol}/${baseAmount} ${info.baseTokenSymbol}`,
+        `${Number(quoteAmount).toFixed(6)} ${info.quoteTokenSymbol}/${Number(baseAmount).toFixed(6)} ${info.baseTokenSymbol}`,
         `${quoteYield} ${info.quoteTokenSymbol}\n + ${baseYield} ${info.baseTokenSymbol} \n/ ${quoteTrade} ${info.quoteTokenSymbol}\n${baseTrade} ${info.baseTokenSymbol}`,
         start,
         apr,
