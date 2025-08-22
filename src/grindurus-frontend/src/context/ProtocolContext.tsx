@@ -42,9 +42,6 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const { isConnected } = useAppKitAccount()
   const { chainId } = useAppKitNetwork()
 
-  type ProtocolContracts = PoolsNFT | IntentsNFT | GrETH | GrAI | Registry
-  const cachedContracts = useMemo(() => new Map<string, ProtocolContracts>(), [])
-
   useEffect(() => {
     if (provider)
       provider.getSigner().then(setSigner).catch(console.error)
@@ -76,77 +73,21 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   }, [isConnected, walletProvider])
 
   useEffect(() => {
-    const { 
-      poolsNFT: poolsAddress, 
+    const {
+      poolsNFT: poolsAddress,
       intentsNFT: intentsAddress,
       grETH: grETHAddress,
       grAI: grAIAddress,
-      registry: registryAddress
+      registry: registryAddress,
     } = networkConfig ?? {}
 
-    if (signer && poolsAddress) {
-      if (cachedContracts.has(poolsAddress)) {
-        setPoolsNFT(cachedContracts.get(poolsAddress)! as PoolsNFT)
-        return
-      }
+    setPoolsNFT(poolsAddress && signer ? PoolsNFT__factory.connect(poolsAddress, signer) : null)
+    setIntentsNFT(intentsAddress && signer ? IntentsNFT__factory.connect(intentsAddress, signer) : null)
+    setGrETH(grETHAddress && signer ? GrETH__factory.connect(grETHAddress, signer) : null)
+    setGrAI(grAIAddress && signer ? GrAI__factory.connect(grAIAddress, signer) : null)
+    setRegistry(registryAddress && signer ? Registry__factory.connect(registryAddress, signer) : null)
 
-      const contract = PoolsNFT__factory.connect(poolsAddress, signer)
-      setPoolsNFT(contract)
-      cachedContracts.set(poolsAddress, contract)
-    } else {
-      setPoolsNFT(null)
-    }
-
-    if (signer && intentsAddress) {
-      if (cachedContracts.has(intentsAddress)) {
-        setIntentsNFT(cachedContracts.get(intentsAddress)! as IntentsNFT)
-        return
-      }
-
-      const contract = IntentsNFT__factory.connect(intentsAddress, signer)
-      setIntentsNFT(contract)
-      cachedContracts.set(intentsAddress, contract)
-    } else {
-      setIntentsNFT(null)
-    }
-
-    if (signer && grETHAddress) {
-      if (cachedContracts.has(grETHAddress)) {
-        setGrETH(cachedContracts.get(grETHAddress)! as GrETH)
-        return
-      }
-
-      const contract = GrETH__factory.connect(grETHAddress, signer)
-      setGrETH(contract)
-      cachedContracts.set(grETHAddress, contract)
-    } else {
-      setGrETH(null)
-    }
-
-    if (signer && grAIAddress) {
-      if (cachedContracts.has(grAIAddress)) {
-        setGrAI(cachedContracts.get(grAIAddress)! as GrAI)
-        return
-      }
-
-      const contract = GrAI__factory.connect(grAIAddress, signer)
-      setGrAI(contract)
-      cachedContracts.set(grAIAddress, contract)
-    } else {
-      setGrAI(null)
-    }
-
-    if(signer && registryAddress) {
-      if(cachedContracts.has(registryAddress)) {
-        setRegistry(cachedContracts.get(registryAddress)! as Registry)
-        return
-      }
-
-      const contract = Registry__factory.connect(registryAddress, signer)
-      setRegistry(contract)
-      cachedContracts.set(registryAddress, contract)
-    }
-  }, [signer, networkConfig, provider])
+  }, [signer, networkConfig])
 
   const getDefaultVisiblePool = async () => {
     if (!poolsNFT) return
