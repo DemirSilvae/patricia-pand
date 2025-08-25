@@ -73,6 +73,15 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   }, [isConnected, walletProvider])
 
   useEffect(() => {
+    if (!signer) {
+      setPoolsNFT(null)
+      setIntentsNFT(null)
+      setGrETH(null)
+      setGrAI(null)
+      setRegistry(null)
+      return
+    }
+  
     const {
       poolsNFT: poolsAddress,
       intentsNFT: intentsAddress,
@@ -80,14 +89,13 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       grAI: grAIAddress,
       registry: registryAddress,
     } = networkConfig ?? {}
-
-    setPoolsNFT(poolsAddress && signer ? PoolsNFT__factory.connect(poolsAddress, signer) : null)
-    setIntentsNFT(intentsAddress && signer ? IntentsNFT__factory.connect(intentsAddress, signer) : null)
-    setGrETH(grETHAddress && signer ? GrETH__factory.connect(grETHAddress, signer) : null)
-    setGrAI(grAIAddress && signer ? GrAI__factory.connect(grAIAddress, signer) : null)
-    setRegistry(registryAddress && signer ? Registry__factory.connect(registryAddress, signer) : null)
-
-  }, [signer, networkConfig])
+  
+    setPoolsNFT(poolsAddress ? PoolsNFT__factory.connect(poolsAddress, signer) : null)
+    setIntentsNFT(intentsAddress ? IntentsNFT__factory.connect(intentsAddress, signer) : null)
+    setGrETH(grETHAddress ? GrETH__factory.connect(grETHAddress, signer) : null)
+    setGrAI(grAIAddress ? GrAI__factory.connect(grAIAddress, signer) : null)
+    setRegistry(registryAddress ? Registry__factory.connect(registryAddress, signer) : null)
+  }, [signer, networkConfig])  
 
   const getDefaultVisiblePool = async () => {
     if (!poolsNFT) return
