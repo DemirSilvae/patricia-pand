@@ -60,11 +60,10 @@ function GrAI() {
 
   const handleFee = async () => {
     try {
-      const grAIdecimals = 18
       const receiver = changeAddress ? receiverAddress : userAddress!
       const dstChain = endpointIds[bridgeTo]
       const toAddress = await grAI!.addressToBytes32(receiver)
-      const amount = ethers.parseUnits(bridgeAmount.toString(), grAIdecimals)
+      const amount = BigInt(bridgeAmount)
       const [, , totalNativeFee] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
       setFee(ethers.formatUnits(totalNativeFee, 18))
     } catch (error) {
@@ -77,11 +76,10 @@ function GrAI() {
     if (!checkRequired()) return
 
     try {
-      const grAIdecimals = 18
       const receiver = changeAddress ? receiverAddress : userAddress!
       const dstChain = endpointIds[bridgeTo]
       const toAddress = await grAI!.addressToBytes32(receiver)
-      const amount = ethers.parseUnits(bridgeAmount.toString(), grAIdecimals)
+      const amount = BigInt(bridgeAmount)
       const [, , totalNativeFee] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
       const tx = await grAI!.bridgeTo(dstChain, toAddress, amount, { value: totalNativeFee })
       await tx.wait()
