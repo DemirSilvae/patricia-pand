@@ -28,6 +28,8 @@ function IntentsTable() {
           index,
           shortenAddress(intent.owner),
           intent.grinds.toString(),
+          intent.spentGrinds.toString(),
+          intent.unspentGrinds.toString(),
           intent.poolIds.map(id => id.toString()).join(", "),
         ]
       })
@@ -39,7 +41,7 @@ function IntentsTable() {
     setIsLoading(false)
   }
 
-  const headers = ["Network", "Id", "Address", "Grinds", "Pool IDs"]
+  const headers = ["Network", "Id", "Address", "Grinds", "Spent Grinds", "Unspent Grinds", "Pool IDs"]
 
   return (
     <>
