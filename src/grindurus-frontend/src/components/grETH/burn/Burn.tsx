@@ -57,16 +57,18 @@ function Burn() {
     }
   }
 
-  const handleMaxClick = () => {
-    // TODO: Change to user grETH balance
-    setBurnAmount('100')
+  const handleMaxClick = async () => {
+    const grethAmount = await grETH!.balanceOf(userAddress as string)
+    const grethAmountFormatted = ethers.formatUnits(grethAmount, 18)
+    setBurnAmount(grethAmountFormatted)
   }
 
   const isFormValid = burnAmount && parseFloat(burnAmount) > 0
 
   return (
     <div className={`${styles["burn-form"]} form`}>
-      <h2 className={`${styles["title"]} form-title`}>Burn and Get Tokens</h2>
+      <h2 className={`${styles["title"]} form-title`}>Burn grETH</h2>
+      <div className={`${styles["description"]} form-title`}>Choose token, burn grETH and receive your token share</div>
       <FormGroup label="Burn grETH Amount">
         <div className="form-input">
           <input

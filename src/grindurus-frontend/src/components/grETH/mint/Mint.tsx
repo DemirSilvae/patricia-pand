@@ -6,7 +6,7 @@ import { useAppKitAccount } from '@reown/appkit/react'
 import { FormGroup, Checkbox } from '../../ui'
 
 function Mint() {
-  const { networkConfig, grETH } = useProtocolContext()
+  const { networkConfig, grETH, provider } = useProtocolContext()
   const { address: userAddress } = useAppKitAccount()
 
   const [mintAmount, setMintAmount] = useState<string>('')
@@ -31,9 +31,12 @@ function Mint() {
     }
   }
 
-  const handleMaxClick = () => {
-    // TODO: Change to user ETH balance
-    setMintAmount('100')
+  const handleMaxClick = async () => {
+    if (!userAddress) return;
+    const balance = await provider!.getBalance(userAddress)
+    const notAllBalance = balance * 95n / 100n
+    const formattedBalance = ethers.formatEther(notAllBalance)
+    setMintAmount(formattedBalance);
   }
 
   const isFormValid = mintAmount && parseFloat(mintAmount) > 0
@@ -41,6 +44,7 @@ function Mint() {
   return (
     <div className={`${styles["mint-form"]} form`}>
       <div className={`${styles["title"]} form-title`}>Mint grETH</div>
+      <div className={`${styles["description"]}`}>Exchange native token to grETH by rate 1 ETH per 1 grETH</div>
       <FormGroup label="grETH To Mint">
         <div className="form-input">
           <input
