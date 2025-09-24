@@ -80,7 +80,7 @@ function MintIntent() {
     <div className={`${styles["form"]} form`}>
       <h2 className="form-title">Intent NFT</h2>
       <div className={styles["description"]}>
-        <p>Holds grinds amount for auto grinding with GrinderAI</p>
+        <p>Intent tracks amount of grinds for GrinderAI</p>
       </div>
       <FormGroup label={`Grinds Amount ~ (${grindAmount} times)`}>
         <div className={`${styles["grind-amount-input"]} form-input`}>
