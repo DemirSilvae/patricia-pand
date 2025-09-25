@@ -35,7 +35,7 @@ const Configuration = ({ poolId }: ConfigurationProps) => {
 
   useEffect(() => {
     initPool()
-  }, [signer, poolsNFT])
+  }, [signer, poolsNFT, poolId])
 
   const initPool = async () => {
     const poolAddress = await poolsNFT!.pools(poolId)
