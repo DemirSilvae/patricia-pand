@@ -23,6 +23,8 @@
   gap: 0.9375rem;
   font-weight: bold;
   font-size: 1.875rem;
+  position: relative;
+  z-index: 100;
 }
 
 .logo img {
@@ -33,6 +35,35 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.navigation-buttons {
+  display: none;
+}
+
+.menu-button {
+  border: 0;
+  display: none;
+  position: relative;
+  z-index: 100;
+
+  .open {
+    display: block;
+  }
+
+  .close {
+    display: none;
+  }
+
+  &.active {
+    .open {
+      display: none;
+    }
+
+    .close {
+      display: block;
+    }
+  }
 }
 
 .buttons {
@@ -77,5 +108,88 @@
 
   &:hover {
     background-color: #2b2b2b;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .buttons {
+    display: none;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100%;
+    width: 100%;
+    background-color: #000;
+    padding-top: 68px;
+    transition: left 0.3s ease;
+
+    &.active {
+      left: 0;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 68px;
+      width: 100%;
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  .navigation-buttons {
+    padding: 30px 15px;
+    width: 100%;
+    display: flex;
+    gap: 15px;
+  }
+
+  .network-button, .connect-button {
+    flex: 1;
+  }
+
+  .menu {
+    display: block;
+    width: 100%;
+  }
+
+  .menu-item {
+    width: 100%;
+    border-bottom: 1px solid #fff;
+  }
+
+  .menu-link {
+    text-align: right;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .navigation-buttons {
+    flex-direction: column;
+  }
+
+  .network-button, .connect-button {
+    flex: 1;
+  }
+
+  .logo {
+    .text {
+      display: none;
+    }
   }
 }
