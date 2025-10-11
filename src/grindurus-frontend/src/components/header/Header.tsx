@@ -21,10 +21,10 @@ function Header() {
         </Link>
         <nav className={`${styles['navigation']} ${isMenuOpen ? styles["active"] : ""}`}>
           <ul className={styles['menu']}>
-            <li className={styles['menu-item']}><Link to="/" className={styles['menu-link']}>Dashboard</Link></li>
-            <li className={styles['menu-item']}><Link to="/greth" className={styles['menu-link']}>grETH</Link></li>
+            <li onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles['menu-item']}><Link to="/" className={styles['menu-link']}>Dashboard</Link></li>
+            <li onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles['menu-item']}><Link to="/greth" className={styles['menu-link']}>grETH</Link></li>
             {/* <li className={styles['menu-item']}><Link to="grinder-ai" className={styles['menu-link']}>GrinderAI</Link></li> */}
-            <li className={styles['menu-item']}><Link to="grai" className={styles['menu-link']}>grAI</Link></li>
+            <li onClick={() => setIsMenuOpen(!isMenuOpen)} className={styles['menu-item']}><Link to="grai" className={styles['menu-link']}>grAI</Link></li>
           </ul>
           <div className={styles["navigation-buttons"]}>
             <button className={`${styles["button"]} ${styles['network-button']} button`} onClick={() => open({view: 'Networks'})}>
