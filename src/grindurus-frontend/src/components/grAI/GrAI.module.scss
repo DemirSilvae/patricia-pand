@@ -21,3 +21,9 @@
 .bridge-button {
   width: 100%;
 }
+
+@media screen and (max-width: 700px) {
+  .bridge-form {
+    width: 100%;
+  }
+}
