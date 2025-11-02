@@ -1,6 +1,16 @@
+.bridge {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .bridge-form {
+  height: fit-content;
   width: 50%;
-  margin: 0 auto;
 }
 
 .title {

@@ -98,8 +98,8 @@ function GrAI() {
   const isFormValid = bridgeAmount > 0
 
   return (
-    <section>
-      <div className="container">
+    <section className={styles["bridge"]}>
+      <div className={`${styles["container"]} container`}>
         <div className={`${styles["bridge-form"]} form`}>
           <h2 className={`${styles["title"]} form-title`}>Bridge grAI</h2>
           <FormGroup label="Chain From">
