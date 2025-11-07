@@ -6,3 +6,9 @@
     margin-bottom: 30px;
   }
 }
+
+@media screen and (max-width: 1005px) {
+  .content {
+    flex-direction: column;
+  }
+}

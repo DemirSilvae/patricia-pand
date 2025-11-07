@@ -5,16 +5,17 @@ import checkIcon from '../../../assets/images/check.svg'
 
 type CopiedAddressProps = {
   address: string
+  fullAddress: string
   label: string
 }
 
-export const CopiedAddress = ({ address, label }: CopiedAddressProps) => {
+export const CopiedAddress = ({ address, fullAddress, label }: CopiedAddressProps) => {
   const [copied, setCopied] = useState(false)
-  const etherscanUrl = `https://arbiscan.io/address/${address}`
+  const etherscanUrl = `https://arbiscan.io/address/${fullAddress}`
 
   const handleCopy = async () => {
     try {
-      await navigator.clipboard.writeText(address)
+      await navigator.clipboard.writeText(fullAddress)
       setCopied(true)
       setTimeout(() => setCopied(false), 500)
     } catch (err) {

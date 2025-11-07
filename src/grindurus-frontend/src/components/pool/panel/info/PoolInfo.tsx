@@ -60,12 +60,12 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
     <div className={styles["info"]}>
       <h2 className={styles["title"]}>Info</h2>
       <div className={styles["addresses"]}>
-        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / FeeToken:`} address={oracleQuoteTokenPerFeeToken}/>
-        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / ${baseTokenSymbol}:`} address={oracleQuoteTokenPerBaseToken}/>
-        <CopiedAddress label={`QuoteToken: ${quoteTokenSymbol}`} address={quoteToken}/>
-        <CopiedAddress label={`BaseToken: ${baseTokenSymbol}`} address={baseToken}/>
-        <CopiedAddress label="Pool Owner:" address={owner}/>
-        <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver}/>
+        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / FeeToken:`} address={oracleQuoteTokenPerFeeToken} fullAddress={oracleQuoteTokenPerFeeToken}/>
+        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / ${baseTokenSymbol}:`} address={oracleQuoteTokenPerBaseToken} fullAddress={oracleQuoteTokenPerBaseToken}/>
+        <CopiedAddress label={`QuoteToken: ${quoteTokenSymbol}`} address={quoteToken} fullAddress={quoteToken}/>
+        <CopiedAddress label={`BaseToken: ${baseTokenSymbol}`} address={baseToken} fullAddress={baseToken}/>
+        <CopiedAddress label="Pool Owner:" address={owner} fullAddress={owner}/>
+        <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver} fullAddress={royaltyReceiver}/>
       </div>
     </div>
   )

@@ -34,3 +34,24 @@ tbody tr:last-child td:first-child {
 tbody tr:last-child td:last-child {
   border-bottom-right-radius: 8px;
 }
+
+@media screen and (max-width: 556px) {
+  .table {
+    border-collapse: separate;
+    border: 1px solid #fff;
+    padding: 20px;
+    overflow: hidden;
+  }
+  
+  .th,
+  .td {
+    border: 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: middle;
+
+    &:not(:last-child) {
+      padding-bottom: 15px;
+    }
+  }
+}
