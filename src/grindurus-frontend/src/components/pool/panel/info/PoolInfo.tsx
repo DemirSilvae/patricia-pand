@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 import { CopiedAddress } from '../../../ui'
+import { useIsMobile } from '../../../../hooks'
+import { shortenAddress } from '../../../../utils/addresses'
 
 type PoolInfoProps = {
   poolId: number
@@ -19,6 +21,8 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
   const [baseToken, setBaseToken] = useState<string>("")
   const [quoteTokenSymbol, setQuoteTokenSymbol] = useState<any>()
   const [baseTokenSymbol, setBaseTokenSymbol] = useState<any>()
+
+  const isMobile = useIsMobile(514)
 
   useEffect(() => {
     if (poolsNFT) {
@@ -60,12 +64,36 @@ const PoolInfo = ({ poolId }: PoolInfoProps) => {
     <div className={styles["info"]}>
       <h2 className={styles["title"]}>Info</h2>
       <div className={styles["addresses"]}>
-        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / FeeToken:`} address={oracleQuoteTokenPerFeeToken} fullAddress={oracleQuoteTokenPerFeeToken}/>
-        <CopiedAddress label={`Oracle ${quoteTokenSymbol} / ${baseTokenSymbol}:`} address={oracleQuoteTokenPerBaseToken} fullAddress={oracleQuoteTokenPerBaseToken}/>
-        <CopiedAddress label={`QuoteToken: ${quoteTokenSymbol}`} address={quoteToken} fullAddress={quoteToken}/>
-        <CopiedAddress label={`BaseToken: ${baseTokenSymbol}`} address={baseToken} fullAddress={baseToken}/>
-        <CopiedAddress label="Pool Owner:" address={owner} fullAddress={owner}/>
-        <CopiedAddress label="Royalty Receiver:" address={royaltyReceiver} fullAddress={royaltyReceiver}/>
+        <CopiedAddress
+          label={`Oracle ${quoteTokenSymbol} / FeeToken:`}
+          address={isMobile ? shortenAddress(oracleQuoteTokenPerFeeToken, 26) : oracleQuoteTokenPerFeeToken} 
+          fullAddress={oracleQuoteTokenPerFeeToken}
+        />
+        <CopiedAddress
+          label={`Oracle ${quoteTokenSymbol} / ${baseTokenSymbol}:`}
+          address={isMobile ? shortenAddress(oracleQuoteTokenPerBaseToken, 26) : oracleQuoteTokenPerBaseToken} 
+          fullAddress={oracleQuoteTokenPerBaseToken}
+        />
+        <CopiedAddress
+          label={`QuoteToken: ${quoteTokenSymbol}`}
+          address={isMobile ? shortenAddress(quoteToken, 26) : quoteToken} 
+          fullAddress={quoteToken}
+        />
+        <CopiedAddress
+          label={`BaseToken: ${baseTokenSymbol}`}
+          address={isMobile ? shortenAddress(baseToken, 26) : baseToken} 
+          fullAddress={baseToken}
+        />
+        <CopiedAddress
+          label="Pool Owner:"
+          address={isMobile ? shortenAddress(owner, 26) : owner} 
+          fullAddress={owner}
+        />
+        <CopiedAddress
+          label="Royalty Receiver:"
+          address={isMobile ? shortenAddress(royaltyReceiver, 26) : royaltyReceiver} 
+          fullAddress={royaltyReceiver}
+        />
       </div>
     </div>
   )

@@ -1,9 +1,8 @@
-import './ThresholdsTable.module.scss'
+import styles from './ThresholdsTable.module.scss'
 import { useState, useEffect } from 'react'
 import { formatUnits } from 'ethers'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
-import { Table } from '../../../ui'
 
 type ThresholdsTableProps = {
   poolId: number
@@ -11,14 +10,14 @@ type ThresholdsTableProps = {
 
 const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
   const { poolsNFT } = useProtocolContext()
-  const [tableData, setTableData] = useState<(string | JSX.Element)[][]>([])
+  const [tableData, setTableData] = useState<(string)[][]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
     fetchThresholds()
   }, [poolId, poolsNFT])
 
-  const checkRequired = async () => {
+  const checkRequired = () => {
     if (!poolsNFT) {
       console.error("PoolsNFT is null!")
       return false
@@ -27,7 +26,8 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
   }
 
   const fetchThresholds = async () => {
-    if (!await checkRequired()) return
+    if (!checkRequired()) return
+
     setIsLoading(true)
     try {
       const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
@@ -58,7 +58,20 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
   const headers = ['Param', 'Value']
 
   return (
-    <Table headers={headers} data={tableData} isLoading={isLoading} />
+    <div className={styles["block"]}>
+      <h3 className={styles["title"]}>Thresholds Info</h3>
+      <div className={styles["thresholds"]}>
+        {tableData.map((row, rowIdx) => (
+          <div className={styles["info-block"]} key={rowIdx}>
+            {row.map((value, valueIdx) => (
+              <div className={styles["element"]} key={valueIdx}>
+                {value}
+              </div>
+            ))}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 

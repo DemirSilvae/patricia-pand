@@ -205,15 +205,15 @@ const Configuration = ({ poolId }: ConfigurationProps) => {
             }%)`} className={styles["form-group"]}>
             <div className={styles["operation-row"]}>
               <Select onChange={(value) => setSelectedOpReturnPercent(value as number)} className={styles["select"]}>
-              <Option value={1}>
-                Long sell
-              </Option>
-              <Option value={2}>
-                Hedge sell
-              </Option>
-              <Option value={3}>
-                Hedge buy
-              </Option>
+                <Option value={1}>
+                  Long sell
+                </Option>
+                <Option value={2}>
+                  Hedge sell
+                </Option>
+                <Option value={3}>
+                  Hedge buy
+                </Option>
               </Select>
               <div className={`${styles["form-input"]} form-input`}>
               <input

@@ -28,3 +28,11 @@
     background-color: #6b2894;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .header {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+}

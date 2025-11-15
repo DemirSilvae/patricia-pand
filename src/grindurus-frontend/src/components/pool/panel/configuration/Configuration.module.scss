@@ -41,3 +41,13 @@
     }
   }
 }
+
+@media screen and (max-width: 530px) {
+  .operation-row {
+    flex-direction: column;
+  }
+
+  .select {
+    width: 100%;
+  }
+}

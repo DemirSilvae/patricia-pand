@@ -1,17 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import styles from './PositionsTable.module.scss'
+import { useEffect, useState } from 'react'
 import { formatUnits } from 'ethers'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { Table } from '../../../ui'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 
 type PositionsTableProps = {
   poolId: number
 }
 
+interface FormattedData {
+  param: string
+  long: string
+  hedge: string
+}
+
 const PositionsTable = ({ poolId }: PositionsTableProps) => {
   const { poolsNFT } = useProtocolContext()
 
-  const [tableData, setTableData] = useState<(string | JSX.Element)[][]>([])
+  const [tableData, setTableData] = useState<FormattedData[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -63,11 +69,11 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
         feePrice: formatUnits(positions[1][7], oracleQuoteTokenPerFeeTokenDecimals),
       }
 
-      const formattedData = Object.keys(long).map((key) => [
-        key,
-        long[key as keyof typeof long],
-        hedge[key as keyof typeof hedge],
-      ])
+      const formattedData = Object.keys(long).map((key) => ({
+        param: key,
+        long: long[key as keyof typeof long],
+        hedge: hedge[key as keyof typeof hedge],
+      }))      
 
       setTableData(formattedData)
     } catch (err) {
@@ -79,7 +85,24 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
   const headers = ['Param', 'Long Position', 'Hedge Position']
 
   return (
-    <Table headers={headers} data={tableData} isLoading={isLoading} />
+    <div className={styles["block"]}>
+      <h3 className={styles["title"]}>Positions Info</h3>
+      <div className={styles["content"]}>
+        <div className={styles["text"]}>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, dolores. Libero natus minus architecto quo alias recusandae explicabo consequatur quam opti</p>
+        </div>
+        <div className={styles["positions"]}>
+          {tableData.map((value, index) => (
+            <div className={styles["element"]} key={index}>
+              <div className={styles["param"]}>{value.param}</div>
+              <div className={styles["param-info"]}>{`long: ${value.long} hedge: ${value.hedge}`}</div>
+              {/* <div className={styles["long"]}>{`${value.param} long: ${value.long}`}</div>
+              <div className={styles["hedge"]}>{`${value.param} hedge: ${value.hedge}`}</div> */}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
