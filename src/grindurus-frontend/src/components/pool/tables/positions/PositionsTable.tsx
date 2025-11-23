@@ -96,8 +96,6 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
             <div className={styles["element"]} key={index}>
               <div className={styles["param"]}>{value.param}</div>
               <div className={styles["param-info"]}>{`long: ${value.long} hedge: ${value.hedge}`}</div>
-              {/* <div className={styles["long"]}>{`${value.param} long: ${value.long}`}</div>
-              <div className={styles["hedge"]}>{`${value.param} hedge: ${value.hedge}`}</div> */}
             </div>
           ))}
         </div>
