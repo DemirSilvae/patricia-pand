@@ -2,7 +2,7 @@ import styles from './GrAI.module.scss'
 import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { Select, Option, FormGroup, Checkbox } from '../ui'
+import { Select, Option, FormGroup, Checkbox, InputModal } from '../ui'
 import { useProtocolContext } from '../../context/ProtocolContext'
 import arbitrumLogo from '../../assets/images/logoArbitrum.png'
 import baseLogo from '../../assets/images/logoBase.png'
@@ -159,16 +159,6 @@ function GrAI() {
             <Checkbox defaultChecked={false} onChange={setChangeAddress}>
               Another Recepient
             </Checkbox>
-            {changeAddress && (
-              <div className="form-input">
-                <input
-                  type="text"
-                  value={receiverAddress}
-                  placeholder="0x..."
-                  onChange={(e) => setReceiverAddress(e.target.value)}
-                />
-              </div>
-            )}
           </FormGroup>
           <p className="form-label">Fee: {fee}</p>
           <button
@@ -179,6 +169,11 @@ function GrAI() {
             Bridge
           </button>
         </div>
+        <InputModal
+          open={changeAddress}
+          onClose={() => setChangeAddress(false)}
+          onAddressChange={setReceiverAddress}
+        />
       </div>
     </section>
   )

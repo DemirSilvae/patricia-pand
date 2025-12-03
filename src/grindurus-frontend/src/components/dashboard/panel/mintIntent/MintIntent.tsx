@@ -2,7 +2,7 @@ import styles from './MintIntent.module.scss'
 import { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { FormGroup, Checkbox } from '../../../ui'
+import { FormGroup, Checkbox, InputModal } from '../../../ui'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 
 const GRIND_AMOUNT_MAP = [1, 5, 10, 20, 50, 75, 100]
@@ -77,50 +77,47 @@ function MintIntent() {
   }
 
   return (
-    <div className={`${styles["form"]} form`}>
-      <h2 className="form-title">Intent NFT</h2>
-      <div className={styles["description"]}>
-        <p>Intent tracks amount of grinds for GrinderAI</p>
-      </div>
-      <FormGroup label={`Grinds Amount ~ (${grindAmount} times)`}>
-        <div className={`${styles["grind-amount-input"]} form-input`}>
-          <input
-            type="number"
-            value={grindAmount}
-            placeholder="0"
-            onChange={(e) => setGrindAmount(Number(e.target.value))}
-          />
+    <>
+      <div className={`${styles["form"]} form`}>
+        <h2 className="form-title">Intent NFT</h2>
+        <div className={styles["description"]}>
+          <p>Intent tracks amount of grinds for GrinderAI</p>
         </div>
-        <div className={styles["grind-amount-buttons"]}>
-          {GRIND_AMOUNT_MAP.map((num) => (
-            <button key={num} className={styles["grind-amount-button"]} onClick={() => addGrindAmount(num)}>
-              +{num}
-            </button>
-          ))}
-        </div>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-          Receiver wallet (optional)
-        </Checkbox>
-        {changeAddress && (
-          <div className="form-input">
+        <FormGroup label={`Grinds Amount ~ (${grindAmount} times)`}>
+          <div className={`${styles["grind-amount-input"]} form-input`}>
             <input
-              type="text"
-              value={receiverAddress}
-              placeholder="0x..."
-              onChange={(e) => setReceiverAddress(e.target.value)}
+              type="number"
+              value={grindAmount}
+              placeholder="0"
+              onChange={(e) => setGrindAmount(Number(e.target.value))}
             />
           </div>
-        )}
-      </FormGroup>
-      <div className="form-label">
-        <span className="price-label">Price:</span> <span className="price-value">{price} ETH</span>
+          <div className={styles["grind-amount-buttons"]}>
+            {GRIND_AMOUNT_MAP.map((num) => (
+              <button key={num} className={styles["grind-amount-button"]} onClick={() => addGrindAmount(num)}>
+                +{num}
+              </button>
+            ))}
+          </div>
+        </FormGroup>
+        <FormGroup>
+          <Checkbox defaultChecked={false} onChange={setChangeAddress}>
+            Receiver wallet (optional)
+          </Checkbox>
+        </FormGroup>
+        <div className="form-label">
+          <span className="price-label">Price:</span> <span className="price-value">{price} ETH</span>
+        </div>
+        <button className={`${styles["button"]} button`} onClick={handleMint}>
+          Mint
+        </button>
       </div>
-      <button className={`${styles["button"]} button`} onClick={handleMint}>
-        Mint
-      </button>
-    </div>
+      <InputModal
+        open={changeAddress}
+        onClose={() => setChangeAddress(false)}
+        onAddressChange={setReceiverAddress}
+      />
+    </>
   )
 }
 

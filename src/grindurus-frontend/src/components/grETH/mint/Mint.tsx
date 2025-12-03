@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { ethers } from 'ethers'
 import { useProtocolContext } from '../../../context/ProtocolContext'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { FormGroup, Checkbox } from '../../ui'
+import { FormGroup, Checkbox, InputModal } from '../../ui'
 
 function Mint() {
   const { networkConfig, grETH, provider } = useProtocolContext()
@@ -42,49 +42,46 @@ function Mint() {
   const isFormValid = mintAmount && parseFloat(mintAmount) > 0
 
   return (
-    <div className={`${styles["mint-form"]} form`}>
-      <div className={`${styles["title"]} form-title`}>Mint grETH</div>
-      <div className={`${styles["description"]}`}>Exchange native token to grETH by rate 1 ETH per 1 grETH</div>
-      <FormGroup label="grETH To Mint">
-        <div className="form-input">
-          <input
-            value={mintAmount}
-            placeholder="0"
-            className="input-field"
-            onChange={(e) => setMintAmount(e.target.value)}
-          />
-          <button
-            type="button"
-            onClick={handleMaxClick}
-            className={`${styles["max-button"]} button`}
-          >
-            MAX
-          </button>
-        </div>
-      </FormGroup>
-      <FormGroup>
-        <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-          Receiver wallet (optional)
-        </Checkbox>
-        {changeAddress && (
+    <>
+      <div className={`${styles["mint-form"]} form`}>
+        <div className={`${styles["title"]} form-title`}>Mint grETH</div>
+        <div className={`${styles["description"]}`}>Exchange native token to grETH by rate 1 ETH per 1 grETH</div>
+        <FormGroup label="grETH To Mint">
           <div className="form-input">
             <input
-              type="text"
-              value={receiverAddress}
-              placeholder="0x..."
-              onChange={(e) => setReceiverAddress(e.target.value)}
+              value={mintAmount}
+              placeholder="0"
+              className="input-field"
+              onChange={(e) => setMintAmount(e.target.value)}
             />
+            <button
+              type="button"
+              onClick={handleMaxClick}
+              className={`${styles["max-button"]} button`}
+            >
+              MAX
+            </button>
           </div>
-        )}
-      </FormGroup>
-      <button
-        className={`${styles["mint-button"]} button`}
-        disabled={!isFormValid}
-        onClick={handleMint}
-      >
-        Mint
-      </button>
-    </div>
+        </FormGroup>
+        <FormGroup>
+          <Checkbox defaultChecked={false} onChange={setChangeAddress}>
+            Receiver wallet (optional)
+          </Checkbox>
+        </FormGroup>
+        <button
+          className={`${styles["mint-button"]} button`}
+          disabled={!isFormValid}
+          onClick={handleMint}
+        >
+          Mint
+        </button>
+      </div>
+      <InputModal
+        open={changeAddress}
+        onClose={() => setChangeAddress(false)}
+        onAddressChange={setReceiverAddress}
+      />
+    </>
   )
 }
 
