@@ -192,7 +192,7 @@ function MintPool() {
           </button>
         </div>
       </FormGroup>
-      <div className="form-buttons">
+      <div className={styles["buttons"]}>
         {!isApproved ? (
           <button className={`${styles["approve-button"]} button`} onClick={handleApprove} disabled={waitApproving}>
             Approve
