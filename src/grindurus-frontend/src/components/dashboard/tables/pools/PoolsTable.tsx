@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
+import { formatUnits } from 'ethers'
 import styles from './PoolsTable.module.scss'
 import logoArbitrum from '../../../../assets/images/logoArbitrum.png'
 import visible from '../../../../assets/images/eye.svg'
@@ -9,8 +9,23 @@ import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { Table } from '../../../ui'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 
+interface PoolData {
+  id: string
+  quoteTokenSymbol: string
+  baseTokenSymbol: string
+  quoteAmount: string
+  baseAmount: string
+  quoteYield: string
+  baseYield: string
+  quoteTrade: string
+  baseTrade: string
+  start: string
+  apr: string
+  royaltyPrice: string
+}
+
 function PoolsTable() {
-  const [tableData, setTableData] = useState<(JSX.Element | string)[][]>([])
+  const [tableData, setTableData] = useState<PoolData[] | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const { poolsNFT, isConnected } = useProtocolContext()
   const navigate = useNavigate()
@@ -82,25 +97,25 @@ function PoolsTable() {
 
   const formatTableData = (
     poolNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[]
-  ): (JSX.Element | string)[][] => {
+  ) : PoolData[] => {
     return poolNFTInfos.map((info) => {
-      const quoteAmount = ethers.formatUnits(info.quoteTokenAmount, info.quoteTokenDecimals)
-      const baseAmount = ethers.formatUnits(info.baseTokenAmount, info.baseTokenDecimals)
+      const quoteAmount = formatUnits(info.quoteTokenAmount, info.quoteTokenDecimals)
+      const baseAmount = formatUnits(info.baseTokenAmount, info.baseTokenDecimals)
 
       const quoteYield = parseFloat(
-        ethers.formatUnits(info.totalProfits.quoteTokenYieldProfit, info.quoteTokenDecimals)
+        formatUnits(info.totalProfits.quoteTokenYieldProfit, info.quoteTokenDecimals)
       ).toFixed(Number(info.quoteTokenDecimals))
 
       const baseYield = parseFloat(
-        ethers.formatUnits(info.totalProfits.baseTokenYieldProfit, info.baseTokenDecimals)
+        formatUnits(info.totalProfits.baseTokenYieldProfit, info.baseTokenDecimals)
       ).toFixed(Number(info.baseTokenDecimals))
 
       const quoteTrade = parseFloat(
-        ethers.formatUnits(info.totalProfits.quoteTokenTradeProfit, info.quoteTokenDecimals)
+        formatUnits(info.totalProfits.quoteTokenTradeProfit, info.quoteTokenDecimals)
       ).toFixed(Number(info.quoteTokenDecimals))
 
       const baseTrade = parseFloat(
-        ethers.formatUnits(info.totalProfits.baseTokenTradeProfit, info.baseTokenDecimals)
+        formatUnits(info.totalProfits.baseTokenTradeProfit, info.baseTokenDecimals)
       ).toFixed(Number(info.baseTokenDecimals))
 
       const timestamp = info.startTimestamp
@@ -113,39 +128,22 @@ function PoolsTable() {
           ? `${((aprNumerator / aprDenominator) * 100).toFixed(2)}%`
           : "N/A"
 
-      const royaltyPrice = ethers.formatUnits(info.royaltyParams.newRoyaltyPrice, info.quoteTokenDecimals)
+      const royaltyPrice = formatUnits(info.royaltyParams.newRoyaltyPrice, info.quoteTokenDecimals)
 
-      return [
-        <img key={`network-${info.poolId}`} src={logoArbitrum} style={{ width: 30, height: 30 }} />,
-        <img
-          key={`view-${info.poolId}`}
-          src={visible}
-          alt="view"
-          style={{ cursor: "pointer" }}
-          onClick={() => handleViewPool(info.poolId.toString())}
-        />,
-        info.poolId.toString(),
-        `${Number(quoteAmount).toFixed(6)} ${info.quoteTokenSymbol}/${Number(baseAmount).toFixed(6)} ${info.baseTokenSymbol}`,
-        `${quoteYield} ${info.quoteTokenSymbol}\n + ${baseYield} ${info.baseTokenSymbol} \n/ ${quoteTrade} ${info.quoteTokenSymbol}\n${baseTrade} ${info.baseTokenSymbol}`,
+      return {
+        id: info.poolId.toString(),
+        quoteTokenSymbol: info.quoteTokenSymbol,
+        baseTokenSymbol: info.baseTokenSymbol,
+        quoteAmount,
+        baseAmount,
+        quoteYield,
+        baseYield,
+        quoteTrade,
+        baseTrade,
         start,
         apr,
-        <button
-          key={`buy-${info.poolId}`}
-          style={{ textTransform: "none", whiteSpace: "nowrap", padding: "10px"}}
-          onClick={() => handleBuyRoyalty(info.poolId.toString(), royaltyPrice)}
-          className="button"
-        >
-          Buy {royaltyPrice} {info.quoteTokenSymbol}
-        </button>,
-        <button
-          key={`grind-${info.poolId}`}
-          style={{ textTransform: "none", padding: "10px"}}
-          onClick={() => handleGrind(info.poolId.toString())}
-          className="button"
-        >
-          Grind
-        </button>,
-      ]
+        royaltyPrice
+      }
     })
   }
 
@@ -172,23 +170,11 @@ function PoolsTable() {
     }
   }, 300)
 
-  const headers = [
-    "Network",
-    "View",
-    "Id",
-    "Quote / Base Tokens",
-    "Yield / Trade Profits",
-    "Start",
-    "APR",
-    "Buy Royalty",
-    "Grind Pool"
-  ]
-
   return (
     <>
-      <div className="table-header">
-        <h2 className="table-title">Explore Pools NFTs</h2>
-        <div className="table-search">
+      <div className={`${styles["header"]} table-header`}>
+        <h2 className={`${styles["title"]} table-title`}>Explore Pools NFTs</h2>
+        <div className={`${styles["search"]} table-search`}>
           <input
             onChange={handleSearch}
             placeholder="Search with pool id or owner address"
@@ -196,7 +182,73 @@ function PoolsTable() {
           />
         </div>
       </div>
-      <Table headers={headers} data={tableData} isLoading={isLoading}/>
+      {tableData?.map((data, index) => 
+        <div className={styles["pool"]} key={index}>
+          <div className={styles["content"]}>
+            <div className={styles["pool-header"]}>
+              <div className={styles["pool-header-left"]}>
+                <img className={styles["network-img"]} alt="Network Icon" src={logoArbitrum} />
+                <h3 className={styles["title"]}>Pool Id: {data.id}</h3>
+              </div>
+              <div className={styles["pool-header-right"]}>{`${Number(data.quoteAmount).toFixed(6)} ${data.quoteTokenSymbol} / ${Number(data.baseAmount).toFixed(6)} ${data.baseTokenSymbol}`}</div>
+            </div>
+            <div className={styles["body"]}>
+              <div className={styles["profits"]}>
+                <div className={styles["block"]}>
+                  <div className={styles["block-title"]}>Yield Profit:</div>
+                  <div className={styles["block-text"]}>
+                    <div>{`${data.quoteYield} ${data.quoteTokenSymbol}`}</div>
+                    <div>{`${data.baseYield} ${data.baseTokenSymbol}`}</div>
+                  </div>
+                </div>
+                <div className={styles["block"]}>
+                  <div className={styles["block-title"]}>Trade Profit:</div>
+                  <div className={styles["block-text"]}>
+                    <div>{`${data.quoteTrade} ${data.quoteTokenSymbol}`}</div>
+                    <div>{`${data.baseTrade} ${data.baseTokenSymbol}`}</div>
+                  </div>
+                </div>
+              </div>
+              <div className={styles["infos"]}>
+                <div className={styles["block"]}>
+                  <div className={styles["block-title"]}>Start:</div>
+                  <div className={styles["block-text"]}>{data.start}</div>
+                </div>
+                <div className={styles["block"]}>
+                  <div className={styles["block-title"]}>APR:</div>
+                  <div className={styles["block-text"]}>{data.apr}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className={styles["buttons"]}>
+            <button
+              onClick={() => handleViewPool(data.id)}
+              className={`${styles["view-button"]} ${styles["button"]} button`}
+            >
+              <img
+                className={styles["view-img"]}
+                src={visible}
+                alt="Eye Icon"
+              />
+              View Pool
+            </button>
+            <button
+              onClick={() => handleBuyRoyalty(data.id, data.royaltyPrice)}
+              className={`${styles["button"]} button`}
+            >
+              Buy {data.royaltyPrice} {data.quoteTokenSymbol}
+            </button>
+            <button
+              onClick={() => handleGrind(data.id)}
+              className={`${styles["button"]} button`}
+            >
+              Grind
+            </button>
+          </div>
+        </div>
+      )}
+      {/* <Table headers={headers} data={tableData} isLoading={isLoading}/> */}
     </>
   )
 }
