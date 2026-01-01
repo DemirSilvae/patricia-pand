@@ -7,13 +7,13 @@ function Panel() {
   return (
     <section>
       <div className={`${styles["panel-container"]} container`}>
-          <div className={styles["left"]}>
-            <TotalInfo/>
-            <MintIntent/>
-          </div>
-          <div className={styles["right"]}>
-            <MintPool/>
-          </div>
+        <div className={styles["left"]}>
+          <TotalInfo/>
+          <MintIntent/>
+        </div>
+        <div className={styles["right"]}>
+          <MintPool/>
+        </div>
       </div>
     </section>
   )

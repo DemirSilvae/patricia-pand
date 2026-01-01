@@ -77,3 +77,22 @@
 .max-button {
   border-radius: 0;
 }
+
+// @media screen and (max-width: 1050px) {
+//   .select-mode {
+//     display: block;
+//   }
+  
+//   .select-mode:not(:last-child) {
+//     margin-bottom: 10px;
+//   }
+  
+//   .mode-button, .mode-button.active {
+//     width: 100%;
+//   }
+  
+//   .mode-button:not(:last-child) {
+//     border-right: 0;
+//     border-bottom: 1px solid #fff;
+//   }
+// }

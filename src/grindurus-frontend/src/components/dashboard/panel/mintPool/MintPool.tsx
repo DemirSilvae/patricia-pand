@@ -6,6 +6,7 @@ import { Token } from '../../../../config'
 import { ERC20, ERC20__factory } from '../../../../typechain-types'
 import { useAppKitAccount } from '@reown/appkit/react'
 import { Select, Option, FormGroup } from '../../../ui'
+import { useIsMobile } from '../../../../hooks'
 
 function MintPool() {
   const { provider, networkConfig, poolsNFT } = useProtocolContext()
@@ -24,6 +25,8 @@ function MintPool() {
 
   const [waitApproving, setWaitApproving] = useState<boolean>(false)
   const [waitMint, setWaitMint] = useState<boolean>(false)
+
+  const isMobile = useIsMobile(1000)
 
   useEffect(() => {
     initQuoteToken()
@@ -138,15 +141,15 @@ function MintPool() {
       <div className={styles["header"]}>
         <h2 className={`${styles["title"]} form-title`}>Deposit</h2>
         <button className={`${styles["autofill-button"]} ${mode === 'grinder' ? styles["active"] : ''} button`}>
-          Autofill Fields
+          {isMobile ? "Autofill" : "Autofill Fields"}
         </button>
       </div>
       <div className={styles["select-mode"]}>
         <button onClick={() => setMode('manual')} className={`${styles["mode-button"]} ${mode === 'manual' ? styles["active"] : ''}`}>
-          Manual Deposit
+          Manual
         </button>
         <button onClick={() => setMode('grinder')} className={`${styles["mode-button"]} ${mode === 'grinder' ? styles["active"] : ''}`}>
-          Deposit via GrinderAi
+          via AI
         </button>
       </div>
       <FormGroup label="Strategy">

@@ -136,3 +136,14 @@
     gap: 40px;
   }
 }
+
+@media screen and (max-width: 510px) {
+  .infos {
+    gap: 20px;
+  }
+
+  .body {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}

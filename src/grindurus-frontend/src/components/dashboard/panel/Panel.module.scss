@@ -15,3 +15,13 @@
   align-items: center;
   gap: 30px;
 }
+
+@media screen and (max-width: 830px) {
+  .panel-container {
+    flex-direction: column-reverse;
+  }
+
+  .left, .right {
+    width: 100%;
+  }
+}

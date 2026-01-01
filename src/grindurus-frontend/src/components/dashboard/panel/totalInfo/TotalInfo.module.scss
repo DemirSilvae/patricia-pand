@@ -24,15 +24,17 @@
   border-right: 1px solid #fff;
 }
 
-.key {
-  width: 60%;
-}
-
-.value {
-  width: 40%;
+.key, .value {
+  flex: 1;
 }
 
 .key, .value {
   text-align: center;
 	padding: 10px;
+}
+
+@media screen and (max-width: 830px) {
+  .total-info {
+    display: none;
+  }
 }

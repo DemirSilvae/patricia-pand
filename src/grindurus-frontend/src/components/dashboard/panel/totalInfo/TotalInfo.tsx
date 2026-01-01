@@ -21,7 +21,7 @@ function TotalInfo() {
   }
 
   const fetchInfo = async () => {
-    if(!checkRequired) return 
+    if(!checkRequired) return
 
     const totalPools = await poolsNFT!.totalPools()
     setTotalPoolsMinted(totalPools)
@@ -43,7 +43,7 @@ function TotalInfo() {
         <div className={styles['value']}>{totalPoolsMinted.toString()}</div>
       </div>
       <div className={styles['item']}>
-        <div className={styles['key']}>grETH Grinded:</div>
+        <div className={styles['key']}>Grinded grETH:</div>
         <div className={styles['value']}>{formatUnits(grETHGrinded, 18)}</div>
       </div>
     </div>
