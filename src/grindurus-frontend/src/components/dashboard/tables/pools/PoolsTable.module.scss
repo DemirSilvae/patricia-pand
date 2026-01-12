@@ -1,3 +1,7 @@
+.title {
+  font-size: 30px;
+}
+
 .pool {
   height: 100%;
   display: flex;
@@ -9,6 +13,10 @@
   &:not(:last-child) {
     margin-bottom: 20px;
   }
+}
+
+.pool-title {
+  font-size: 25px;
 }
 
 .body, .profits, .infos {
@@ -49,10 +57,6 @@
 .network-img {
   width: 28px;
   height: 28px;
-}
-
-.title {
-  font-size: 25px;
 }
 
 .buttons {

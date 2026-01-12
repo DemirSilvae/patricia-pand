@@ -4,8 +4,10 @@ import { ethers } from 'ethers'
 import { useAppKitAccount } from '@reown/appkit/react'
 import { FormGroup, Checkbox, InputModal } from '../../../ui'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
+import { useIsMobile } from '../../../../hooks'
 
 const GRIND_AMOUNT_MAP = [1, 5, 10, 20, 50, 75, 100]
+const GRIND_AMOUNT_MAP_MOBILE = [1, 5, 10, 20, 50]
 const ETH = '0x0000000000000000000000000000000000000000'
 
 function MintIntent() {
@@ -16,6 +18,8 @@ function MintIntent() {
   const [receiverAddress, setReceiverAddress] = useState<string>('')
   const [price, setPrice] = useState<string>('0.1')
   const [grindAmount, setGrindAmount] = useState<number>(1)
+
+  const isMobile = useIsMobile(500)
 
   const checkRequired = () => {
     if (!provider) {
@@ -90,7 +94,7 @@ function MintIntent() {
             />
           </div>
           <div className={styles["grind-amount-buttons"]}>
-            {GRIND_AMOUNT_MAP.map((num) => (
+            {(isMobile ? GRIND_AMOUNT_MAP_MOBILE : GRIND_AMOUNT_MAP).map((num) => (
               <button key={num} className={styles["grind-amount-button"]} onClick={() => addGrindAmount(num)}>
                 +{num}
               </button>
@@ -99,7 +103,7 @@ function MintIntent() {
         </FormGroup>
         <FormGroup>
           <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            Receiver wallet (optional)
+            Another Recepient
           </Checkbox>
         </FormGroup>
         <div className="form-label">

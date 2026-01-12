@@ -173,7 +173,7 @@ function PoolsTable() {
   return (
     <>
       <div className={`${styles["header"]} table-header`}>
-        <h2 className={`${styles["title"]} table-title`}>Explore Pools NFTs</h2>
+        <h2 className={`${styles["title"]}`}>Explore Pools NFTs</h2>
         <div className={`${styles["search"]} table-search`}>
           <input
             onChange={handleSearch}
@@ -188,7 +188,7 @@ function PoolsTable() {
             <div className={styles["pool-header"]}>
               <div className={styles["pool-header-left"]}>
                 <img className={styles["network-img"]} alt="Network Icon" src={logoArbitrum} />
-                <h3 className={styles["title"]}>Pool Id: {data.id}</h3>
+                <h3 className={styles["pool-title"]}>Pool Id: {data.id}</h3>
               </div>
               <div className={styles["pool-header-right"]}>{`${Number(data.quoteAmount).toFixed(6)} ${data.quoteTokenSymbol} / ${Number(data.baseAmount).toFixed(6)} ${data.baseTokenSymbol}`}</div>
             </div>

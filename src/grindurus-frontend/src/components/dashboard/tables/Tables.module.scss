@@ -33,3 +33,11 @@
     background-color: #933DC9;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .tables {
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+  }
+}

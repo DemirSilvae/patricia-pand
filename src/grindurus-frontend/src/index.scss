@@ -17,6 +17,12 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 500px) {
+  .page {
+    padding: 30px 0;
+  }
+}
+
 .button {
   padding: 10px 30px;
 	color: #fff;
@@ -25,6 +31,10 @@
   border: 0;
 	border-radius: 6px;
 	transition: background-color 0.3s ease;
+}
+
+.max-button {
+  border-radius: 0;
 }
 
 .button:hover {
