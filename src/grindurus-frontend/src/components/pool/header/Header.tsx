@@ -15,7 +15,7 @@ function Header({ poolId }: HeaderProps) {
 
   return (
     <div className={styles["header"]}>
-      <div className={styles["title"]}>Pool #{poolId}</div>
+      <div className={styles["title"]}>Pool Id: {poolId}</div>
       <div className={styles["buttons"]}>
         {hasPrev ? (
           <Link className={`${styles["button"]} button`} to={`/pool/${visiblePoolIds[currentIndex - 1]}`}>Prev</Link>
