@@ -177,7 +177,7 @@ function PoolsTable() {
         <div className={`${styles["search"]} table-search`}>
           <input
             onChange={handleSearch}
-            placeholder="Search with pool id or owner address"
+            placeholder="Search with pool id"
             type="text"
           />
         </div>
