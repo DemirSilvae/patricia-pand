@@ -98,7 +98,7 @@ function Burn() {
         </FormGroup>
         <FormGroup>
           <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            Receiver wallet (optional)
+            Another Recepient
           </Checkbox>
         </FormGroup>
         <p className="form-label">

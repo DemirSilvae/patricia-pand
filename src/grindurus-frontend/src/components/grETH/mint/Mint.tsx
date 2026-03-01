@@ -6,7 +6,7 @@ import { useAppKitAccount } from '@reown/appkit/react'
 import { FormGroup, Checkbox, InputModal } from '../../ui'
 
 function Mint() {
-  const { networkConfig, grETH, provider } = useProtocolContext()
+  const { grETH, provider } = useProtocolContext()
   const { address: userAddress } = useAppKitAccount()
 
   const [mintAmount, setMintAmount] = useState<string>('')
@@ -65,7 +65,7 @@ function Mint() {
         </FormGroup>
         <FormGroup>
           <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            Receiver wallet (optional)
+            Another Recepient
           </Checkbox>
         </FormGroup>
         <button
