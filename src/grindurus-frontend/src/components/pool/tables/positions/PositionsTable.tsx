@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { formatUnits } from 'ethers'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
+import { Table, NumberView } from '../../../ui'
 
 type PositionsTableProps = {
   poolId: number
@@ -86,17 +87,23 @@ const PositionsTable = ({ poolId }: PositionsTableProps) => {
 
   return (
     <div className={styles["block"]}>
-      <h3 className={styles["title"]}>Positions Info</h3>
-      <div className={styles["content"]}>
-        <div className={styles["text"]}>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, dolores. Libero natus minus architecto quo alias recusandae explicabo consequatur quam opti</p>
-        </div>
-        <div className={styles["positions"]}>
+      <h3 className={styles["title"]}>Positions</h3>
+      <div className={styles["positions"]}>
+        <div className={styles["column"]}>
           {tableData.map((value, index) => (
-            <div className={styles["element"]} key={index}>
-              <div className={styles["param"]}>{value.param}</div>
-              <div className={styles["param-info"]}>{`long: ${value.long} hedge: ${value.hedge}`}</div>
-            </div>
+            <div className={`${styles["element"]} ${styles["param"]}`} key={index}>{value.param}:</div>
+          ))}
+        </div>
+        <div className={styles["column"]}>
+          <div className={`${styles["element"]} ${styles["param"]}`}>long:</div>
+          {tableData.map((value, index) => (
+            <NumberView className={`${styles["element"]} ${styles["value"]}`} value={value.long} key={index}/>
+          ))}
+        </div>
+        <div className={styles["column"]}>
+          <div className={`${styles["element"]} ${styles["param"]}`}>hedge:</div>
+          {tableData.map((value, index) => (
+            <NumberView className={`${styles["element"]} ${styles["value"]}`} value={value.hedge} key={index}/>
           ))}
         </div>
       </div>

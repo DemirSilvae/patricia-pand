@@ -5,8 +5,15 @@
   border-radius: 8px;
   overflow: hidden;
   width: 50%;
+  height: fit-content;
   display: flex;
   flex-direction: column;
+}
+
+.positions {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
 }
 
 .title {
@@ -27,39 +34,22 @@
 .element {
   display: flex;
   justify-content: space-between;
+
   &:not(:last-child) {
     margin-bottom: 15px;
   }
+}
+
+.value {
+  color: #6b7280;
 }
 
 .param {
   font-weight: 700;
 }
 
-.param-info, .text {
-  color: #6b7280;
-}
-
-@media screen and (max-width: 1130px) {
+@media screen and (max-width: 1000px) {
   .block {
     width: 100%;
-  }
-
-  .text {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 565px) {
-  .param {
-    margin-bottom: 15px;
-
-    &::after {
-      content: ":"
-    }
-  }
-
-  .element {
-    display: block;
   }
 }

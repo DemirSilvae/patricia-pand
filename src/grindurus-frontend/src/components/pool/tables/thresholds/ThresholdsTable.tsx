@@ -3,14 +3,22 @@ import { useState, useEffect } from 'react'
 import { formatUnits } from 'ethers'
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
+import { NumberView } from '../../../ui'
+import { useIsMobile } from '../../../../hooks'
 
 type ThresholdsTableProps = {
   poolId: number
 }
 
+type ThresholdEntry = {
+  param: string
+  value: string
+}
+
 const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
   const { poolsNFT } = useProtocolContext()
-  const [tableData, setTableData] = useState<(string)[][]>([])
+  const isMobile = useIsMobile(500)
+  const [tableData, setTableData] = useState<ThresholdEntry[]>([])
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -47,27 +55,35 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
         hedgeRebuySwapPriceThreshold: formatUnits(_thresholds[10], 8),
       }
 
-      const formattedData = Object.entries(thresholds).map(([key, value]) => [key, value])
-      setTableData(formattedData)
+      const formatted: ThresholdEntry[] = Object.entries(thresholds).map(
+        ([param, value]) => ({ param, value })
+      )
+
+      setTableData(formatted)
     } catch (err) {
       console.log('Failed to load thresholds: ', err)
     }
     setIsLoading(false)
   }
 
-  const headers = ['Param', 'Value']
+  const formatLabel = (label: string) => {
+    if (!isMobile) return label
+
+    return label
+      .replace(/([a-z])([A-Z])/g, '$1 $2') // camelCase → spaced
+      .replace(/^./, str => str.toUpperCase()) // capitalize first letter
+  }
 
   return (
     <div className={styles["block"]}>
-      <h3 className={styles["title"]}>Thresholds Info</h3>
+      <h3 className={styles["title"]}>Thresholds</h3>
       <div className={styles["thresholds"]}>
-        {tableData.map((row, rowIdx) => (
-          <div className={styles["info-block"]} key={rowIdx}>
-            {row.map((value, valueIdx) => (
-              <div className={styles["element"]} key={valueIdx}>
-                {value}
-              </div>
-            ))}
+        {tableData.map((entry, idx) => (
+          <div className={styles["info-block"]} key={idx}>
+            <div className={styles["element"]}>{formatLabel(entry.param)}</div>
+            <div className={styles["element"]}>
+              <NumberView value={entry.value} />
+            </div>
           </div>
         ))}
       </div>
