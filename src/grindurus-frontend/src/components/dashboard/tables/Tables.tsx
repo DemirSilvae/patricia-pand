@@ -3,7 +3,7 @@ import { useState } from 'react'
 import PoolsTable from './pools/PoolsTable'
 import IntentsTable from './intents/IntentsTable'
 
-type TablesToShow = "pools" | "intents"
+type TablesToShow = "pools" | "intents" | "agents"
 
 function Tables() {
   const [showTable, setShowTable] = useState<TablesToShow>("pools")
@@ -24,6 +24,12 @@ function Tables() {
               className={`${styles["select-button"]} ${showTable === "intents" ? styles["active"] : ""} button`}
             >
               Intents
+            </button>
+            <button
+              onClick={() => setShowTable('agents')}
+              className={`${styles["select-button"]} ${showTable === "agents" ? styles["active"] : ""} button`}
+            >
+              Agents
             </button>
           </div>
           {showTable == "pools" ? <PoolsTable/> : <IntentsTable/>}

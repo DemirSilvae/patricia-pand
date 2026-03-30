@@ -139,17 +139,17 @@ function MintPool() {
   return (
     <div className={`${styles["form"]} form`}>
       <div className={styles["header"]}>
-        <h2 className={`${styles["title"]} form-title`}>Deposit</h2>
+        <h2 className={`${styles["title"]} form-title`}>Create</h2>
         <button className={`${styles["autofill-button"]} ${mode === 'grinder' ? styles["active"] : ''} button`}>
           {isMobile ? "Autofill" : "Autofill Fields"}
         </button>
       </div>
       <div className={styles["select-mode"]}>
         <button onClick={() => setMode('manual')} className={`${styles["mode-button"]} ${mode === 'manual' ? styles["active"] : ''}`}>
-          Manual
+          Pool
         </button>
         <button onClick={() => setMode('grinder')} className={`${styles["mode-button"]} ${mode === 'grinder' ? styles["active"] : ''}`}>
-          via AI
+          Agent
         </button>
       </div>
       <FormGroup label="Strategy">
