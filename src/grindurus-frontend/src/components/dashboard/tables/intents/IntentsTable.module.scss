@@ -1,0 +1,87 @@
+.title {
+  font-size: 30px;
+}
+
+.intent {
+  height: 100%;
+  display: flex;
+  gap: 20px;
+  border: 1px solid #fff;
+  padding: 20px;
+  border-radius: 8px;
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.intent-title {
+  font-size: 25px;
+}
+
+.body, .infos {
+  display: flex;
+  gap: 20px;
+}
+
+.body {
+  flex-direction: row-reverse;
+  justify-content: start;
+}
+
+.copy-address {
+  &:not(:last-child) {
+    margin-bottom: 0;
+  }
+}
+
+.block {
+  &-title {
+    font-weight: 700;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.intent-header {
+  &-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+}
+
+.network-img {
+  width: 28px;
+  height: 28px;
+}
+
+@media screen and (max-width: 705px) {
+  .body {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 650px) {
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 455px) {
+  .infos {
+    flex-wrap: wrap;
+  }
+}

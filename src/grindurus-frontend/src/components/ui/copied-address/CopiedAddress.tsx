@@ -7,9 +7,10 @@ type CopiedAddressProps = {
   address: string
   fullAddress: string
   label: string
+  className?: string
 }
 
-export const CopiedAddress = ({ address, fullAddress, label }: CopiedAddressProps) => {
+export const CopiedAddress = ({ address, fullAddress, label, className }: CopiedAddressProps) => {
   const [copied, setCopied] = useState(false)
   const etherscanUrl = `https://arbiscan.io/address/${fullAddress}`
 
@@ -24,7 +25,7 @@ export const CopiedAddress = ({ address, fullAddress, label }: CopiedAddressProp
   }
 
   return (
-    <div className={styles["copy-address"]}>
+    <div className={`${styles["copy-address"]} ${className ?? ''}`}>
       <div className={styles["label"]}>
         {label}
       </div>

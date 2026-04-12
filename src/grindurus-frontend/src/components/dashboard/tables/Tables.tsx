@@ -5,6 +5,12 @@ import IntentsTable from './intents/IntentsTable'
 
 type TablesToShow = "pools" | "intents" | "agents"
 
+const tables: Record<TablesToShow, JSX.Element> = {
+  pools: <PoolsTable />,
+  intents: <IntentsTable />,
+  agents: <IntentsTable />
+};
+
 function Tables() {
   const [showTable, setShowTable] = useState<TablesToShow>("pools")
 
@@ -32,7 +38,7 @@ function Tables() {
               Agents
             </button>
           </div>
-          {showTable == "pools" ? <PoolsTable/> : <IntentsTable/>}
+          {tables[showTable]}
         </div>
       </div>
     </section>

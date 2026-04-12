@@ -248,7 +248,6 @@ function PoolsTable() {
           </div>
         </div>
       )}
-      {/* <Table headers={headers} data={tableData} isLoading={isLoading}/> */}
     </>
   )
 }
