@@ -88,6 +88,10 @@ function IntentsTable() {
                   <div className={styles["block-title"]}>Unspent Grinds:</div>
                   <div className={styles["block-text"]}>{data.unspentGrinds}</div>
                 </div>
+                <div className={styles["block"]}>
+                  <div className={styles["block-title"]}>Pools:</div>
+                  <div className={styles["block-text"]}>{data.pools.join(", ")}</div>
+                </div>
               </div>
             </div>
           </div>
