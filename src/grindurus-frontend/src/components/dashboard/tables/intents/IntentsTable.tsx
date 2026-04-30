@@ -22,7 +22,7 @@ function IntentsTable() {
   const [tableData, setTableData] = useState<IntentData[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
 
-  const isMobile = useIsMobile(945)
+  const isMobile = useIsMobile(1025)
 
   useEffect(() => {
     if (isConnected && intentsNFT) {
