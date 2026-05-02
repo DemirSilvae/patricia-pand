@@ -2,13 +2,14 @@ import styles from './Tables.module.scss'
 import { useState } from 'react'
 import PoolsTable from './pools/PoolsTable'
 import IntentsTable from './intents/IntentsTable'
+import AgentsTable from './agents/AgentsTable'
 
 type TablesToShow = "pools" | "intents" | "agents"
 
 const tables: Record<TablesToShow, JSX.Element> = {
   pools: <PoolsTable />,
   intents: <IntentsTable />,
-  agents: <IntentsTable />
+  agents: <AgentsTable />
 };
 
 function Tables() {
