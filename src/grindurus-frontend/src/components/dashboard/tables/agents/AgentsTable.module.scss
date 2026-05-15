@@ -16,6 +16,8 @@
 .content {
   flex: 1;
   display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
   gap: 20px;
 }
 
@@ -48,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
 
   &-left, &-right {
     display: flex;
@@ -56,7 +59,7 @@
   }
 
   &-right {
-    gap: 40px;
+    gap: 20px;
   }
 
   &:not(:last-child) {
@@ -89,76 +92,64 @@
   }
 }
 
-@media screen and (max-width: 1050px) {
-  .agent {
-    display: block;
+.info-params {
+  display: flex;
+  gap: 20px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pool {
+  border: 1px solid #fff;
+  padding: 10px;
+  border-radius: 8px;
+
+  &-value {
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.pools {
+  max-width: 455px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.pools-title {
+  &:not(:last-child) {
+    margin-bottom: 20px;;
+  }
+}
+
+@media screen and (max-width: 1230px) {
+  .body {
+    flex-direction: column;
   }
 
-  .buttons {
+  .buttons, .content {
+    width: 100%;
     flex-direction: row;
   }
 
   .button {
     flex: 1;
   }
-
-  .agent-header, .content {
-    &:not(:last-child) {
-      margin-bottom: 20px;
-    }
-  }
 }
 
-@media screen and (max-width: 815px) {
-  .body {
-    flex-direction: column-reverse;
-    align-items: flex-start;
-  }
-
-  .buttons {
-    flex-direction: column;
-  }
-}
-
-@media screen and (max-width: 650px) {
-  .header {
+@media screen and (max-width: 1000px) {
+  .content {
     align-items: flex-start;
     flex-direction: column;
-    gap: 20px;
   }
 
-  .search {
-    width: 100%;
-  }
-
-  .agent-header {
-    flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
-  }
-
-  .body {
-    flex-direction: row;
-    gap: 40px;
-  }
-
-  .profits, .infos {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .infos {
-    gap: 40px;
-  }
-}
-
-@media screen and (max-width: 510px) {
-  .infos {
-    gap: 20px;
-  }
-
-  .body {
-    flex-direction: column-reverse;
-    gap: 20px;
+  .pools {
+    max-width: 100%;
   }
 }

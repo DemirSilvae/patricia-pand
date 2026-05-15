@@ -4,6 +4,11 @@ import logoArbitrum from '../../../../assets/images/logoArbitrum.png'
 import visible from '../../../../assets/images/eye.svg'
 import { useNavigate } from 'react-router-dom'
 
+interface Pool {
+  id: string
+  balance: string
+}
+
 interface AgentData {
   id: string
   strategyId: string
@@ -15,7 +20,7 @@ interface AgentData {
   baseYield: string
   quoteTrade: string
   baseTrade: string
-  pools: string[]
+  pools: Pool[]
 }
 
 function AgentsTable() {
@@ -31,10 +36,16 @@ function AgentsTable() {
       reserve: "300",
       active: "700",
       quoteYield: "0.020076",
-      baseYield: "0.000005450333140638",
+      baseYield: "0.0000054",
       quoteTrade: "0.020076",
-      baseTrade: "0.000005450333140638",
-      pools: ["0", "1", '2']
+      baseTrade: "0.0000054",
+      pools: [
+        {id: "0", balance: "100"}, 
+        {id: "1", balance: "100"}, 
+        {id: "2", balance: "100"},
+        {id: "3", balance: "100"},
+        {id: "3", balance: "100"}
+      ]
     }]
     setTableData(data)
   }, [])
@@ -62,38 +73,47 @@ function AgentsTable() {
               <h3 className={styles["agent-title"]}>Agent Id: {data.id}</h3>
             </div>
             <div className={styles["agent-header-right"]}>
-              <div className={styles["pools"]}><b>Pools:</b> {data.pools.join(", ")}</div>
               <div className={styles["strategy"]}><b>Strategy Id:</b> {data.strategyId}</div>
               <div className={styles["tokens"]}>{`${data.quoteTokenSymbol} / ${data.baseTokenSymbol}`}</div>
             </div>
           </div>
           <div className={styles["body"]}>
             <div className={styles["content"]}>
-              <div className={styles["profits"]}>
-                <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Yield Profit:</div>
-                  <div className={styles["block-text"]}>
-                    <div>{`${data.quoteYield} ${data.quoteTokenSymbol}`}</div>
-                    <div>{`${data.baseYield} ${data.baseTokenSymbol}`}</div>
+              <div className={styles["info-params"]}>
+                <div className={styles["column"]}>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Reserve Balance:</div>
+                    <div className={styles["block-text"]}>{data.reserve} {data.quoteTokenSymbol}</div>
+                  </div>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Yield Profit:</div>
+                    <div className={styles["block-text"]}>
+                      <div>{`${data.quoteYield} ${data.quoteTokenSymbol}`}</div>
+                      <div>{`${data.baseYield} ${data.baseTokenSymbol}`}</div>
+                    </div>
                   </div>
                 </div>
-                <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Trade Profit:</div>
-                  <div className={styles["block-text"]}>
-                    <div>{`${data.quoteTrade} ${data.quoteTokenSymbol}`}</div>
-                    <div>{`${data.baseTrade} ${data.baseTokenSymbol}`}</div>
+                <div className={styles["column"]}>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Active Balance:</div>
+                    <div className={styles["block-text"]}>{data.active} {data.quoteTokenSymbol}</div>
+                  </div>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Trade Profit:</div>
+                    <div className={styles["block-text"]}>
+                      <div>{`${data.quoteTrade} ${data.quoteTokenSymbol}`}</div>
+                      <div>{`${data.baseTrade} ${data.baseTokenSymbol}`}</div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className={styles["infos"]}>
-                <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Reserve Balance:</div>
-                  <div className={styles["block-text"]}>{data.reserve} {data.quoteTokenSymbol}</div>
-                </div>
-                <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Active Balance:</div>
-                  <div className={styles["block-text"]}>{data.active} {data.quoteTokenSymbol}</div>
-                </div>
+              <div className={styles["pools"]}>
+                {data.pools.map((pool, poolIndex) => 
+                  <div className={styles["pool"]} key={poolIndex}>
+                    <div className={styles["pool-value"]}>Pool Id: {pool.id}</div>
+                    <div className={styles["pool-value"]}>Balance: {pool.balance}</div>
+                  </div>
+                )}
               </div>
             </div>
             <div className={styles["buttons"]}>
