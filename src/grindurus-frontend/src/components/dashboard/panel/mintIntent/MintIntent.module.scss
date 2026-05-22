@@ -38,6 +38,19 @@
   border-bottom-right-radius: 0;
 }
 
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
 .button {
+  flex: 1;
   width: 100%;
+  padding: 10px;
+}
+
+@media screen and (max-width: 416px) {
+  .buttons {
+    flex-direction: column;
+  }
 }

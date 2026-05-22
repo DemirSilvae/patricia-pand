@@ -107,11 +107,16 @@ function MintIntent() {
           </Checkbox>
         </FormGroup>
         <div className="form-label">
-          <span className="price-label">Price:</span> <span className="price-value">{price} ETH</span>
+          Price: {price} ETH or {(Number(price) * 10000).toString()} grAI
         </div>
-        <button className={`${styles["button"]} button`} onClick={handleMint}>
-          Mint
-        </button>
+        <div className={styles["buttons"]}>
+          <button className={`${styles["button"]} button`} onClick={handleMint}>
+            Mint with ETH
+          </button>
+          <button className={`${styles["button"]} button`} onClick={handleMint}>
+            Mint with grAI
+          </button>
+        </div>
       </div>
       <InputModal
         open={changeAddress}
