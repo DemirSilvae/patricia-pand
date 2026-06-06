@@ -101,9 +101,19 @@ function MintIntent() {
             ))}
           </div>
         </FormGroup>
-        <FormGroup>
+        <FormGroup className={`${changeAddress ? styles["checked"] : styles["not-checked"]}`}>
           <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            Another Recepient
+            {changeAddress ? 
+              <div className="form-input">
+                <input 
+                  type="text"
+                  placeholder="Enter recepient address"
+                  onChange={(e) => setReceiverAddress(e.target.value)}
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div> :
+              "Another Recepient"
+            }
           </Checkbox>
         </FormGroup>
         <div className="form-label">
@@ -118,11 +128,6 @@ function MintIntent() {
           </button>
         </div>
       </div>
-      <InputModal
-        open={changeAddress}
-        onClose={() => setChangeAddress(false)}
-        onAddressChange={setReceiverAddress}
-      />
     </>
   )
 }

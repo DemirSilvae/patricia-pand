@@ -16,3 +16,16 @@
   font-size: 16px;
   margin-bottom: 20px;
 }
+
+.checked, .not-checked {
+  margin-top: 15px;
+}
+
+.not-checked {
+  padding-top: 10.8px;
+  padding-bottom: 10.8px;
+}
+
+.checked {
+  padding: 0;
+}

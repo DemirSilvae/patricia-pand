@@ -49,6 +49,15 @@
   padding: 10px;
 }
 
+.not-checked {
+  padding-top: 10.8px;
+  padding-bottom: 10.8px;
+}
+
+.checked {
+  padding: 0;
+}
+
 @media screen and (max-width: 416px) {
   .buttons {
     flex-direction: column;

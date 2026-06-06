@@ -42,46 +42,49 @@ function Mint() {
   const isFormValid = mintAmount && parseFloat(mintAmount) > 0
 
   return (
-    <>
-      <div className={`${styles["mint-form"]} form`}>
-        <div className={`${styles["title"]} form-title`}>Mint grETH</div>
-        <div className={`${styles["description"]}`}>Exchange native token to grETH by rate 1 ETH per 1 grETH</div>
-        <FormGroup label="grETH To Mint">
-          <div className="form-input">
-            <input
-              value={mintAmount}
-              placeholder="0"
-              className="input-field"
-              onChange={(e) => setMintAmount(e.target.value)}
-            />
-            <button
-              type="button"
-              onClick={handleMaxClick}
-              className={`${styles["max-button"]} button`}
-            >
-              MAX
-            </button>
-          </div>
-        </FormGroup>
-        <FormGroup>
-          <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            Another Recepient
-          </Checkbox>
-        </FormGroup>
-        <button
-          className={`${styles["mint-button"]} button`}
-          disabled={!isFormValid}
-          onClick={handleMint}
-        >
-          Mint
-        </button>
-      </div>
-      <InputModal
-        open={changeAddress}
-        onClose={() => setChangeAddress(false)}
-        onAddressChange={setReceiverAddress}
-      />
-    </>
+    <div className={`${styles["mint-form"]} form`}>
+      <div className={`${styles["title"]} form-title`}>Mint grETH</div>
+      <div className={`${styles["description"]}`}>Exchange native token to grETH by rate 1 ETH per 1 grETH</div>
+      <FormGroup label="grETH To Mint">
+        <div className="form-input">
+          <input
+            value={mintAmount}
+            placeholder="0"
+            className="input-field"
+            onChange={(e) => setMintAmount(e.target.value)}
+          />
+          <button
+            type="button"
+            onClick={handleMaxClick}
+            className={`${styles["max-button"]} button`}
+          >
+            MAX
+          </button>
+        </div>
+      </FormGroup>
+      <FormGroup className={`${changeAddress ? styles["checked"] : styles["not-checked"]}`}>
+        <Checkbox defaultChecked={false} onChange={setChangeAddress}>
+          {changeAddress ? 
+            <div className="form-input">
+              <input 
+                type="text"
+                placeholder="Enter recepient address"
+                onChange={(e) => setReceiverAddress(e.target.value)}
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div> :
+            "Another Recepient"
+          }
+        </Checkbox>
+      </FormGroup>
+      <button
+        className={`${styles["mint-button"]} button`}
+        disabled={!isFormValid}
+        onClick={handleMint}
+      >
+        Mint
+      </button>
+    </div>
   )
 }
 

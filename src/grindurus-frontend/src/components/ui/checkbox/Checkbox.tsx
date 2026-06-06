@@ -22,7 +22,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({ children, defaultChecked = f
       <div className={`${styles['box']} ${checked ? styles['checked'] : ''}`}>
         {checked && <img src={checkIcon} alt="Check Icon" />}
       </div>
-      <span className={styles['text']}>{children}</span>
+      <div className={styles['text']}>{children}</div>
     </div>
   )
 }
