@@ -35,8 +35,16 @@ function TotalInfo() {
 
   return (
     <div className={styles['total-info']}>
-      <div className={`${styles['item']} ${styles['title']}`}>
+      {/* <div className={`${styles['item']} ${styles['title']}`}>
         <div className={styles['key']}>Total Info</div>
+      </div> */}
+      <div className={styles['item']}>
+        <div className={styles['key']}>Total Agents:</div>
+        <div className={styles['value']}>1</div>
+      </div>
+      <div className={styles['item']}>
+        <div className={styles['key']}>Total Funds:</div>
+        <div className={styles['value']}>1000 USDT</div>
       </div>
       <div className={styles['item']}>
         <div className={styles['key']}>Pools Minted:</div>
