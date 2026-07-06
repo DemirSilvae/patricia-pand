@@ -107,6 +107,34 @@ function AgentsTable() {
                   </div>
                 </div>
               </div>
+              <div className={styles["info-params-mobile"]}>
+                <div className={styles["column"]}>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Reserve Balance:</div>
+                    <div className={styles["block-text"]}>{data.reserve} {data.quoteTokenSymbol}</div>
+                  </div>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Active Balance:</div>
+                    <div className={styles["block-text"]}>{data.active} {data.quoteTokenSymbol}</div>
+                  </div>
+                </div>
+                <div className={styles["column"]}>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Yield Profit:</div>
+                    <div className={styles["block-text"]}>
+                      <div>{`${data.quoteYield} ${data.quoteTokenSymbol}`}</div>
+                      <div>{`${data.baseYield} ${data.baseTokenSymbol}`}</div>
+                    </div>
+                  </div>
+                  <div className={styles["block"]}>
+                    <div className={styles["block-title"]}>Trade Profit:</div>
+                    <div className={styles["block-text"]}>
+                      <div>{`${data.quoteTrade} ${data.quoteTokenSymbol}`}</div>
+                      <div>{`${data.baseTrade} ${data.baseTokenSymbol}`}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div className={styles["pools"]}>
                 {data.pools.map((pool, poolIndex) => 
                   <div className={styles["pool"]} key={poolIndex}>

@@ -95,6 +95,10 @@
 .info-params {
   display: flex;
   gap: 20px;
+
+  &-mobile {
+    display: none;
+  }
 }
 
 .column {
@@ -151,5 +155,46 @@
 
   .pools {
     max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .pools {
+    max-width: 455px;
+  }
+}
+
+
+
+@media screen and (max-width: 650px) {
+  .agent-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .search {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .info-params {
+    display: none;
+
+    &-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
   }
 }
