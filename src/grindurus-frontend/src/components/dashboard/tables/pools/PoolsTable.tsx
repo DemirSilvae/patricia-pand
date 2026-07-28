@@ -195,14 +195,14 @@ function PoolsTable() {
             <div className={styles["body"]}>
               <div className={styles["profits"]}>
                 <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Yield Profit:</div>
+                  <div className={styles["block-title"]}>Total Yield Profit:</div>
                   <div className={styles["block-text"]}>
                     <div>{`${data.quoteYield} ${data.quoteTokenSymbol}`}</div>
                     <div>{`${data.baseYield} ${data.baseTokenSymbol}`}</div>
                   </div>
                 </div>
                 <div className={styles["block"]}>
-                  <div className={styles["block-title"]}>Trade Profit:</div>
+                  <div className={styles["block-title"]}>Total Trade Profit:</div>
                   <div className={styles["block-text"]}>
                     <div>{`${data.quoteTrade} ${data.quoteTokenSymbol}`}</div>
                     <div>{`${data.baseTrade} ${data.baseTokenSymbol}`}</div>
@@ -237,7 +237,8 @@ function PoolsTable() {
               onClick={() => handleBuyRoyalty(data.id, data.royaltyPrice)}
               className={`${styles["button"]} button`}
             >
-              Buy {data.royaltyPrice} {data.quoteTokenSymbol}
+              Buy Royalty
+              <div>{data.royaltyPrice} {data.quoteTokenSymbol}</div>
             </button>
             <button
               onClick={() => handleGrind(data.id)}
