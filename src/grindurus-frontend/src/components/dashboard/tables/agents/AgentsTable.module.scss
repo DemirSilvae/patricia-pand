@@ -25,7 +25,9 @@
   font-size: 25px;
 }
 
-.body, .profits, .infos {
+.body,
+.profits,
+.infos {
   display: flex;
   align-items: flex-end;
   gap: 20px;
@@ -52,7 +54,8 @@
   justify-content: space-between;
   gap: 20px;
 
-  &-left, &-right {
+  &-left,
+  &-right {
     display: flex;
     align-items: center;
     gap: 20px;
@@ -128,16 +131,17 @@
 
 .pools-title {
   &:not(:last-child) {
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
   }
 }
 
-@media screen and (max-width: 1230px) {
+@media screen and (width <= 1230px) {
   .body {
     flex-direction: column;
   }
 
-  .buttons, .content {
+  .buttons,
+  .content {
     width: 100%;
     flex-direction: row;
   }
@@ -147,7 +151,7 @@
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (width <= 1000px) {
   .content {
     align-items: flex-start;
     flex-direction: column;
@@ -158,15 +162,13 @@
   }
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (width <= 880px) {
   .pools {
     max-width: 455px;
   }
 }
 
-
-
-@media screen and (max-width: 650px) {
+@media screen and (width <= 650px) {
   .agent-header {
     flex-direction: column;
     align-items: flex-start;
@@ -187,7 +189,7 @@
   }
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (width <= 550px) {
   .info-params {
     display: none;
 

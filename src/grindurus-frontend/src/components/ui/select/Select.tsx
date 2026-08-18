@@ -1,13 +1,14 @@
 import React, {
-  useState,
-  ReactElement,
-  ReactNode,
   Children,
   cloneElement,
   isValidElement,
+  ReactElement,
+  ReactNode,
   useEffect,
   useRef,
+  useState,
 } from 'react'
+
 import styles from './Select.module.scss'
 
 type OptionProps<T = unknown> = {
@@ -32,7 +33,9 @@ type SelectProps<T = unknown> = {
 }
 
 export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T>) => {
-  const options = Children.toArray(children).filter(isValidElement) as ReactElement<OptionProps<T>>[]
+  const options = Children.toArray(children).filter(isValidElement) as ReactElement<
+    OptionProps<T>
+  >[]
 
   const [selectedValue, setSelectedValue] = useState<T | null>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -59,7 +62,7 @@ export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T
     }
   }, [])
 
-  const selectedLabel = options.find((child) => child.props.value === selectedValue)?.props.children
+  const selectedLabel = options.find(child => child.props.value === selectedValue)?.props.children
 
   const handleSelect = (value: T) => {
     setSelectedValue(value)
@@ -67,16 +70,19 @@ export const Select = <T,>({ children, onChange, className = '' }: SelectProps<T
     onChange?.(value)
   }
 
-  const renderedOptions = options.map((child) =>
+  const renderedOptions = options.map(child =>
     cloneElement(child, {
       onSelect: handleSelect,
       isSelected: selectedValue === child.props.value,
-    })
+    }),
   )
 
   return (
-    <div ref={wrapperRef} className={`${styles['select-wrapper']} ${isOpen ? styles["open"] : ""} ${className}`}>
-      <div className={styles['select-trigger']} onClick={() => setIsOpen((prev) => !prev)}>
+    <div
+      ref={wrapperRef}
+      className={`${styles['select-wrapper']} ${isOpen ? styles['open'] : ''} ${className}`}
+    >
+      <div className={styles['select-trigger']} onClick={() => setIsOpen(prev => !prev)}>
         {selectedLabel || 'Select...'}
       </div>
       {isOpen && <div className={styles['options-list']}>{renderedOptions}</div>}

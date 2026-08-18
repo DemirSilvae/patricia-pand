@@ -1,11 +1,12 @@
-import styles from './Interaction.module.scss'
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
-import { FormGroup, Switcher } from '../../../ui'
-import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { useAppKitAccount } from '@reown/appkit/react'
+import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
+
+import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { ERC20__factory, Strategy__factory } from '../../../../typechain-types'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
+import { FormGroup, Switcher } from '../../../ui'
+import styles from './Interaction.module.scss'
 
 type InteractionProps = {
   poolId: number
@@ -15,20 +16,22 @@ const Interaction = ({ poolId }: InteractionProps) => {
   const { poolsNFT, networkConfig, provider, signer } = useProtocolContext()
   const { address: userAddress } = useAppKitAccount()
 
-  const [inputDeposit, setInputDeposit] = useState<string>("")
+  const [inputDeposit, setInputDeposit] = useState<string>('')
   const [inputWithdraw, setInputWithdraw] = useState<number>(0)
-  const [royaltyPrice, setRoyaltyPrice] = useState<string>("")
-  const [poolsNFTInfo, setPoolsNFTInfo] = useState<IPoolsNFTLens.PoolNFTInfoStructOutput | null>(null)
+  const [royaltyPrice, setRoyaltyPrice] = useState<string>('')
+  const [poolsNFTInfo, setPoolsNFTInfo] = useState<IPoolsNFTLens.PoolNFTInfoStructOutput | null>(
+    null,
+  )
   const [isProcessingBuyRoyalty, setIsProcessingBuyRoyalty] = useState<Boolean>(false)
   const [reinvest, setReinvest] = useState<boolean>(true)
 
   const checkRequired = () => {
-    if(!poolsNFT) {
-      console.error("PoolsNFT is null!")
+    if (!poolsNFT) {
+      console.error('PoolsNFT is null!')
       return false
     }
-    if(!poolsNFTInfo) {
-      console.error("poolsNFTInfo is null!")
+    if (!poolsNFTInfo) {
+      console.error('poolsNFTInfo is null!')
       return false
     }
     return true
@@ -39,7 +42,8 @@ const Interaction = ({ poolId }: InteractionProps) => {
   }, [poolsNFT])
 
   const fetchPoolsNFTInfo = async () => {
-    const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
+    const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] =
+      await poolsNFT!.getPoolNFTInfosBy([poolId])
     setPoolsNFTInfo(poolsNFTInfos[0])
 
     const newRoyaltyPrice = poolsNFTInfos[0].royaltyParams.newRoyaltyPrice
@@ -54,8 +58,8 @@ const Interaction = ({ poolId }: InteractionProps) => {
   }
 
   const handleDeposit = async () => {
-    if(!checkRequired()) return
-    try{
+    if (!checkRequired()) return
+    try {
       const quoteTokenAddress = poolsNFTInfo!.quoteToken
       const quoteTokenDecimals = poolsNFTInfo!.quoteTokenDecimals
 
@@ -73,25 +77,31 @@ const Interaction = ({ poolId }: InteractionProps) => {
 
       const quoteTokenAmountRaw = ethers.parseUnits(inputDeposit.toString(), quoteTokenDecimals)
       const gasEstimate = await poolsNFT!.deposit.estimateGas(poolId, quoteTokenAmountRaw)
-      const gasLimit = gasEstimate * 14n / 10n
-      const deposit_tx = await poolsNFT!.deposit(poolId, quoteTokenAmountRaw, {gasLimit})
+      const gasLimit = (gasEstimate * 14n) / 10n
+      const deposit_tx = await poolsNFT!.deposit(poolId, quoteTokenAmountRaw, { gasLimit })
       await deposit_tx.wait()
-    } catch (err){
-      console.log("Failed to deposit: ", err)
+    } catch (err) {
+      console.log('Failed to deposit: ', err)
     }
   }
 
   const handleWithdraw = async () => {
-    if(!checkRequired()) return
-    try{
+    if (!checkRequired()) return
+    try {
       const quoteTokenDecimals = poolsNFTInfo!.quoteTokenDecimals
       const quoteTokenAmountRaw = ethers.parseUnits(inputWithdraw.toString(), quoteTokenDecimals)
-      const gasEstimate = await poolsNFT!.withdraw.estimateGas(poolId, userAddress as string, quoteTokenAmountRaw)
-      const gasLimit = gasEstimate * 14n / 10n
-      const tx = await poolsNFT!.withdraw(poolId, userAddress as string, quoteTokenAmountRaw, {gasLimit})
+      const gasEstimate = await poolsNFT!.withdraw.estimateGas(
+        poolId,
+        userAddress as string,
+        quoteTokenAmountRaw,
+      )
+      const gasLimit = (gasEstimate * 14n) / 10n
+      const tx = await poolsNFT!.withdraw(poolId, userAddress as string, quoteTokenAmountRaw, {
+        gasLimit,
+      })
       await tx.wait()
-    } catch(err) {
-      console.log("Failed withdraw funds", err)
+    } catch (err) {
+      console.log('Failed withdraw funds', err)
     }
   }
 
@@ -100,32 +110,32 @@ const Interaction = ({ poolId }: InteractionProps) => {
       const poolAddress = await poolsNFT!.pools(poolId)
       const pool = Strategy__factory.connect(poolAddress, signer)
       const stored = await pool.reinvest()
-      console.log("stored: ", stored)
-      console.log("newVal: ", newValue)
+      console.log('stored: ', stored)
+      console.log('newVal: ', newValue)
       if (stored !== newValue) {
         let tx = await pool.switchReinvest()
         await tx.wait()
       }
     } catch (error) {
-      console.error("Error switch reinvest: ", error)
+      console.error('Error switch reinvest: ', error)
       setReinvest(!newValue)
     }
   }
 
   const handleExit = async () => {
-    if(!checkRequired()) return
-    try{
+    if (!checkRequired()) return
+    try {
       const gasEstimate = await poolsNFT!.exit.estimateGas(poolId)
-      const gasLimit = gasEstimate * 14n / 10n
-      const tx = await poolsNFT!.exit(Number(poolId), {gasLimit})
+      const gasLimit = (gasEstimate * 14n) / 10n
+      const tx = await poolsNFT!.exit(Number(poolId), { gasLimit })
       await tx.wait()
-    } catch(err) {
-      console.log("Failed exit pool", err)
+    } catch (err) {
+      console.log('Failed exit pool', err)
     }
   }
 
   const handleBuyRoyalty = async () => {
-    if(!checkRequired()) return
+    if (!checkRequired()) return
     try {
       const quoteTokenAddress = poolsNFTInfo!.quoteToken
       const quoteTokenDecimals = poolsNFTInfo!.quoteTokenDecimals
@@ -136,7 +146,10 @@ const Interaction = ({ poolId }: InteractionProps) => {
       const allowanceRaw = await quoteTokenContract!.allowance(userAddress!, spenderAddress)
       const allowanceFormatted = ethers.formatUnits(allowanceRaw, quoteTokenDecimals)
       const newRoyaltyPrice = poolsNFTInfo!.royaltyParams.newRoyaltyPrice
-      const newRoyaltyPriceFormatted = ethers.formatUnits(newRoyaltyPrice, poolsNFTInfo!.quoteTokenDecimals)
+      const newRoyaltyPriceFormatted = ethers.formatUnits(
+        newRoyaltyPrice,
+        poolsNFTInfo!.quoteTokenDecimals,
+      )
       setIsProcessingBuyRoyalty(true)
       if (Number(newRoyaltyPriceFormatted) > Number(allowanceFormatted)) {
         let appove_tx = await quoteTokenContract.approve(spenderAddress, newRoyaltyPrice)
@@ -148,26 +161,23 @@ const Interaction = ({ poolId }: InteractionProps) => {
       setIsProcessingBuyRoyalty(false)
     } catch (err) {
       setIsProcessingBuyRoyalty(false)
-      console.log("Failed buy royalty")
+      console.log('Failed buy royalty')
     }
   }
 
   return (
-    <div className={`${styles["interaction"]} form`}>
-      <h2 className={styles["title"]}>Interaction</h2>
-      <div className={styles["content"]}>
-        <div className={styles["inputs"]}>
+    <div className={`${styles['interaction']} form`}>
+      <h2 className={styles['title']}>Interaction</h2>
+      <div className={styles['content']}>
+        <div className={styles['inputs']}>
           <FormGroup label="Deposit Amount">
             <div className="form-input">
               <input
                 type="number"
                 placeholder="Enter deposit amount"
-                onChange={(e) => setInputDeposit(e.target.value)}
+                onChange={e => setInputDeposit(e.target.value)}
               />
-              <button 
-                onClick={() => handleDeposit()} 
-                className="button"
-              >
+              <button onClick={() => handleDeposit()} className="button">
                 Deposit
               </button>
             </div>
@@ -176,12 +186,9 @@ const Interaction = ({ poolId }: InteractionProps) => {
             <div className="form-input">
               <input
                 placeholder="Enter withdraw amount"
-                onChange={(e) => setInputWithdraw(parseFloat(e.target.value))}
+                onChange={e => setInputWithdraw(parseFloat(e.target.value))}
               />
-              <button 
-                onClick={() => handleWithdraw()}
-                className="button"
-              >
+              <button onClick={() => handleWithdraw()} className="button">
                 Withdraw
               </button>
             </div>
@@ -191,28 +198,22 @@ const Interaction = ({ poolId }: InteractionProps) => {
           <Switcher
             label="Reinvest"
             value={reinvest}
-            onChange={(value) => handleSwitchReinvest(value)}
+            onChange={value => handleSwitchReinvest(value)}
           />
-          <div className={styles["exit-description"]}>
-            Exit: emergency withdraw distribution of funds and ownership of strategy pool will be moved to royalty receiver.
+          <div className={styles['exit-description']}>
+            Exit: emergency withdraw distribution of funds and ownership of strategy pool will be
+            moved to royalty receiver.
           </div>
-          <button 
-            className={`${styles["button"]} button`}
-            onClick={() => handleExit()}
-          >
+          <button className={`${styles['button']} button`} onClick={() => handleExit()}>
             Exit
           </button>
-            <button 
-            className={`${styles["button"]} button`}
-            onClick={() => handleBuyRoyalty()}
-            >
+          <button className={`${styles['button']} button`} onClick={() => handleBuyRoyalty()}>
             {isProcessingBuyRoyalty
               ? 'Processing...'
               : poolsNFTInfo
-                ? `Buy Royalty (${royaltyPrice} ${poolsNFTInfo.quoteTokenSymbol})`
-                : 'Buy Royalty'
-            }
-            </button>
+              ? `Buy Royalty (${royaltyPrice} ${poolsNFTInfo.quoteTokenSymbol})`
+              : 'Buy Royalty'}
+          </button>
         </div>
       </div>
     </div>

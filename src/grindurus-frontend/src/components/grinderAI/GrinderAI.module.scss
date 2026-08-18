@@ -44,7 +44,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgb(255 255 255 / 30%);
     border-radius: 4px;
   }
 }
@@ -66,9 +66,9 @@
 
   &.user .message-content {
     color: #fff;
-    background-color: #933DC9;
+    background-color: #933dc9;
   }
-  
+
   &.assistant .message-content {
     color: #fff;
     background-color: #000;

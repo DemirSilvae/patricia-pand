@@ -1,10 +1,11 @@
-import styles from './MintIntent.module.scss'
-import { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { FormGroup, Checkbox, InputModal } from '../../../ui'
+import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
+
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { useIsMobile } from '../../../../hooks'
+import { Checkbox, FormGroup, InputModal } from '../../../ui'
+import styles from './MintIntent.module.scss'
 
 const GRIND_AMOUNT_MAP = [1, 5, 10, 20, 50, 75, 100]
 const GRIND_AMOUNT_MAP_MOBILE = [1, 5, 10, 20, 50]
@@ -23,15 +24,15 @@ function MintIntent() {
 
   const checkRequired = () => {
     if (!provider) {
-      console.error("provider not set!")
+      console.error('provider not set!')
       return false
     }
-    if(!networkConfig) {
-      console.error("networkConfig not set!")
+    if (!networkConfig) {
+      console.error('networkConfig not set!')
       return false
     }
-    if(!intentsNFT) {
-      console.error("intentsNFT not set!")
+    if (!intentsNFT) {
+      console.error('intentsNFT not set!')
       return false
     }
     return true
@@ -48,7 +49,7 @@ function MintIntent() {
   }, [grindAmount])
 
   const calcPayment = async (): Promise<bigint> => {
-    if(!checkRequired()) {
+    if (!checkRequired()) {
       return 0n
     }
 
@@ -56,13 +57,13 @@ function MintIntent() {
       const paymentAmount = await intentsNFT!.calcPayment(ETH, grindAmount)
       return paymentAmount
     } catch (error) {
-      console.error("Error calculating payment: ", error)
+      console.error('Error calculating payment: ', error)
       return 0n
     }
   }
 
   const handleMint = async () => {
-    if(!checkRequired()) {
+    if (!checkRequired()) {
       return
     }
 
@@ -72,7 +73,7 @@ function MintIntent() {
       const tx = await intentsNFT!.mintTo(ETH, receiver!, grindAmount, { value: paymentAmount })
       await tx.wait()
     } catch (error) {
-      console.error("Error minting intent: ", error)
+      console.error('Error minting intent: ', error)
     }
   }
 
@@ -82,48 +83,53 @@ function MintIntent() {
 
   return (
     <>
-      <div className={`${styles["form"]} form`}>
+      <div className={`${styles['form']} form`}>
         <h2 className="form-title">Intent NFT</h2>
         <FormGroup label={`Grinds Amount ~ (${grindAmount} times)`}>
-          <div className={`${styles["grind-amount-input"]} form-input`}>
+          <div className={`${styles['grind-amount-input']} form-input`}>
             <input
               type="number"
               value={grindAmount}
               placeholder="0"
-              onChange={(e) => setGrindAmount(Number(e.target.value))}
+              onChange={e => setGrindAmount(Number(e.target.value))}
             />
           </div>
-          <div className={styles["grind-amount-buttons"]}>
-            {(isMobile ? GRIND_AMOUNT_MAP_MOBILE : GRIND_AMOUNT_MAP).map((num) => (
-              <button key={num} className={styles["grind-amount-button"]} onClick={() => addGrindAmount(num)}>
+          <div className={styles['grind-amount-buttons']}>
+            {(isMobile ? GRIND_AMOUNT_MAP_MOBILE : GRIND_AMOUNT_MAP).map(num => (
+              <button
+                key={num}
+                className={styles['grind-amount-button']}
+                onClick={() => addGrindAmount(num)}
+              >
                 +{num}
               </button>
             ))}
           </div>
         </FormGroup>
-        <FormGroup className={`${changeAddress ? styles["checked"] : styles["not-checked"]}`}>
+        <FormGroup className={`${changeAddress ? styles['checked'] : styles['not-checked']}`}>
           <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-            {changeAddress ? 
+            {changeAddress ? (
               <div className="form-input">
-                <input 
+                <input
                   type="text"
                   placeholder="Enter recepient address"
-                  onChange={(e) => setReceiverAddress(e.target.value)}
-                  onClick={(e) => e.stopPropagation()}
+                  onChange={e => setReceiverAddress(e.target.value)}
+                  onClick={e => e.stopPropagation()}
                 />
-              </div> :
-              "Another Recepient"
-            }
+              </div>
+            ) : (
+              'Another Recepient'
+            )}
           </Checkbox>
         </FormGroup>
         <div className="form-label">
           Price: {price} ETH or {(Number(price) * 10000).toString()} grAI
         </div>
-        <div className={styles["buttons"]}>
-          <button className={`${styles["button"]} button`} onClick={handleMint}>
+        <div className={styles['buttons']}>
+          <button className={`${styles['button']} button`} onClick={handleMint}>
             Mint with ETH
           </button>
-          <button className={`${styles["button"]} button`} onClick={handleMint}>
+          <button className={`${styles['button']} button`} onClick={handleMint}>
             Mint with grAI
           </button>
         </div>

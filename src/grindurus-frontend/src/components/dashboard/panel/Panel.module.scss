@@ -4,7 +4,8 @@
   gap: 30px;
 }
 
-.left, .right {
+.left,
+.right {
   width: calc(50% - 15px);
 }
 
@@ -21,7 +22,8 @@
     flex-direction: column-reverse;
   }
 
-  .left, .right {
+  .left,
+  .right {
     width: 100%;
   }
 }

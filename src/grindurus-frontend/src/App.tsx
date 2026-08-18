@@ -1,13 +1,14 @@
 import React, { ReactNode } from 'react'
 import { Route, Routes } from 'react-router-dom'
-import { useProtocolContext } from './context/ProtocolContext'
-import Header from './components/header/Header'
-import Dashboard from './components/dashboard/Dashboard'
+
 import ConnectWallet from './components/connect/ConnectWallet'
+import Dashboard from './components/dashboard/Dashboard'
+import GrAI from './components/grAI/GrAI'
 import GrETH from './components/grETH/GrETH'
 import GrinderAI from './components/grinderAI/GrinderAI'
+import Header from './components/header/Header'
 import Pool from './components/pool/Pool'
-import GrAI from './components/grAI/GrAI'
+import { useProtocolContext } from './context/ProtocolContext'
 
 type RouterGuardProps = {
   networkConfig: Record<string, any>
@@ -32,14 +33,14 @@ function App() {
 
   return (
     <>
-      <Header/>
+      <Header />
       <main className="page">
         <Routes>
           <Route
             path="/"
             element={
               <RouterGuard networkConfig={networkConfig} isConnected={isConnected}>
-                <Dashboard/>
+                <Dashboard />
               </RouterGuard>
             }
           />
@@ -47,7 +48,7 @@ function App() {
             path="/greth"
             element={
               <RouterGuard networkConfig={networkConfig} isConnected={isConnected}>
-                <GrETH/>
+                <GrETH />
               </RouterGuard>
             }
           />

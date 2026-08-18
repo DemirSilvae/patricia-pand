@@ -1,12 +1,13 @@
-import styles from './MintPool.module.scss'
-import { useState, useEffect } from 'react'
-import { ethers } from 'ethers'
-import { useProtocolContext } from '../../../../context/ProtocolContext'
-import { Token } from '../../../../config'
-import { ERC20, ERC20__factory } from '../../../../typechain-types'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { Select, Option, FormGroup } from '../../../ui'
+import { ethers } from 'ethers'
+import { useEffect, useState } from 'react'
+
+import { Token } from '../../../../config'
+import { useProtocolContext } from '../../../../context/ProtocolContext'
 import { useIsMobile } from '../../../../hooks'
+import { ERC20, ERC20__factory } from '../../../../typechain-types'
+import { FormGroup, Option, Select } from '../../../ui'
+import styles from './MintPool.module.scss'
 
 function MintPool() {
   const { provider, networkConfig, poolsNFT } = useProtocolContext()
@@ -14,11 +15,15 @@ function MintPool() {
 
   const [isApproved, setIsApproved] = useState<boolean>(false)
   const [selectedStrategyId, setSelectedStrategyId] = useState<number>(1)
-  const [selectedQuoteToken, setSelectedQuoteToken] = useState<string>(networkConfig.quoteTokens![1].symbol)
-  const [selectedBaseToken, setSelectedBaseToken] = useState<string>(networkConfig.baseTokens![0].symbol)
+  const [selectedQuoteToken, setSelectedQuoteToken] = useState<string>(
+    networkConfig.quoteTokens![1].symbol,
+  )
+  const [selectedBaseToken, setSelectedBaseToken] = useState<string>(
+    networkConfig.baseTokens![0].symbol,
+  )
 
   const [quoteTokenContract, setQuoteTokenContract] = useState<ERC20 | null>(null)
-  const [quoteTokenAmount, setQuoteTokenAmount] = useState<string>("")
+  const [quoteTokenAmount, setQuoteTokenAmount] = useState<string>('')
   const [quoteTokenInfo, setQuoteTokenInfo] = useState<Token | null>(null)
 
   const [mode, setMode] = useState<'manual' | 'grinder'>('manual')
@@ -37,10 +42,10 @@ function MintPool() {
   }, [quoteTokenAmount])
 
   const initQuoteToken = async () => {
-    if (!provider) return console.error("Provider not found!")
+    if (!provider) return console.error('Provider not found!')
 
     const tokenInfo = networkConfig.quoteTokens!.find(q => q.symbol === selectedQuoteToken)
-    if (!tokenInfo) return console.error("tokenInfo not found!")
+    if (!tokenInfo) return console.error('tokenInfo not found!')
     setQuoteTokenInfo(tokenInfo)
 
     const quoteTokenAddress = tokenInfo!.address
@@ -50,9 +55,9 @@ function MintPool() {
   }
 
   const checkRequired = () => {
-    if (!provider) return console.error("provider not set!")
-    if (!quoteTokenContract) return console.error("quoteTokenContract is null!")
-    if (!quoteTokenInfo) return console.error("quoteTokenInfo is null!")
+    if (!provider) return console.error('provider not set!')
+    if (!quoteTokenContract) return console.error('quoteTokenContract is null!')
+    if (!quoteTokenInfo) return console.error('quoteTokenInfo is null!')
   }
 
   const checkAllowance = async () => {
@@ -63,11 +68,11 @@ function MintPool() {
       if (quoteTokenContract) {
         const allowanceRaw = await quoteTokenContract!.allowance(userAddress!, spenderAddress)
         const allowanceFormatted = ethers.formatUnits(allowanceRaw, quoteTokenInfo!.decimals)
-  
+
         setIsApproved(Number(quoteTokenAmount) <= Number(allowanceFormatted))
       }
     } catch (err) {
-      console.error("Error checking allowance:", err)
+      console.error('Error checking allowance:', err)
     }
   }
 
@@ -81,8 +86,8 @@ function MintPool() {
 
       setQuoteTokenAmount(balance)
     } catch (err) {
-      alert("Failed to fetch balance!")
-      console.error("Error fetching balance: ", err)
+      alert('Failed to fetch balance!')
+      console.error('Error fetching balance: ', err)
     } finally {
       setWaitApproving(false)
     }
@@ -100,8 +105,8 @@ function MintPool() {
 
       setIsApproved(true)
     } catch (err) {
-      alert("Failed approve tokens")
-      console.error("Error approving tokens", err)
+      alert('Failed approve tokens')
+      console.error('Error approving tokens', err)
     } finally {
       setWaitApproving(false)
     }
@@ -110,20 +115,25 @@ function MintPool() {
   const handleMint = async () => {
     try {
       checkRequired()
-      if (!poolsNFT) return console.error("poolsNFT is null!")
+      if (!poolsNFT) return console.error('poolsNFT is null!')
 
       setWaitMint(true)
 
       const strategyId = networkConfig.strategies![selectedStrategyId].id
       const baseTokenInfo = networkConfig.baseTokens!.find(b => b.symbol === selectedBaseToken)
-      if (!baseTokenInfo || !quoteTokenInfo) return console.error("Tokens not set!")
+      if (!baseTokenInfo || !quoteTokenInfo) return console.error('Tokens not set!')
 
       const quoteTokenAmountRaw = ethers.parseUnits(quoteTokenAmount, quoteTokenInfo.decimals)
-      const tx = await poolsNFT!.mint(strategyId, baseTokenInfo.address, quoteTokenInfo.address, quoteTokenAmountRaw)
+      const tx = await poolsNFT!.mint(
+        strategyId,
+        baseTokenInfo.address,
+        quoteTokenInfo.address,
+        quoteTokenAmountRaw,
+      )
       await tx.wait()
     } catch (err) {
-      alert("Error minting pool")
-      console.error("Error minting pool", err)
+      alert('Error minting pool')
+      console.error('Error minting pool', err)
     } finally {
       setWaitMint(false)
     }
@@ -137,23 +147,33 @@ function MintPool() {
   }, [selectedBaseToken])
 
   return (
-    <div className={`${styles["form"]} form`}>
-      <div className={styles["header"]}>
-        <h2 className={`${styles["title"]} form-title`}>Create</h2>
-        <button className={`${styles["autofill-button"]} ${mode === 'grinder' ? styles["active"] : ''} button`}>
-          {isMobile ? "Autofill" : "Autofill Fields"}
+    <div className={`${styles['form']} form`}>
+      <div className={styles['header']}>
+        <h2 className={`${styles['title']} form-title`}>Create</h2>
+        <button
+          className={`${styles['autofill-button']} ${
+            mode === 'grinder' ? styles['active'] : ''
+          } button`}
+        >
+          {isMobile ? 'Autofill' : 'Autofill Fields'}
         </button>
       </div>
-      <div className={styles["select-mode"]}>
-        <button onClick={() => setMode('manual')} className={`${styles["mode-button"]} ${mode === 'manual' ? styles["active"] : ''}`}>
+      <div className={styles['select-mode']}>
+        <button
+          onClick={() => setMode('manual')}
+          className={`${styles['mode-button']} ${mode === 'manual' ? styles['active'] : ''}`}
+        >
           Pool
         </button>
-        <button onClick={() => setMode('grinder')} className={`${styles["mode-button"]} ${mode === 'grinder' ? styles["active"] : ''}`}>
+        <button
+          onClick={() => setMode('grinder')}
+          className={`${styles['mode-button']} ${mode === 'grinder' ? styles['active'] : ''}`}
+        >
           Agent
         </button>
       </div>
       <FormGroup label="Strategy">
-        <Select onChange={(value) => setSelectedStrategyId(value as number)}>
+        <Select onChange={value => setSelectedStrategyId(value as number)}>
           {networkConfig.strategies!.map((strategy, index) => (
             <Option key={index} value={index}>
               {strategy.description}
@@ -162,25 +182,25 @@ function MintPool() {
         </Select>
       </FormGroup>
       <FormGroup label="Base Token">
-        <Select onChange={(value) => setSelectedBaseToken(value as string)}>
+        <Select onChange={value => setSelectedBaseToken(value as string)}>
           {networkConfig.baseTokens!.map((token, index) => (
             <Option key={index} value={token.symbol}>
-              <img src={token.logo} alt={token.symbol} className={styles["token-icon"]} />
+              <img src={token.logo} alt={token.symbol} className={styles['token-icon']} />
               {token.symbol}
             </Option>
           ))}
         </Select>
       </FormGroup>
       <FormGroup label="Quote Token">
-        <Select onChange={(value) => setSelectedQuoteToken(value as string)}>
-          {networkConfig.quoteTokens!
-            .filter(t => t.symbol !== selectedBaseToken)
+        <Select onChange={value => setSelectedQuoteToken(value as string)}>
+          {networkConfig
+            .quoteTokens!.filter(t => t.symbol !== selectedBaseToken)
             .map((token, index) => (
               <Option key={index} value={token.symbol}>
-                <img src={token.logo} alt={token.symbol} className={styles["token-icon"]} />
+                <img src={token.logo} alt={token.symbol} className={styles['token-icon']} />
                 {token.symbol}
               </Option>
-          ))}
+            ))}
         </Select>
       </FormGroup>
       <FormGroup label="Quote Token Amount">
@@ -195,13 +215,21 @@ function MintPool() {
           </button>
         </div>
       </FormGroup>
-      <div className={styles["buttons"]}>
+      <div className={styles['buttons']}>
         {!isApproved ? (
-          <button className={`${styles["approve-button"]} button`} onClick={handleApprove} disabled={waitApproving}>
+          <button
+            className={`${styles['approve-button']} button`}
+            onClick={handleApprove}
+            disabled={waitApproving}
+          >
             Approve
           </button>
         ) : (
-          <button className={`${styles["mint-button"]} button`} onClick={handleMint} disabled={waitMint}>
+          <button
+            className={`${styles['mint-button']} button`}
+            onClick={handleMint}
+            disabled={waitMint}
+          >
             Mint
           </button>
         )}

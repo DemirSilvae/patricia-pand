@@ -1,11 +1,26 @@
 .total-info {
   width: 100%;
   border: 1px solid #fff;
-	border-radius: 8px;
+  border-radius: 8px;
 }
 
 .item {
   display: flex;
+}
+
+.item:not(:last-child) {
+  border-bottom: 1px solid #fff;
+}
+
+.key,
+.value {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+}
+
+.key:not(:last-child) {
+  border-right: 1px solid #fff;
 }
 
 .title .key {
@@ -16,24 +31,7 @@
   padding: 20px;
 }
 
-.item:not(:last-child) {
-  border-bottom: 1px solid #fff;
-}
-
-.key:not(:last-child) {
-  border-right: 1px solid #fff;
-}
-
-.key, .value {
-  flex: 1;
-}
-
-.key, .value {
-  text-align: center;
-	padding: 10px;
-}
-
-@media screen and (max-width: 830px) {
+@media screen and (width <= 830px) {
   .total-info {
     display: none;
   }

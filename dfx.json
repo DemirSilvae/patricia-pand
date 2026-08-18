@@ -1,9 +1,7 @@
 {
-  "canisters": {    
+  "canisters": {
     "grindurus-frontend": {
-      "source": [
-        "src/grindurus-frontend/dist"
-      ],
+      "source": ["src/grindurus-frontend/dist"],
       "type": "assets",
       "workspace": "grindurus-frontend"
     }

@@ -1,9 +1,9 @@
 import logoArbitrum from '../src/assets/images/logoArbitrum.png'
-import logoPolygon from '../src/assets/images/logoPolygon.png'
-import logoOptimism from '../src/assets/images/logoOptimism.png'
 import logoBase from '../src/assets/images/logoBase.png'
-import logoUSDT from '../src/assets/images/logoUSDT.png'
+import logoOptimism from '../src/assets/images/logoOptimism.png'
+import logoPolygon from '../src/assets/images/logoPolygon.png'
 import logoUSDC from '../src/assets/images/logoUSDC.png'
+import logoUSDT from '../src/assets/images/logoUSDT.png'
 import logoWETH from '../src/assets/images/logoWETH.png'
 
 export interface Token {

@@ -1,6 +1,7 @@
-import styles from './Checkbox.module.scss'
-import React, { useState, ReactNode } from 'react'
+import React, { ReactNode, useState } from 'react'
+
 import checkIcon from '../../../assets/images/checkBlack.svg'
+import styles from './Checkbox.module.scss'
 
 type CheckboxProps = {
   children: ReactNode
@@ -8,7 +9,11 @@ type CheckboxProps = {
   onChange?: (checked: boolean) => void
 }
 
-export const Checkbox: React.FC<CheckboxProps> = ({ children, defaultChecked = false, onChange }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({
+  children,
+  defaultChecked = false,
+  onChange,
+}) => {
   const [checked, setChecked] = useState(defaultChecked)
 
   const toggle = () => {

@@ -1,4 +1,5 @@
 import React from 'react'
+
 import styles from './NumberView.module.scss'
 
 interface NumberProps {
@@ -25,11 +26,9 @@ export const NumberView: React.FC<NumberProps> = ({ value, className }) => {
   }
 
   return (
-    <div className={`${styles["number-wrapper"]} ${className || ''}`}>
-      <span className={styles["number-text"]}>{displayValue}</span>
-      {showTooltip && (
-        <div className={styles["number-tooltip"]}>{value}</div>
-      )}
+    <div className={`${styles['number-wrapper']} ${className || ''}`}>
+      <span className={styles['number-text']}>{displayValue}</span>
+      {showTooltip && <div className={styles['number-tooltip']}>{value}</div>}
     </div>
   )
 }

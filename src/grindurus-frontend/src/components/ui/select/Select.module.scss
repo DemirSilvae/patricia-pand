@@ -3,8 +3,9 @@
   width: 100%;
   user-select: none;
 
-  &::before, &::after {
-    content: "";
+  &::before,
+  &::after {
+    content: '';
     position: absolute;
     width: 10px;
     height: 1px;
@@ -26,7 +27,7 @@
     &::before {
       transform: rotate(-45deg);
     }
-  
+
     &::after {
       transform: rotate(45deg);
     }
@@ -48,7 +49,7 @@
 .options-list {
   position: absolute;
   width: 100%;
-  background-color: rgb(26, 26, 26);
+  background-color: rgb(26 26 26);
   border: 1px solid #ccc;
   border-top: none;
   z-index: 10;

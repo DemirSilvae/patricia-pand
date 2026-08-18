@@ -31,11 +31,11 @@
   }
 
   &.active {
-    background-color: #933DC9;
+    background-color: #933dc9;
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (width <= 500px) {
   .tables {
     border: 0;
     border-radius: 0;

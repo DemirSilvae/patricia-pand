@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap');
-@import "./colors.scss";
+@import 'https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&display=swap';
+@import './colors';
 
 #root {
   width: 100%;
@@ -9,7 +9,7 @@
 }
 
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
@@ -19,28 +19,29 @@
   background-color: $violet;
 }
 
-button, img {
+button,
+img {
   user-select: none;
 }
 
-html, body, :root {
+html,
+body,
+:root {
   width: 100%;
   height: 100%;
   background-color: $black;
 }
 
 :root {
-  font-family: "Noto Sans Mono", monospace;
+  font-family: 'Noto Sans Mono', monospace;
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-
   color-scheme: light dark;
   color: $white;
   background-color: $black;
-
   font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -48,7 +49,8 @@ html, body, :root {
 a {
   font-weight: 400;
   color: $white;
-  text-decoration: inherit;
+  display: inline-block;
+  text-decoration: none;
 }
 
 body {
@@ -63,44 +65,52 @@ body {
 input,
 button,
 textarea {
-	font-family: "Noto Sans Mono", monospace;
+  font-family: 'Noto Sans Mono', monospace;
   font-optical-sizing: auto;
   font-weight: 400;
-	font-size: inherit;
-	line-height: inherit;
-	color: inherit;
-	background-color: transparent;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  background-color: transparent;
 }
 
 input,
 textarea {
-	width: 100%;
+  width: 100%;
+}
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+input[type='number'] {
+  appearance: textfield;
 }
 
 button,
 select,
 option {
-	cursor: pointer;
+  cursor: pointer;
 }
-a {
-	display: inline-block;
-	color: inherit;
-	text-decoration: none;
-}
+
 ul li {
-	list-style: none;
+  list-style: none;
 }
+
 img {
-	vertical-align: top;
+  vertical-align: top;
 }
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-	font-weight: inherit;
-	font-size: inherit;
+  font-weight: inherit;
+  font-size: inherit;
 }
 
 @media (prefers-color-scheme: dark) {

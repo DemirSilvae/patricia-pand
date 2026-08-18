@@ -58,7 +58,7 @@
 
 .mode-button.active {
   width: 50%;
-  background-color: #933DC9;
+  background-color: #933dc9;
 }
 
 .token-icon {
@@ -70,7 +70,8 @@
   margin-top: 15px;
 }
 
-.approve-button, .mint-button {
+.approve-button,
+.mint-button {
   width: 100%;
 }
 
@@ -82,15 +83,15 @@
 //   .select-mode {
 //     display: block;
 //   }
-  
+
 //   .select-mode:not(:last-child) {
 //     margin-bottom: 10px;
 //   }
-  
+
 //   .mode-button, .mode-button.active {
 //     width: 100%;
 //   }
-  
+
 //   .mode-button:not(:last-child) {
 //     border-right: 0;
 //     border-bottom: 1px solid #fff;

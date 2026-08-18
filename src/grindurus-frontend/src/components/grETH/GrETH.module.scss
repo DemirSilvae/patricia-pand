@@ -3,7 +3,8 @@
   gap: 30px;
 }
 
-.left, .right {
+.left,
+.right {
   height: 100%;
   width: calc(50% - 15px);
 }
@@ -13,7 +14,8 @@
     flex-direction: column;
   }
 
-  .left, .right {
+  .left,
+  .right {
     height: auto;
     width: 100%;
   }

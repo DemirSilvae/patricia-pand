@@ -1,14 +1,15 @@
-import styles from './GrAI.module.scss'
-import React, { useEffect, useState } from 'react'
-import { ethers } from 'ethers'
 import { useAppKitAccount } from '@reown/appkit/react'
-import { Select, Option, FormGroup, Checkbox } from '../ui'
-import { useProtocolContext } from '../../context/ProtocolContext'
+import { ethers } from 'ethers'
+import React, { useEffect, useState } from 'react'
+
 import arbitrumLogo from '../../assets/images/logoArbitrum.png'
 import baseLogo from '../../assets/images/logoBase.png'
 import optimismLogo from '../../assets/images/logoOptimism.png'
 import polygonLogo from '../../assets/images/logoPolygon.png'
 import solanaLogo from '../../assets/images/logoSolana.png'
+import { useProtocolContext } from '../../context/ProtocolContext'
+import { Checkbox, FormGroup, Option, Select } from '../ui'
+import styles from './GrAI.module.scss'
 
 function GrAI() {
   const { grAI } = useProtocolContext()
@@ -16,39 +17,39 @@ function GrAI() {
 
   // https://docs.layerzero.network/v2/deployments/deployed-contracts
   const endpointIds = {
-    "arbitrum": 30110,
-    "base": 30184,
-    "optimism": 30111,
-    "polygon": 30109,
-    "solana": 30168
+    arbitrum: 30110,
+    base: 30184,
+    optimism: 30111,
+    polygon: 30109,
+    solana: 30168,
   }
 
   const supportedChains = [
-    { name: "arbitrum", label: "Arbitrum", logo: arbitrumLogo },
-    { name: "base", label: "Base", logo: baseLogo },
-    { name: "optimism", label: "Optimism", logo: optimismLogo },
-    { name: "polygon", label: "Polygon", logo: polygonLogo },
-    { name: "solana", label: "Solana", logo: solanaLogo },
+    { name: 'arbitrum', label: 'Arbitrum', logo: arbitrumLogo },
+    { name: 'base', label: 'Base', logo: baseLogo },
+    { name: 'optimism', label: 'Optimism', logo: optimismLogo },
+    { name: 'polygon', label: 'Polygon', logo: polygonLogo },
+    { name: 'solana', label: 'Solana', logo: solanaLogo },
   ] as const
 
-  type SupportedBridgeChains = typeof supportedChains[number]["name"]
+  type SupportedBridgeChains = (typeof supportedChains)[number]['name']
 
-  const [bridgeFrom, setBridgeFrom] = useState<SupportedBridgeChains>("arbitrum")
-  const [bridgeTo, setBridgeTo] = useState<SupportedBridgeChains>("base")
+  const [bridgeFrom, setBridgeFrom] = useState<SupportedBridgeChains>('arbitrum')
+  const [bridgeTo, setBridgeTo] = useState<SupportedBridgeChains>('base')
 
   const [bridgeAmount, setBridgeAmount] = useState<number>(0)
-  const [inputBridgeAmount, setInputBridgeAmount] = useState<string>("")
-  const [receiverAddress, setReceiverAddress] = useState<string>("")
+  const [inputBridgeAmount, setInputBridgeAmount] = useState<string>('')
+  const [receiverAddress, setReceiverAddress] = useState<string>('')
   const [changeAddress, setChangeAddress] = useState<boolean>(false)
-  const [fee, setFee] = useState<string>("0")
-  
+  const [fee, setFee] = useState<string>('0')
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
   const checkRequired = () => {
     if (!grAI) {
-      console.error("grAI is null!")
+      console.error('grAI is null!')
       return false
     }
     return true
@@ -67,7 +68,7 @@ function GrAI() {
       const [, , totalNativeFee] = await grAI!.getTotalFeesForBridgeTo(dstChain, toAddress, amount)
       setFee(ethers.formatUnits(totalNativeFee, 18))
     } catch (error) {
-      console.error("Error calculating fee:", error)
+      console.error('Error calculating fee:', error)
     }
   }
 
@@ -84,7 +85,7 @@ function GrAI() {
       const tx = await grAI!.bridgeTo(dstChain, toAddress, amount, { value: totalNativeFee })
       await tx.wait()
     } catch (error) {
-      console.error("Error bridging grAI:", error)
+      console.error('Error bridging grAI:', error)
     }
   }
 
@@ -98,13 +99,13 @@ function GrAI() {
   const isFormValid = bridgeAmount > 0
 
   return (
-    <section className={styles["bridge"]}>
-      <div className={`${styles["container"]} container`}>
-        <div className={`${styles["bridge-form"]} form`}>
-          <h2 className={`${styles["title"]} form-title`}>Bridge grAI</h2>
+    <section className={styles['bridge']}>
+      <div className={`${styles['container']} container`}>
+        <div className={`${styles['bridge-form']} form`}>
+          <h2 className={`${styles['title']} form-title`}>Bridge grAI</h2>
           <FormGroup label="Chain From">
             <Select
-              onChange={(value) => {
+              onChange={value => {
                 const selected = value as SupportedBridgeChains
                 setBridgeFrom(selected)
                 if (selected === bridgeTo) {
@@ -113,23 +114,29 @@ function GrAI() {
                 }
               }}
             >
-              {supportedChains.map((chain) => (
+              {supportedChains.map(chain => (
                 <Option key={chain.name} value={chain.name}>
-                  <img src={chain.logo} alt={`${chain.name} logo`} className={styles["chain-icon"]} />
+                  <img
+                    src={chain.logo}
+                    alt={`${chain.name} logo`}
+                    className={styles['chain-icon']}
+                  />
                   {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
                 </Option>
               ))}
             </Select>
           </FormGroup>
           <FormGroup label="Chain To">
-            <Select
-              onChange={(value) => setBridgeTo(value as SupportedBridgeChains)}
-            >
+            <Select onChange={value => setBridgeTo(value as SupportedBridgeChains)}>
               {supportedChains
-                .filter((chain) => chain.name !== bridgeFrom)
-                .map((chain) => (
+                .filter(chain => chain.name !== bridgeFrom)
+                .map(chain => (
                   <Option key={chain.name} value={chain.name}>
-                    <img src={chain.logo} alt={`${chain.name} logo`} className={styles["chain-icon"]} />
+                    <img
+                      src={chain.logo}
+                      alt={`${chain.name} logo`}
+                      className={styles['chain-icon']}
+                    />
                     {chain.name.charAt(0).toUpperCase() + chain.name.slice(1)}
                   </Option>
                 ))}
@@ -140,39 +147,40 @@ function GrAI() {
               <input
                 placeholder="0"
                 value={inputBridgeAmount}
-                onChange={(e) => {
+                onChange={e => {
                   setInputBridgeAmount(e.target.value)
-                  const amount = ethers.parseUnits(e.target.value || "0", 18)
+                  const amount = ethers.parseUnits(e.target.value || '0', 18)
                   setBridgeAmount(Number(amount))
                 }}
               />
               <button
                 type="button"
                 onClick={handleMaxClick}
-                className={`${styles["max-button"]} button`}
+                className={`${styles['max-button']} button`}
               >
                 MAX
               </button>
             </div>
           </FormGroup>
-          <FormGroup className={`${changeAddress ? styles["checked"] : styles["not-checked"]}`}>
+          <FormGroup className={`${changeAddress ? styles['checked'] : styles['not-checked']}`}>
             <Checkbox defaultChecked={false} onChange={setChangeAddress}>
-              {changeAddress ? 
+              {changeAddress ? (
                 <div className="form-input">
-                  <input 
+                  <input
                     type="text"
                     placeholder="Enter recepient address"
-                    onChange={(e) => setReceiverAddress(e.target.value)}
-                    onClick={(e) => e.stopPropagation()}
+                    onChange={e => setReceiverAddress(e.target.value)}
+                    onClick={e => e.stopPropagation()}
                   />
-                </div> :
-                "Another Recepient"
-              }
+                </div>
+              ) : (
+                'Another Recepient'
+              )}
             </Checkbox>
           </FormGroup>
           <p className="form-label">Fee: {fee}</p>
           <button
-            className={`${styles["bridge-button"]} button`}
+            className={`${styles['bridge-button']} button`}
             disabled={!isFormValid}
             onClick={handleBridge}
           >

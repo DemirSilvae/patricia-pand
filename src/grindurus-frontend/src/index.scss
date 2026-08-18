@@ -1,8 +1,8 @@
-@import "./styles/normalize";
+@import './styles/normalize';
 
 .container {
   max-width: 1240px;
-	margin: 0 auto;
+  margin: 0 auto;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -25,12 +25,12 @@
 
 .button {
   padding: 10px 30px;
-	color: #fff;
-	background-color: #933DC9;
-	font-weight: 600;
+  color: #fff;
+  background-color: #933dc9;
+  font-weight: 600;
   border: 0;
-	border-radius: 6px;
-	transition: background-color 0.3s ease;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
 }
 
 .max-button {
@@ -43,13 +43,13 @@
 
 .form {
   width: 100%;
-	border: 1px solid #fff;
-	border-radius: 8px;
-	padding: 20px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  padding: 20px;
 }
 
 .form-title {
-	font-size: 30px;
+  font-size: 30px;
 }
 
 .form-group:not(:last-child) {
@@ -81,7 +81,8 @@
     border-right: 1px solid #fff;
   }
 
-  &:active, &:focus {
+  &:active,
+  &:focus {
     outline: none;
     stroke: none;
   }
@@ -120,7 +121,8 @@
     border: 1px solid #fff;
     border-radius: 8px;
 
-    &:active, &:focus {
+    &:active,
+    &:focus {
       outline: none;
       stroke: none;
     }
@@ -129,14 +131,4 @@
 
 .no-scroll {
   overflow: hidden;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-input[type="number"] {
-  -moz-appearance: textfield;
 }

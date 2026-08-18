@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
 import { formatUnits } from 'ethers'
+import { useEffect, useState } from 'react'
+
 import { useProtocolContext } from '../../../../context/ProtocolContext'
 import styles from './TotalInfo.module.scss'
 
@@ -9,19 +10,19 @@ function TotalInfo() {
   const [grETHGrinded, setGrETHGrinded] = useState<bigint>(0n)
 
   const checkRequired = () => {
-    if(!poolsNFT) {
-      console.error("poolsNFT is null!")
+    if (!poolsNFT) {
+      console.error('poolsNFT is null!')
       return false
     }
-    if(!grETH) {
-      console.error("grETH is null!")
+    if (!grETH) {
+      console.error('grETH is null!')
       return false
     }
     return true
   }
 
   const fetchInfo = async () => {
-    if(!checkRequired) return
+    if (!checkRequired) return
 
     const totalPools = await poolsNFT!.totalPools()
     setTotalPoolsMinted(totalPools)

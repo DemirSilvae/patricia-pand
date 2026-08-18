@@ -15,6 +15,7 @@ GrindURUS is a decentralized protocol with multiple components. This frontend pr
 ## 🌐 Pages
 
 ### 🏠 Dashboard (Completed/Continue Development)
+
 - **Panel Section**:
   - Displays **total minted pools** and **total minted grETH**.
 - **IntentNFT Form**:
@@ -23,20 +24,24 @@ GrindURUS is a decentralized protocol with multiple components. This frontend pr
   - Enables users to deposit tokens and mint a new isolated pool.
 
 ### 🧪 grETH (Completed/Continue Development)
+
 - Burn `grETH` and receive tokens.
 - Mint new `grETH` at a 1:1 ratio with ETH.
 
 ### 🤖 Grinder AI (Completed Demo)
+
 - AI-powered assistant chat.
 - Helps users navigate the protocol and get pool-related info.
 
 ### 🧠 grAI (In Progress)
+
 - Interface for the upcoming `grAI` token.
 - Functionality under development.
 
 ## 🛠️ Development
 
 ### Requirements
+
 - [Node.js](https://nodejs.org/)
 - [dfx](https://internetcomputer.org/docs/building-apps/developer-tools/dfx/dfx-parent)
 

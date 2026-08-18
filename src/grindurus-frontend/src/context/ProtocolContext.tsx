@@ -1,12 +1,21 @@
-import React, { createContext, useContext, useState, useEffect, useMemo, ReactNode } from 'react'
-import { BrowserProvider, JsonRpcSigner, Eip1193Provider } from 'ethers'
 import { useAppKitAccount, useAppKitNetwork, useAppKitProvider } from '@reown/appkit/react'
-import { 
-  PoolsNFT, IntentsNFT, GrETH, GrAI, Registry, 
-  PoolsNFT__factory,  IntentsNFT__factory, GrETH__factory, GrAI__factory, Registry__factory
+import { BrowserProvider, Eip1193Provider, JsonRpcSigner } from 'ethers'
+import React, { createContext, ReactNode, useContext, useEffect, useMemo, useState } from 'react'
+
+import config from '../config'
+import {
+  GrAI,
+  GrAI__factory,
+  GrETH,
+  GrETH__factory,
+  IntentsNFT,
+  IntentsNFT__factory,
+  PoolsNFT,
+  PoolsNFT__factory,
+  Registry,
+  Registry__factory,
 } from '../typechain-types'
 import { convertDecimalToHex } from '../utils/numbers'
-import config from '../config'
 
 type NetworkConfig = (typeof config)[keyof typeof config]
 
@@ -43,21 +52,18 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
   const { chainId } = useAppKitNetwork()
 
   useEffect(() => {
-    if (provider)
-      provider.getSigner().then(setSigner).catch(console.error)
+    if (provider) provider.getSigner().then(setSigner).catch(console.error)
   }, [provider])
 
   useEffect(() => {
-    if (!visiblePoolIds.length && poolsNFT)
-      getDefaultVisiblePool()
+    if (!visiblePoolIds.length && poolsNFT) getDefaultVisiblePool()
   }, [poolsNFT])
 
   useEffect(() => {
     const chainToUse = convertDecimalToHex(chainId)
     const networkKey = Object.keys(config).find(
       key =>
-        config[key as keyof typeof config].chainId?.toLowerCase() ===
-        chainToUse?.toLowerCase()
+        config[key as keyof typeof config].chainId?.toLowerCase() === chainToUse?.toLowerCase(),
     ) as keyof typeof config | undefined
 
     setNetworkConfig(networkKey ? config[networkKey] : {})
@@ -81,7 +87,7 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       setRegistry(null)
       return
     }
-  
+
     const {
       poolsNFT: poolsAddress,
       intentsNFT: intentsAddress,
@@ -89,13 +95,13 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
       grAI: grAIAddress,
       registry: registryAddress,
     } = networkConfig ?? {}
-  
+
     setPoolsNFT(poolsAddress ? PoolsNFT__factory.connect(poolsAddress, signer) : null)
     setIntentsNFT(intentsAddress ? IntentsNFT__factory.connect(intentsAddress, signer) : null)
     setGrETH(grETHAddress ? GrETH__factory.connect(grETHAddress, signer) : null)
     setGrAI(grAIAddress ? GrAI__factory.connect(grAIAddress, signer) : null)
     setRegistry(registryAddress ? Registry__factory.connect(registryAddress, signer) : null)
-  }, [signer, networkConfig])  
+  }, [signer, networkConfig])
 
   const getDefaultVisiblePool = async () => {
     if (!poolsNFT) return
@@ -128,7 +134,6 @@ export const ProtocolContextProvider = ({ children }: { children: ReactNode }) =
 
 export const useProtocolContext = () => {
   const context = useContext(ProtocolContext)
-  if (!context)
-    throw new Error('useProtocolContext must be used within a ProtocolContextProvider')
+  if (!context) throw new Error('useProtocolContext must be used within a ProtocolContextProvider')
   return context
 }

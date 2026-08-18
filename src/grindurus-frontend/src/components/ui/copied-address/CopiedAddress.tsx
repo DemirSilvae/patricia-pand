@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import styles from './CopiedAddress.module.scss'
-import copyIcon from '../../../assets/images/copy.svg'
+
 import checkIcon from '../../../assets/images/check.svg'
+import copyIcon from '../../../assets/images/copy.svg'
+import styles from './CopiedAddress.module.scss'
 
 type CopiedAddressProps = {
   address: string
@@ -25,20 +26,18 @@ export const CopiedAddress = ({ address, fullAddress, label, className }: Copied
   }
 
   return (
-    <div className={`${styles["copy-address"]} ${className ?? ''}`}>
-      <div className={styles["label"]}>
-        {label}
-      </div>
-      <div className={styles["content"]}>
+    <div className={`${styles['copy-address']} ${className ?? ''}`}>
+      <div className={styles['label']}>{label}</div>
+      <div className={styles['content']}>
         <a
           href={etherscanUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className={styles["address-link"]}
+          className={styles['address-link']}
         >
           {address}
         </a>
-        <button onClick={handleCopy} className={styles["copy-button"]} title="Copy address">
+        <button onClick={handleCopy} className={styles['copy-button']} title="Copy address">
           <img src={copied ? checkIcon : copyIcon} alt="Copy icon" />
         </button>
       </div>

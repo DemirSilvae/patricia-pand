@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
+
 import Panel from './panel/Panel'
 import Tables from './tables/Tables'
 

@@ -1,5 +1,5 @@
-import styles from './Tables.module.scss'
 import PositionsTable from './positions/PositionsTable'
+import styles from './Tables.module.scss'
 import ThresholdsTable from './thresholds/ThresholdsTable'
 
 type TablesProps = {
@@ -8,10 +8,10 @@ type TablesProps = {
 
 const Tables = ({ poolId }: TablesProps) => {
   return (
-    <section className={styles["tables"]}>
-      <div className={`${styles["container"]} container`}>
-        <PositionsTable poolId={poolId}/>
-        <ThresholdsTable poolId={poolId}/>
+    <section className={styles['tables']}>
+      <div className={`${styles['container']} container`}>
+        <PositionsTable poolId={poolId} />
+        <ThresholdsTable poolId={poolId} />
       </div>
     </section>
   )

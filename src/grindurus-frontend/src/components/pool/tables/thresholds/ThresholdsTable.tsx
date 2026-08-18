@@ -1,10 +1,11 @@
-import styles from './ThresholdsTable.module.scss'
-import { useState, useEffect } from 'react'
 import { formatUnits } from 'ethers'
+import { useEffect, useState } from 'react'
+
 import { useProtocolContext } from '../../../../context/ProtocolContext'
+import { useIsMobile } from '../../../../hooks'
 import { IPoolsNFTLens } from '../../../../typechain-types/PoolsNFT'
 import { NumberView } from '../../../ui'
-import { useIsMobile } from '../../../../hooks'
+import styles from './ThresholdsTable.module.scss'
 
 type ThresholdsTableProps = {
   poolId: number
@@ -27,7 +28,7 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
 
   const checkRequired = () => {
     if (!poolsNFT) {
-      console.error("PoolsNFT is null!")
+      console.error('PoolsNFT is null!')
       return false
     }
     return true
@@ -38,7 +39,8 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
 
     setIsLoading(true)
     try {
-      const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] = await poolsNFT!.getPoolNFTInfosBy([poolId])
+      const poolsNFTInfos: IPoolsNFTLens.PoolNFTInfoStructOutput[] =
+        await poolsNFT!.getPoolNFTInfosBy([poolId])
       const _thresholds = poolsNFTInfos[0].thresholds
 
       const thresholds = {
@@ -55,9 +57,10 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
         hedgeRebuySwapPriceThreshold: formatUnits(_thresholds[10], 8),
       }
 
-      const formatted: ThresholdEntry[] = Object.entries(thresholds).map(
-        ([param, value]) => ({ param, value })
-      )
+      const formatted: ThresholdEntry[] = Object.entries(thresholds).map(([param, value]) => ({
+        param,
+        value,
+      }))
 
       setTableData(formatted)
     } catch (err) {
@@ -75,13 +78,13 @@ const ThresholdsTable = ({ poolId }: ThresholdsTableProps) => {
   }
 
   return (
-    <div className={styles["block"]}>
-      <h3 className={styles["title"]}>Thresholds</h3>
-      <div className={styles["thresholds"]}>
+    <div className={styles['block']}>
+      <h3 className={styles['title']}>Thresholds</h3>
+      <div className={styles['thresholds']}>
         {tableData.map((entry, idx) => (
-          <div className={styles["info-block"]} key={idx}>
-            <div className={styles["element"]}>{formatLabel(entry.param)}</div>
-            <div className={styles["element"]}>
+          <div className={styles['info-block']} key={idx}>
+            <div className={styles['element']}>{formatLabel(entry.param)}</div>
+            <div className={styles['element']}>
               <NumberView value={entry.value} />
             </div>
           </div>

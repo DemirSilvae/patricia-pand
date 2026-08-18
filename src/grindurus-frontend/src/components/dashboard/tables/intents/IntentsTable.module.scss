@@ -19,7 +19,8 @@
   font-size: 25px;
 }
 
-.body, .infos {
+.body,
+.infos {
   display: flex;
   gap: 20px;
 }
@@ -62,13 +63,13 @@
   height: 28px;
 }
 
-@media screen and (max-width: 790px) {
+@media screen and (width <= 790px) {
   .body {
     flex-direction: column;
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (width <= 650px) {
   .header {
     align-items: flex-start;
     flex-direction: column;
@@ -80,7 +81,7 @@
   }
 }
 
-@media screen and (max-width: 567px) {
+@media screen and (width <= 567px) {
   .infos {
     flex-wrap: wrap;
   }

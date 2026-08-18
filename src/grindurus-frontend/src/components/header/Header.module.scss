@@ -31,7 +31,8 @@
   width: 2.5rem;
 }
 
-.navigation, .menu {
+.navigation,
+.menu {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,10 +74,10 @@
 
 .button {
   display: flex;
-	justify-content: center;
-	align-items: center;
+  justify-content: center;
+  align-items: center;
   padding: 10px 30px;
-	gap: 15px;
+  gap: 15px;
   border: 1px solid #fff;
 }
 
@@ -139,7 +140,7 @@
     }
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 0;
       left: 0;
@@ -156,7 +157,8 @@
     gap: 15px;
   }
 
-  .network-button, .connect-button {
+  .network-button,
+  .connect-button {
     flex: 1;
   }
 
@@ -183,7 +185,8 @@
     flex-direction: column;
   }
 
-  .network-button, .connect-button {
+  .network-button,
+  .connect-button {
     flex: 1;
   }
 }

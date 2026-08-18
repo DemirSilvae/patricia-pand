@@ -1,9 +1,11 @@
-import ReactDOM from 'react-dom/client'
 import './index.scss'
-import App from './App'
 import './client'
-import { ProtocolContextProvider } from './context/ProtocolContext'
+
+import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router } from 'react-router-dom'
+
+import App from './App'
+import { ProtocolContextProvider } from './context/ProtocolContext'
 
 const rootElement = document.getElementById('root')
 
@@ -14,7 +16,7 @@ if (rootElement) {
       <Router>
         <App />
       </Router>
-    </ProtocolContextProvider>
+    </ProtocolContextProvider>,
   )
 } else {
   console.error('Element with id "root" not found')

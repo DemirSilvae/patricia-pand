@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+
 import styles from './Switcher.module.scss'
 
 type SwitcherProps = {
@@ -8,7 +9,12 @@ type SwitcherProps = {
   onChange?: (value: boolean) => void
 }
 
-export const Switcher: React.FC<SwitcherProps> = ({ label, defaultValue = true, value, onChange }) => {
+export const Switcher: React.FC<SwitcherProps> = ({
+  label,
+  defaultValue = true,
+  value,
+  onChange,
+}) => {
   const [isOn, setIsOn] = useState(value ?? defaultValue)
 
   useEffect(() => {
@@ -24,14 +30,11 @@ export const Switcher: React.FC<SwitcherProps> = ({ label, defaultValue = true, 
   }
 
   return (
-    <div className={styles["wrapper"]}>
-      <div
-        className={`${styles["switch"]} ${isOn ? styles["on"] : ''}`}
-        onClick={toggle}
-      >
-        <div className={styles["thumb"]} />
+    <div className={styles['wrapper']}>
+      <div className={`${styles['switch']} ${isOn ? styles['on'] : ''}`} onClick={toggle}>
+        <div className={styles['thumb']} />
       </div>
-      {label && <span className={styles["label"]}>{label}</span>}
+      {label && <span className={styles['label']}>{label}</span>}
     </div>
   )
 }
