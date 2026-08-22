@@ -50,6 +50,12 @@
 }
 
 .message {
+  &-content {
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 8px;
+  }
+  
   &:not(:last-child) {
     margin-bottom: 10px;
   }
@@ -74,12 +80,6 @@
     background-color: #000;
     border: 1px solid #fff;
   }
-}
-
-.message-content {
-  display: inline-block;
-  padding: 8px 12px;
-  border-radius: 8px;
 }
 
 .typing {
