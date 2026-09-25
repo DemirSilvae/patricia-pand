@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "setup": "npm i && dfx canister create test-front-backend && dfx generate test-front-backend && dfx deploy",
+    "setup": "npm i && dfx canister create grindurus-frontend && dfx generate grindurus-frontend && dfx deploy",
     "start": "npm run typechain && vite --port 3000",
     "prebuild": "dfx generate",
     "build": "tsc && vite build",
